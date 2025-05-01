@@ -262,8 +262,7 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
-*.mdf
-*.ldf
+# Removed .mdf here
 *.ndf
 
 # Business Intelligence projects

@@ -11,7 +11,7 @@ namespace FinalActivity3_CaseStudy
 {
 
 
-    public partial class Default
+    public partial class Login
     {
     }
 }

@@ -11,7 +11,7 @@ namespace FinalActivity3_CaseStudy.assets
 {
 
 
-    public partial class MainMasterpage
+    public partial class AdminMasterpage
     {
 
         /// <summary>

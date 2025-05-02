@@ -1,10 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMasterpage.master.cs" Inherits="FinalActivity3_CaseStudy.assets.MainMasterpage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterpage.master.cs" Inherits="FinalActivity3_CaseStudy.assets.AdminMasterpage" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales & Inventory System</title>
+    <title>Admin Dashboard</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
@@ -34,7 +34,7 @@
         }
         
         header {
-            background-color: #4a6fa5;
+            background-color: #343a40;
             color: white;
             padding: 1rem;
             display: flex;
@@ -52,7 +52,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            color: #4a6fa5;
+            color: #343a40;
         }
         
         .title {
@@ -136,15 +136,16 @@
         <div class="container">
             <header>
                 <div class="logo">[Logo]</div>
-                <div class="title">Sales & Inventory System</div>
+                <div class="title">Admin Dashboard</div>
             </header>
             
             <nav>
                 <ul class="nav-links">
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/Homepage.aspx">Home</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/Profile.aspx">My Profile</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/OrderHistory.aspx">Order History</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/Dashboard.aspx">Dashboard</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AddProduct.aspx">Add Product</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/ViewRecords.aspx">View Records</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/Reports.aspx">Reports</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/Logout.aspx">Logout</asp:HyperLink></li>
                 </ul>
             </nav>
             
@@ -155,7 +156,7 @@
             </main>
             
             <footer>
-                &copy; 2025 Your Group Name Here
+                Admin Panel — Group 3
             </footer>
         </div>
     </form>

@@ -107,3 +107,42 @@ ACCOUNT EXIST?
                   ↓
                  END
 ```
+---
+---
+---
+
+## 📦 Database Setup Instructions for Collaborators
+This project uses a local SQL Server `.mdf` file for development, but `.mdf` files aren't good for version control (Git) because:
+
+* `.mdf` files are **binary**, so Git can't track changes or merge properly.
+* They're often **locked** by SQL Server or Visual Studio.
+* Git may show errors like `Permission Denied` or `unable to process path`.
+
+### ✅ Instead of syncing `.mdf` via Git...
+We are using a folder called **`/DatabaseScripts`** inside the project. This contains SQL files for:
+* Creating tables
+* Inserting seed data
+* Adding stored procedures
+
+---
+
+## 🚀 How to Set Up the Database Locally
+1. Open **SQL Server Management Studio** or use Visual Studio's **Server Explorer**.
+2. Create a new local database manually (e.g., `SalesAndInventoryDB`).
+3. Open the `.sql` files inside `/DatabaseScripts`.
+4. Execute them in the correct order:
+   * `01_CreateTables.sql`
+   * `02_InsertSeedData.sql`
+   * `03_StoredProcedures.sql` (if any)
+Once done, your database will match the current project structure, and the app will work normally.
+
+---
+## 🔁 Keeping the Database in Sync
+If you:
+* Add a new table
+* Modify columns
+* Insert default data
+* Add a stored procedure
+
+➡️ Please update or add a new `.sql` file in the `DatabaseScripts` folder so we can all stay in sync.
+Avoid pushing `.mdf` and `.ldf` files to Git. They are **excluded in `.gitignore`** for safety.

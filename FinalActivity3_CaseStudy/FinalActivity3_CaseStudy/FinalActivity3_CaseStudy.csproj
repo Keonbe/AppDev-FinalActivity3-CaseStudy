@@ -79,6 +79,7 @@
     <Content Include="DatabaseScripts\01_CreateTables.sql" />
     <Content Include="Homepage.aspx" />
     <Content Include="User\Login.aspx" />
+    <Content Include="User\ProductPage.aspx" />
     <Content Include="User\Regisration.aspx" />
     <Content Include="Web.config" />
     <Content Include="Admin\AdminDashboard.aspx" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="Admin\AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Regisration.aspx.cs">
       <DependentUpon>Regisration.aspx</DependentUpon>

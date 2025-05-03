@@ -18,8 +18,7 @@ CREATE PROCEDURE [dbo].LoginAccountCheck
 	@userName NVARCHAR(255),
 	@PassWord NVARCHAR(255)
 AS
-	--SELECT * FROM ClientInfoTable 
 	SELECT EmailAddress, Password
-	From UserInfoTable
+	FROM UserInfoTable
 	WHERE EmailAddress = @userName AND PassWord = @PassWord
 RETURN 0

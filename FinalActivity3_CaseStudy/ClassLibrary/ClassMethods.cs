@@ -33,5 +33,32 @@ namespace ClassLibrary
             sqlConn.Close();
         }
 
+        public bool CheckLogin(string emailAddress, string passWord)
+        {
+            bool isValid = false;
+            sqlConn.Open();
+            SqlCommand checkLogin = new SqlCommand("LoginAccountCheck", sqlConn);
+            checkLogin.CommandType = CommandType.StoredProcedure;
+            //@EmailAddress, @Password
+            checkLogin.Parameters.Add("@userName", SqlDbType.NVarChar).Value = emailAddress;
+            checkLogin.Parameters.Add("@passWord", SqlDbType.NVarChar).Value = passWord;
+            SqlDataReader reader = checkLogin.ExecuteReader();
+            while (reader.Read())
+            {
+                emailAddress = reader["EmailAddress"].ToString();
+                isValid = true;
+                break;
+            }
+            sqlConn.Close();
+            return isValid;
+        }
+
+
+        #region
+        string EmailAddress, Password; //CTRL R + E
+        public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
+        public string PasswordClass { get => Password; set => Password = value; }
+        #endregion
+
     }
 }

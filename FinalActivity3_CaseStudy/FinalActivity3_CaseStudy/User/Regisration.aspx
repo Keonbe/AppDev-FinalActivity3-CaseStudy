@@ -58,7 +58,14 @@
     </tr>
 </table>
 <p>
+    <asp:Label ID="lblMessage" runat="server"></asp:Label>
+</p>
+    <p>
+</p>
+    <p>
 </p>
 <p>
+    <a href="/User/Login.aspx">Already Have an Account?</a>
+
 </p>
 </asp:Content>

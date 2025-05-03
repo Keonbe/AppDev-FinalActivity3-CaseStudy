@@ -67,10 +67,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminLogin.aspx" />
     <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
     <Content Include="App_Data\Sales&amp;InvSystemDB_log.ldf">
       <DependentUpon>Sales&amp;InvSystemDB.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\css\AdminStyle.css" />
+    <Content Include="assets\css\UserStyle.css" />
+    <Content Include="DatabaseScripts\03_StoredProcedures.sql" />
+    <Content Include="DatabaseScripts\02_Query.sql" />
+    <Content Include="DatabaseScripts\01_CreateTables.sql" />
     <Content Include="Homepage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Regisration.aspx" />
@@ -78,6 +84,13 @@
     <Content Include="AdminDashboard.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminMasterpage.Master.cs">
       <DependentUpon>AdminMasterpage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -1,0 +1,247 @@
+﻿/* Global Styles - Compatible with ASP.NET Controls */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.master-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background-color: #4a6fa5;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4a6fa5;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #f8f8f8;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+    .nav-links li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+        .nav-links a:hover {
+            background-color: #e0e0e0;
+        }
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    padding: 30px;
+    display: block; /* Changed from flex to better support ASP.NET controls */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+    /* Content styles that don't interfere with ASP.NET controls */
+    main label {
+        display: inline-block;
+        margin-bottom: 6px;
+        font-weight: normal;
+    }
+
+    main input[type="text"],
+    main input[type="password"],
+    main select,
+    main textarea {
+        width: 100%;
+        padding: 6px 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    main input[type="submit"],
+    main input[type="button"],
+    main button {
+        padding: 6px 12px;
+        background-color: #4a6fa5;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+        main input[type="submit"]:hover,
+        main input[type="button"]:hover,
+        main button:hover {
+            background-color: #3a5a85;
+        }
+
+/* Footer Styles */
+footer {
+    padding: 15px;
+    text-align: center;
+    color: #666;
+    background-color: #f8f8f8;
+}
+
+/* ASP.NET Compatible Table Styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    padding: 8px;
+    vertical-align: top;
+}
+
+/* ASP.NET GridView Compatible Styles */
+.grid-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.grid-view {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .grid-view th {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .grid-view td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .grid-view tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+/* Validation Control Styles */
+.validator {
+    color: #d9534f;
+    font-size: 13px;
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+/* Login/Register Form Styles */
+.form-container {
+    max-width: 600px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: block;
+}
+
+.form-label {
+    display: inline-block;
+    width: 150px;
+    margin-right: 10px;
+    vertical-align: top;
+    padding-top: 6px;
+}
+
+.form-field {
+    display: inline-block;
+    width: calc(100% - 165px);
+    vertical-align: top;
+}
+
+.button-container {
+    margin-top: 15px;
+    margin-left: 160px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Responsive Adjustments - Maintaining control compatibility */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .form-label,
+    .form-field {
+        display: block;
+        width: 100%;
+    }
+
+    .button-container {
+        margin-left: 0;
+    }
+}

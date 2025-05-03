@@ -1,0 +1,9 @@
+﻿INSERT INTO [dbo].[ProductInventoryTable] 
+    ([ProductID], [ProductName], [Price], [Stocks])
+VALUES
+    ('MSE', 'Mouse', 350.00, 100),
+    ('PRN', 'Printer Ink', 7500.00, 100),
+    ('PRNDT', 'Printer Dot Matrix', 5000.00, 100),
+    ('MNTRLc', 'LCD Monitor', 6500.00, 100),
+    ('MNTRLe', 'LED Monitor', 7500.00, 100);
+-- Insert sample data into UserInfoTable

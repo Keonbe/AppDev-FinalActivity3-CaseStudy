@@ -21,8 +21,8 @@
     <tr>
         <td class="auto-style2">Email Address</td>
         <td>
-            <asp:TextBox ID="tbEmail" runat="server" Width="512px"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEmail" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+            <asp:TextBox ID="tbEmailAddress" runat="server" Width="512px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEmailAddress" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     <tr>
@@ -37,23 +37,23 @@
         <td>
             <asp:TextBox ID="tbConfirmPassword" runat="server" Width="512px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbConfirmPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPassword" ControlToValidate="tbEmail" ErrorMessage="CompareValidator" ForeColor="#CC0000">Password Mismatch</asp:CompareValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPassword" ControlToValidate="tbConfirmPassword" ErrorMessage="CompareValidator" ForeColor="#CC0000">Password Mismatch</asp:CompareValidator>
         </td>
     </tr>
     <tr>
         <td class="auto-style2">Membership Type</td>
         <td>
             <asp:DropDownList ID="ddlMembershipType" runat="server" AutoPostBack="True">
-                <asp:ListItem Value="0.5">Silver</asp:ListItem>
-                <asp:ListItem Value="0.10">Gold</asp:ListItem>
-                <asp:ListItem Value="0.15">Platinum</asp:ListItem>
+                <asp:ListItem Value="Silver">Silver</asp:ListItem>
+                <asp:ListItem Value="Gold">Gold</asp:ListItem>
+                <asp:ListItem Value="Platinum">Platinum</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>
     <tr>
         <td class="auto-style2">&nbsp;</td>
         <td>
-            <asp:Button ID="btnRegister" runat="server" Text="Register Account" />
+            <asp:Button ID="btnRegister" runat="server" Text="Register Account" OnClick="btnRegister_Click" />
         </td>
     </tr>
 </table>

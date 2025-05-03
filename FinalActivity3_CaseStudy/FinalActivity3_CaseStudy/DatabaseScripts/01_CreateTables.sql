@@ -26,6 +26,6 @@ CREATE TABLE [dbo].[UserInfoTable] (
     [EmailAddress]   NVARCHAR (150) NOT NULL,
     [Password]       NVARCHAR (50)  NOT NULL,
     [MembershipType] NCHAR (10)     NULL,
-    [IsAdmin]        NCHAR (10)     DEFAULT ('false') NULL,
-    PRIMARY KEY CLUSTERED ([EmailAddress])
+    [IsAdmin]        NCHAR (10)     DEFAULT ('false') NOT NULL,
+    PRIMARY KEY CLUSTERED ([EmailAddress] ASC)
 );

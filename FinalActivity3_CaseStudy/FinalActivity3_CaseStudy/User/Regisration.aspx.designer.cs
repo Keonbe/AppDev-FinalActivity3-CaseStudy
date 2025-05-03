@@ -33,13 +33,13 @@ namespace FinalActivity3_CaseStudy
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// tbEmail control.
+        /// tbEmailAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        protected global::System.Web.UI.WebControls.TextBox tbEmailAddress;
 
         /// <summary>
         /// RequiredFieldValidator2 control.

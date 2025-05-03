@@ -10,7 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<p>
+    <p>
     Admin Login Page</p>
     <table class="auto-style1">
         <tr>
@@ -36,4 +36,10 @@
     </table>
 <p>
 </p>
+    <p>
+</p>
+    <p>
+</p>
+    <p>
+        <a href="/User/Login.aspx">Not an Admin?</a></p>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterpage.master.cs" Inherits="FinalActivity3_CaseStudy.assets.AdminMasterpage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterpage.master.cs" Inherits="FinalActivity3_CaseStudy.AdminMasterpage" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">

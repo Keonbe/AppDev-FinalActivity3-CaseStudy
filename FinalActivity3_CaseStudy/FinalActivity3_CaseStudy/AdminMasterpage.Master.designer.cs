@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FinalActivity3_CaseStudy.assets
+namespace FinalActivity3_CaseStudy
 {
 
 

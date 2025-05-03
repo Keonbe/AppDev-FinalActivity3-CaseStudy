@@ -360,3 +360,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/Sales&InvSystemDB.mdf
+/FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/Sales&InvSystemDB_log.ldf

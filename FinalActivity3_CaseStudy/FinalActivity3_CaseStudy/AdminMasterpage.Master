@@ -12,7 +12,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
+        <div class="admin-container">
             <header>
                 <div class="logo">[Logo]</div>
                 <div class="title">Admin Dashboard</div>
@@ -30,7 +30,6 @@
             
             <main>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    <div class="content-placeholder">[ContentPlaceholder]</div>
                 </asp:ContentPlaceHolder>
             </main>
             

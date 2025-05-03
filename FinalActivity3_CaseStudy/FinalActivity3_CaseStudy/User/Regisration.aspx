@@ -14,31 +14,36 @@
     <tr>
         <td class="auto-style2">Name</td>
         <td>
-            <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbName" runat="server" Width="512px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbName" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     <tr>
         <td class="auto-style2">Email Address</td>
         <td>
-            <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbEmail" runat="server" Width="512px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEmail" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     <tr>
         <td class="auto-style2">Password</td>
         <td>
-            <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbPassword" runat="server" Width="512px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     <tr>
-        <td class="auto-style2">Confirm Passowrd</td>
+        <td class="auto-style2">Confirm Password</td>
         <td>
-            <asp:TextBox ID="tbConfirmPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbConfirmPassword" runat="server" Width="512px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbConfirmPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="tbPassword" ControlToValidate="tbEmail" ErrorMessage="CompareValidator" ForeColor="#CC0000">Password Mismatch</asp:CompareValidator>
         </td>
     </tr>
     <tr>
         <td class="auto-style2">Membership Type</td>
         <td>
-            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+            <asp:DropDownList ID="ddlMembershipType" runat="server" AutoPostBack="True">
                 <asp:ListItem Value="0.5">Silver</asp:ListItem>
                 <asp:ListItem Value="0.10">Gold</asp:ListItem>
                 <asp:ListItem Value="0.15">Platinum</asp:ListItem>

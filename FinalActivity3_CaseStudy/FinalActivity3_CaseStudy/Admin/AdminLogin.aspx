@@ -1,29 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterpage.Master" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="FinalActivity3_CaseStudy.AdminLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            margin-left: 0;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-    Login Page</p>
-<table class="auto-style1">
-    <tr>
-        <td class="auto-style2">Username</td>
-        <td>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="auto-style2">Password</td>
-        <td>
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="auto-style2">&nbsp;</td>
-        <td>
-            <asp:Button ID="Button1" runat="server" Text="Button" />
-        </td>
-    </tr>
-</table>
 <p>
-    &nbsp;</p>
+    Admin Login Page</p>
+    <table class="auto-style1">
+        <tr>
+            <td>Username</td>
+            <td>
+                <asp:TextBox ID="tbUsername" runat="server" CssClass="auto-style2" Width="512px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbUsername" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <asp:TextBox ID="tbPassword" runat="server" CssClass="auto-style2" Width="512px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:Button ID="btnAdminLogin" runat="server" Text="Login AS Admin" />
+            </td>
+        </tr>
+    </table>
+<p>
+</p>
 </asp:Content>

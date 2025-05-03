@@ -77,7 +77,7 @@
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
         
         <div class="admin-link">
-            <a href="AdminLogin.aspx">Are you admin?</a>
+            <a href="/Admin/AdminLogin.aspx">Are you admin?</a>
         </div>
     </div>
 </asp:Content>

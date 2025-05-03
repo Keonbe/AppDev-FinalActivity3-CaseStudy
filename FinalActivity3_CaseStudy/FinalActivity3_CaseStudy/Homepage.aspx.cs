@@ -19,12 +19,12 @@ namespace FinalActivity3_CaseStudy
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/User/Login.aspx");
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Regisration.aspx");
+            Response.Redirect("~/User/Regisration.aspx");
         }
     }
 }

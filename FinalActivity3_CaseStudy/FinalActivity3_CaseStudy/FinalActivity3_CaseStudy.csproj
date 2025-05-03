@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminLogin.aspx" />
+    <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
     <Content Include="App_Data\Sales&amp;InvSystemDB_log.ldf">
       <DependentUpon>Sales&amp;InvSystemDB.mdf</DependentUpon>
@@ -78,24 +78,24 @@
     <Content Include="DatabaseScripts\02_Query.sql" />
     <Content Include="DatabaseScripts\01_CreateTables.sql" />
     <Content Include="Homepage.aspx" />
-    <Content Include="Login.aspx" />
-    <Content Include="Regisration.aspx" />
+    <Content Include="User\Login.aspx" />
+    <Content Include="User\Regisration.aspx" />
     <Content Include="Web.config" />
     <Content Include="Admin\AdminDashboard.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminLogin.aspx.cs">
+    <Compile Include="Admin\AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminLogin.aspx.designer.cs">
+    <Compile Include="Admin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminMasterpage.Master.cs">
+    <Compile Include="Admin\AdminMasterpage.Master.cs">
       <DependentUpon>AdminMasterpage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminMasterpage.Master.designer.cs">
+    <Compile Include="Admin\AdminMasterpage.Master.designer.cs">
       <DependentUpon>AdminMasterpage.Master</DependentUpon>
     </Compile>
     <Compile Include="Homepage.aspx.cs">
@@ -105,18 +105,18 @@
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="User\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MainMasterpage.Master.cs">
+    <Compile Include="User\MainMasterpage.Master.cs">
       <DependentUpon>MainMasterpage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MainMasterpage.Master.designer.cs">
+    <Compile Include="User\MainMasterpage.Master.designer.cs">
       <DependentUpon>MainMasterpage.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,17 +127,17 @@
     <Compile Include="Admin\AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Regisration.aspx.cs">
+    <Compile Include="User\Regisration.aspx.cs">
       <DependentUpon>Regisration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Regisration.aspx.designer.cs">
+    <Compile Include="User\Regisration.aspx.designer.cs">
       <DependentUpon>Regisration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MainMasterpage.Master" />
-    <Content Include="AdminMasterpage.Master" />
+    <Content Include="User\MainMasterpage.Master" />
+    <Content Include="Admin\AdminMasterpage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -146,9 +146,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="User\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

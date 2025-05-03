@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMasterpage.master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="FinalActivity3_CaseStudy.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/MainMasterpage.master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="FinalActivity3_CaseStudy.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .login-container {

@@ -22,10 +22,10 @@ CREATE TABLE [dbo].[ProductInventoryTable] (
 --User Table
 CREATE TABLE [dbo].[UserInfoTable] (
     [UserId]         INT            IDENTITY (1, 1) NOT NULL,
-    [Name]   NVARCHAR (150) NOT NULL,
-	[EmailAddress]   NVARCHAR (150) NOT NULL,
+    [Name]           NVARCHAR (150) NOT NULL,
+    [EmailAddress]   NVARCHAR (150) NOT NULL,
     [Password]       NVARCHAR (50)  NOT NULL,
     [MembershipType] NCHAR (10)     NULL,
     [IsAdmin]        NCHAR (10)     DEFAULT ('false') NULL,
-    PRIMARY KEY CLUSTERED ([UserId] ASC)
+    PRIMARY KEY CLUSTERED ([EmailAddress])
 );

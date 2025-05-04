@@ -30,6 +30,7 @@ namespace FinalActivity3_CaseStudy.User
                     tbNewPassword.Enabled = false;
                     tbConfirmNewPassword.Enabled = false;
                     btnUpdatePassword.Enabled = false;
+                    btnUpdatePassword.Visible = false;
                     lblMessage.Text = "⚠️ Not logged in";
                 }
             }

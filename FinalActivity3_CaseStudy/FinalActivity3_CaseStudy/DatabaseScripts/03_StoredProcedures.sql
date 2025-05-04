@@ -43,3 +43,14 @@ BEGIN
     ELSE
         RETURN 1;  -- Update successful
 END
+
+-- Stored Procedure: Admin Login Check
+CREATE PROCEDURE [dbo].AdminLoginAccountCheck
+	@userName NVARCHAR(255),
+	@PassWord NVARCHAR(255)
+AS
+	SELECT EmailAddress, Password, IsAdmin
+	FROM UserInfoTable
+	WHERE EmailAddress = @userName 
+	AND PassWord = @PassWord
+RETURN 0

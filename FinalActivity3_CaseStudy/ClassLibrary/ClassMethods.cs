@@ -58,6 +58,9 @@ namespace ClassLibrary
         string EmailAddress, Password; //CTRL R + E
         public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
         public string PasswordClass { get => Password; set => Password = value; }
+        string AdminEmailAddress, AdminPassword;
+        public string AdminEmailAddressClass { get => AdminEmailAddress; set => AdminEmailAddress = value; }
+        public string AdminPasswordClass { get => AdminPassword; set => AdminPassword = value; }
         #endregion
 
         public void UpdateProfileManager(string emailAddress, string passWord, string newPassword) //Updates Password @ ProfileManager.aspx

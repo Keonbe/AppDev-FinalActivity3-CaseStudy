@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMethods.cs" />
     <Compile Include="ClassComputations.cs" />
     <Compile Include="ClassMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

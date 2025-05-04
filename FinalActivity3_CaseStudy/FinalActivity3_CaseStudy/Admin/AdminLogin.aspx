@@ -30,13 +30,14 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:Button ID="btnAdminLogin" runat="server" Text="Login AS Admin" />
+                <asp:Button ID="btnAdminLogin" runat="server" Text="Login AS Admin" OnClick="btnAdminLogin_Click" />
             </td>
         </tr>
     </table>
 <p>
 </p>
     <p>
+        <asp:Label ID="lblMessage" runat="server"></asp:Label>
 </p>
     <p>
 </p>

@@ -82,6 +82,7 @@
     <Content Include="User\ProductPage.aspx" />
     <Content Include="User\ProfileManager.aspx" />
     <Content Include="User\Regisration.aspx" />
+    <Content Include="User\UserLogout.aspx" />
     <Content Include="Web.config" />
     <Content Include="Admin\AdminDashboard.aspx" />
   </ItemGroup>
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="User\Regisration.aspx.designer.cs">
       <DependentUpon>Regisration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserLogout.aspx.cs">
+      <DependentUpon>UserLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserLogout.aspx.designer.cs">
+      <DependentUpon>UserLogout.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

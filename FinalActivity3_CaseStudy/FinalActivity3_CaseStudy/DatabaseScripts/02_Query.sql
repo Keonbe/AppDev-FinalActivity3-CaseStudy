@@ -11,3 +11,19 @@ VALUES
     ('MNTRLe', 'LED Monitor', 7500.00, 100);
 
 
+    ---
+    ---Test/Execute Stored Procedure Query
+
+    --UpdateUserPassword Change Password [WORKING]
+GO
+
+DECLARE	@return_value Int
+
+EXEC	@return_value = [dbo].[UpdateUserPassword]
+		@EmailAddress = N'test123@email.com',
+		@Password = N'123',
+		@newpassword = N'321'
+
+SELECT	@return_value as 'Return Value'
+
+GO

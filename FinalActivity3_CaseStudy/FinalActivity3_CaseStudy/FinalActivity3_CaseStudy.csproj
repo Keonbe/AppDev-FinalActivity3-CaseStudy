@@ -80,6 +80,7 @@
     <Content Include="Homepage.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="User\ProductPage.aspx" />
+    <Content Include="User\ProfileManager.aspx" />
     <Content Include="User\Regisration.aspx" />
     <Content Include="Web.config" />
     <Content Include="Admin\AdminDashboard.aspx" />
@@ -134,6 +135,13 @@
     </Compile>
     <Compile Include="User\ProductPage.aspx.designer.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ProfileManager.aspx.cs">
+      <DependentUpon>ProfileManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ProfileManager.aspx.designer.cs">
+      <DependentUpon>ProfileManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Regisration.aspx.cs">
       <DependentUpon>Regisration.aspx</DependentUpon>

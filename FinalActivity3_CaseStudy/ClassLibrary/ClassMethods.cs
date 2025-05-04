@@ -17,7 +17,7 @@ namespace ClassLibrary
         //Conncetion Object
         SqlConnection sqlConn = new SqlConnection(ConnStr);
 
-        public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType)
+        public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
         {
             sqlConn.Open();
             SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", sqlConn);
@@ -33,7 +33,7 @@ namespace ClassLibrary
             sqlConn.Close();
         }
 
-        public bool CheckLogin(string emailAddress, string passWord)
+        public bool CheckLogin(string emailAddress, string passWord) //Checks if the user is already logged in
         {
             bool isValid = false;
             sqlConn.Open();
@@ -54,11 +54,22 @@ namespace ClassLibrary
         }
 
 
-        #region
+        #region Stores EmailAddress and Password in the class
         string EmailAddress, Password; //CTRL R + E
         public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
         public string PasswordClass { get => Password; set => Password = value; }
         #endregion
 
+        public void UpdateProfileManager(string emailAddress, string passWord, string newPassword) //Updates Password @ ProfileManager.aspx
+        {
+            sqlConn.Open();
+            SqlCommand updateRecord = new SqlCommand("UpdateUserPassword", sqlConn);
+            updateRecord.CommandType = CommandType.StoredProcedure;
+            updateRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
+            updateRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
+            updateRecord.Parameters.Add("@NewPassword", SqlDbType.NVarChar).Value = newPassword;
+            updateRecord.ExecuteNonQuery();
+            sqlConn.Close();
+        }
     }
 }

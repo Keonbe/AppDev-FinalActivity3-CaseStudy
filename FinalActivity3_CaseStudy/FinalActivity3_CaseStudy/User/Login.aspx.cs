@@ -19,7 +19,7 @@ namespace FinalActivity3_CaseStudy
                 if (Session["EmailAddress"] != null)
                 {
                     // If logged in already, Redirect to User Catalog Page
-                    Response.AppendHeader("Refresh", "2;url=ProductPage.aspx"); //Delays 2 seconds for lblMessage, Redirects
+                    Response.AppendHeader("Refresh", "2;url=ProductCatalog.aspx"); //Delays 2 seconds for lblMessage, Redirects
                     lblMessage.Text = "Redirecting to Product Page, You already have logged in.";
                 }
             }
@@ -39,7 +39,7 @@ namespace FinalActivity3_CaseStudy
                 Session["Password"] = tbPassword.Text;
 
                 // Redirect to User Catalog Page
-                Response.Redirect("ProductPage.aspx");
+                Response.Redirect("ProductCatalog.aspx");
                 return;
             }
             else

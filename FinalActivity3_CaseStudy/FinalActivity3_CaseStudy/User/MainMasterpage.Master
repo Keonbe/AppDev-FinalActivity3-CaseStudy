@@ -23,7 +23,7 @@
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Homepage.aspx">Home</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="/User/ProfileManager.aspx">Profile Manager</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="/User/OrderHistory.aspx">Order History</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="/User/ProductPage.aspx">Product Catalog</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="/User/ProductCatalog.aspx">Product Catalog</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="/User/UserLogout.aspx">Logout</asp:HyperLink></li>
                 </ul>
             </nav>

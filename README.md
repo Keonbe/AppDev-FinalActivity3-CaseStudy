@@ -185,88 +185,20 @@ Contact [Your Name] at [your.email@example.com] or propose fixes via a pull requ
 
 ---
 ---
----
 
-<br>
+### 📝 **DEVELOPER_NOTES.md** (New File)  
+# Extended Project Documentation  
 
-# 📂 File Directory Guide for Collaborators
+## Database Architecture  
+- Tables, relations, stored procedures  
+- Seed data reference  
 
-## Master Page Reference System
-The project uses a structured folder system with `MainMasterpage.Master` located in the **User** folder. Here's how to properly reference files:
+## Master Page System  
+- Path resolution rules  
+- Fixes for "does not exist" errors  
 
-### Correct Path Formatting
-```aspnet
-<!-- For files in SAME directory -->
-MasterPageFile="MainMasterpage.Master"
-
-<!-- For files in SUBDIRECTORY -->
-MasterPageFile="~/FolderName/Masterpage.Master"
-
-<!-- For files in PARENT directory -->
-MasterPageFile="../Masterpage.Master"
-```
-
-## Key Directory Structure
-```
-Root/
-├── Admin/
-│   ├── AdminMaster.master
-│   └── Dashboard.aspx
-└── User/
-    ├── MainMasterpage.Master   ← Primary master page
-    ├── Registration.aspx
-    └── Login.aspx
-```
-
-## Critical Rules for File References
-1. **Always use `~` for root-relative paths** when crossing folder boundaries
-   ```aspnet
-   ❌ "MainMasterpage.Master" 
-   ✅ "~/User/MainMasterpage.Master"
-   ```
-
-2. **Case sensitivity matters** - Match exact filenames:
-   ```aspnet
-   ❌ "mainmasterpage.master"
-   ✅ "MainMasterpage.Master"
-   ```
-
-3. **File Properties Checklist**:
-   - Build Action = Content
-   - Copy to Output Directory = Copy if newer
-
-## Troubleshooting Missing Files
-If you encounter "does not exist" errors:
-1. Verify physical file exists in Solution Explorer
-2. Check for typos in:
-   - File extensions (`.master` vs `.Master`)
-   - Path separators (`/` not `\`)
-   - CodeBehind declarations
-3. Clean and rebuild solution
-
-## Example Fixes
-**Before (Broken):**
-```aspnet
-<%@ Page MasterPageFile="MainMasterpage.Master" %>
-```
-
-**After (Fixed):**
-```aspnet
-<%@ Page MasterPageFile="~/User/MainMasterpage.Master" %>
-```
-
-**Before (Typo):**
-```aspnet
-CodeBehind="Regisration.aspx.cs"
-```
-
-**After (Corrected):**
-```aspnet
-CodeBehind="Registration.aspx.cs"
-```
-
-Pro Tip: Use Solution Explorer's "Copy Path" feature to ensure correct references!
-
----
----
----
+## Contribution Guide  
+- How to sync database changes  
+- Naming conventions  
+- Testing protocols
+- Proper Commenting

@@ -71,6 +71,7 @@
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminLogout.aspx" />
     <Content Include="Admin\ReportModule.aspx" />
+    <Content Include="Admin\TestAdminView.aspx" />
     <Content Include="Admin\ViewMembers.aspx" />
     <Content Include="Admin\ViewProducts.aspx" />
     <Content Include="Admin\ViewTransactions.aspx" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="Admin\ReportModule.aspx.designer.cs">
       <DependentUpon>ReportModule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TestAdminView.aspx.cs">
+      <DependentUpon>TestAdminView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TestAdminView.aspx.designer.cs">
+      <DependentUpon>TestAdminView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewMembers.aspx.cs">
       <DependentUpon>ViewMembers.aspx</DependentUpon>

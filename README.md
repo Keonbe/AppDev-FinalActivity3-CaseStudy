@@ -166,11 +166,11 @@ static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
 
 ---
 
-## 5. Build and Run  
+## 5. Build and Run  (BE CAUTIOUS ABOUT THIS!)
 1. **Clean**: `Build` → `Clean Solution`.  
 2. **Rebuild**: `Build` → `Rebuild Solution`.  
 3. **Run**: `Debug` → `Start Debugging (F5)`.  
-
+Note: Rebuilding and building project can make the project fail at run time. As much as possible refrain from this, Use only under certain circumstances
 ---
 
 ## 🚨 Troubleshooting  

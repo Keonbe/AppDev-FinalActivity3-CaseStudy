@@ -231,3 +231,80 @@ CodeBehind="Registration.aspx.cs"
 ```
 
 Pro Tip: Use Solution Explorer's "Copy Path" feature to ensure correct references!
+
+---
+---
+---
+
+# 🛠️ Project Setup Guide for Collaborators  
+
+## 1. Clone the Repository  
+**In Visual Studio:**  
+1. Go to **Git** → **Clone Repository**  
+2. Paste the repository URL: `https://github.com/YourUsername/FinalActivity3.git`  
+3. Choose a local folder → Click **Clone**  
+
+---
+
+## 2. Clean Up App_Data  
+After cloning:  
+1. **Delete the existing `App_Data` folder** (if present) to avoid conflicts.  
+2. **Create a new `App_Data` folder** in your project:  
+   - Right-click project → **Add** → **New Folder** → Name it `App_Data`  
+
+---
+
+## 3. Set Up Local Database  
+### Option A: Create New Database via SQL Scripts  
+1. Open **SQL Server Management Studio (SSMS)** or **Visual Studio SQL Server Object Explorer**.  
+2. Create a new database named `SalesInventoryDB`.  
+3. Run the SQL scripts in this order (from `/DatabaseScripts`):  
+   ```sql
+   01_CreateTables.sql → 02_InsertSeedData.sql → 03_StoredProcedures.sql  
+   ```  
+4. The database will generate an `.mdf` file in your new `App_Data` folder automatically.  
+
+### Option B: Attach Existing Database (Advanced)  
+1. Create a blank `.mdf` file in `App_Data` (Right-click `App_Data` → **Add** → **New Item** → SQL Server Database).  
+2. Use SSMS to attach the database:  
+   - Right-click **Databases** → **Attach** → Browse to your `.mdf` file.  
+
+---
+
+## 4. Configure Connection String  
+Update the connection string in your **class file** (e.g., `DatabaseHelper.cs`) to match your local SQL Server path:  
+
+```csharp
+static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
+                        AttachDbFilename=C:\Your\Project\Path\App_Data\SalesInventoryDB.mdf;
+                        Integrated Security=True";
+```
+
+### Key Notes:  
+1. **Customize the Path**:  
+   Replace `C:\Your\Project\Path\` with your actual project directory.  
+   - Tip: Right-click the `.mdf` file in **Solution Explorer** → **Properties** → Copy the full path.  
+
+2. **No Web.config Changes Needed**  
+   This project uses a **hardcoded connection string in the class file** instead of `Web.config`.  
+
+3. **Verify SQL Server Instance**:  
+   Ensure `(LocalDB)\MSSQLLocalDB` matches your local instance name.  
+
+---
+
+## 5. Build and Run  
+1. Clean the solution: **Build** → **Clean Solution**  
+2. Rebuild: **Build** → **Rebuild Solution**  
+3. Run: **Debug** → **Start Debugging (F5)**  
+
+---
+
+## 🚨 Troubleshooting  
+### Common Issues:  
+- **"Database cannot be opened"**: Ensure the `.mdf` isn’t locked by SQL Server/Visual Studio.  
+- **Login failed**: Verify `Integrated Security=True` matches your SQL Server authentication mode.  
+- **Missing stored procedures**: Re-run the SQL scripts.  
+
+### Need Help?  
+Contact [Your Name] at [your.email@example.com] or contribute fixes directly to this README!  

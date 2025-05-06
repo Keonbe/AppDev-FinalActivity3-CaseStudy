@@ -112,41 +112,76 @@ ACCOUNT EXIST?
 ---
 <br>
 
-## 📦 Database Setup Instructions for Collaborators
-This project uses a local SQL Server `.mdf` file for development, but `.mdf` files aren't good for version control (Git) because:
+# 🛠️ Project Setup Guide for Collaborators  
 
-* `.mdf` files are **binary**, so Git can't track changes or merge properly.
-* They're often **locked** by SQL Server or Visual Studio.
-* Git may show errors like `Permission Denied` or `unable to process path`.
-
-### ✅ Instead of syncing `.mdf` via Git...
-We are using a folder called **`/DatabaseScripts`** inside the project. This contains SQL files for:
-* Creating tables
-* Inserting seed data
-* Adding stored procedures
+## 1. Clone the Repository  
+**In Visual Studio:**  
+1. Go to **Git** → **Clone Repository**  
+2. Paste the repository URL: `https://github.com/YourUsername/FinalActivity3.git`  
+3. Choose a local folder → Click **Clone**  
 
 ---
 
-## 🚀 How to Set Up the Database Locally
-1. Open **SQL Server Management Studio** or use Visual Studio's **Server Explorer**.
-2. Create a new local database manually (e.g., `SalesAndInventoryDB`).
-3. Open the `.sql` files inside `/DatabaseScripts`.
-4. Execute them in the correct order:
-   * `01_CreateTables.sql`
-   * `02_InsertSeedData.sql`
-   * `03_StoredProcedures.sql` (if any)
-Once done, your database will match the current project structure, and the app will work normally.
+## 2. Clean Up App_Data  
+After cloning:  
+1. **Delete the existing `App_Data` folder** (if present) to avoid conflicts.  
+2. **Create a new `App_Data` folder**:  
+   - Right-click project → **Add** → **New Folder** → Name it `App_Data`.  
 
 ---
-## 🔁 Keeping the Database in Sync
-If you:
-* Add a new table
-* Modify columns
-* Insert default data
-* Add a stored procedure
 
-➡️ Please update or add a new `.sql` file in the `DatabaseScripts` folder so we can all stay in sync.
-Avoid pushing `.mdf` and `.ldf` files to Git. They are **excluded in `.gitignore`** for safety.
+## 3. Database Setup  
+### 🚫 Why We Don’t Sync `.mdf` Files  
+- **Binary files**: Git can’t track changes or merge `.mdf` files.  
+- **Locked files**: SQL Server/Visual Studio often locks them, causing errors like `Permission Denied`.  
+
+### ✅ Use SQL Scripts Instead  
+1. **Run the scripts** in `/DatabaseScripts` in order:  
+   ```sql
+   01_CreateTables.sql → 02_InsertSeedData.sql → 03_StoredProcedures.sql  
+   ```  
+2. **Execute in SQL Server Management Studio (SSMS)**:  
+   - Create a new database (e.g., `SalesInventoryDB`).  
+   - Open each script → Execute (F5).  
+
+### 🔄 Keeping the Database in Sync  
+If you modify the database schema:  
+- Add/update `.sql` files in `/DatabaseScripts`.  
+- **Never commit `.mdf`/`.ldf` files** (they’re excluded via `.gitignore`).  
+
+---
+
+## 4. Configure Connection String  
+Update the **hardcoded connection string** in your class file (e.g., `DatabaseHelper.cs`):  
+```csharp
+static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
+                        AttachDbFilename=C:\Your\Project\Path\App_Data\SalesInventoryDB.mdf;
+                        Integrated Security=True";
+```
+
+### 🔧 Customization Notes:  
+- Replace `C:\Your\Project\Path\` with your actual project directory.  
+- **No `Web.config` changes**: The connection is managed directly in code.  
+- Verify your SQL Server instance name (e.g., `(LocalDB)\MSSQLLocalDB`).  
+
+---
+
+## 5. Build and Run  
+1. **Clean**: `Build` → `Clean Solution`.  
+2. **Rebuild**: `Build` → `Rebuild Solution`.  
+3. **Run**: `Debug` → `Start Debugging (F5)`.  
+
+---
+
+## 🚨 Troubleshooting  
+| Issue                          | Solution                                      |  
+|--------------------------------|-----------------------------------------------|  
+| **"Database cannot be opened"** | Close SQL Server/VS → Delete `.mdf/.ldf` file.     |  
+| **Login failed**               | Use `Integrated Security=True` for local auth.|  
+| **Missing stored procedures**  | Re-run the SQL scripts.                       |  
+
+**Need help?**  
+Contact [Your Name] at [your.email@example.com] or propose fixes via a pull request.  
 
 ---
 ---
@@ -231,3 +266,7 @@ CodeBehind="Registration.aspx.cs"
 ```
 
 Pro Tip: Use Solution Explorer's "Copy Path" feature to ensure correct references!
+
+---
+---
+---

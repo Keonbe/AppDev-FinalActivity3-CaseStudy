@@ -5,5 +5,6 @@
     <p>
         Welcome to Admin Page</p>
     <p>
-        &nbsp;</p>
+        <br />
+        <b><a href="TestAdminView.aspx">View Records</a></b> </p>
 </asp:Content>

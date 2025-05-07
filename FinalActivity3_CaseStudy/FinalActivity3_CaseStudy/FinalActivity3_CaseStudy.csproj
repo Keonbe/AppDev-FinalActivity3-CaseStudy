@@ -72,9 +72,6 @@
     <Content Include="Admin\AdminLogout.aspx" />
     <Content Include="Admin\ReportModule.aspx" />
     <Content Include="Admin\TestAdminView.aspx" />
-    <Content Include="Admin\ViewMembers.aspx" />
-    <Content Include="Admin\ViewProducts.aspx" />
-    <Content Include="Admin\ViewTransactions.aspx" />
     <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
     <Content Include="App_Data\Sales&amp;InvSystemDB_log.ldf">
       <DependentUpon>Sales&amp;InvSystemDB.mdf</DependentUpon>
@@ -137,27 +134,6 @@
     </Compile>
     <Compile Include="Admin\TestAdminView.aspx.designer.cs">
       <DependentUpon>TestAdminView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ViewMembers.aspx.cs">
-      <DependentUpon>ViewMembers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewMembers.aspx.designer.cs">
-      <DependentUpon>ViewMembers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ViewProducts.aspx.cs">
-      <DependentUpon>ViewProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewProducts.aspx.designer.cs">
-      <DependentUpon>ViewProducts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ViewTransactions.aspx.cs">
-      <DependentUpon>ViewTransactions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewTransactions.aspx.designer.cs">
-      <DependentUpon>ViewTransactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

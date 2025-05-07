@@ -35,7 +35,10 @@ namespace ClassLibrary
         }
 
 
-
+        public static class DBHelper //static helper class for global/shared access to the connection string
+        {
+            public static string ConnectionString => @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\YourPath\Sales&InvSystemDB.mdf;Integrated Security=True";
+        }
 
     }
 }

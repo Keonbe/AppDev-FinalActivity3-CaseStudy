@@ -71,7 +71,7 @@
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminLogout.aspx" />
     <Content Include="Admin\ReportModule.aspx" />
-    <Content Include="Admin\TestAdminView.aspx" />
+    <Content Include="Admin\AdminView.aspx" />
     <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
     <Content Include="App_Data\Sales&amp;InvSystemDB_log.ldf">
       <DependentUpon>Sales&amp;InvSystemDB.mdf</DependentUpon>
@@ -128,12 +128,12 @@
     <Compile Include="Admin\ReportModule.aspx.designer.cs">
       <DependentUpon>ReportModule.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\TestAdminView.aspx.cs">
-      <DependentUpon>TestAdminView.aspx</DependentUpon>
+    <Compile Include="Admin\AdminView.aspx.cs">
+      <DependentUpon>AdminView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\TestAdminView.aspx.designer.cs">
-      <DependentUpon>TestAdminView.aspx</DependentUpon>
+    <Compile Include="Admin\AdminView.aspx.designer.cs">
+      <DependentUpon>AdminView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

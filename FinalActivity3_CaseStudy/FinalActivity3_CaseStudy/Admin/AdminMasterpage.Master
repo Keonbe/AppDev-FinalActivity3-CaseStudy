@@ -22,7 +22,7 @@
                 <ul class="nav-links">
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminDashboard.aspx">Dashboard</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AddProduct.aspx">Add Product</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/ViewRecords.aspx">View Records</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminView.aspx">View Records</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/Reports.aspx">Reports</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminLogout.aspx">Logout</asp:HyperLink></li>
                 </ul>

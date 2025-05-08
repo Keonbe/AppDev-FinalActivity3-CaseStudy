@@ -1,16 +1,17 @@
 ﻿-- Stored Procedure: Save User Records from Registration to the database table.
 CREATE PROCEDURE [dbo].SaveUserRegisration
-    @Name NVARCHAR(150),
-    @EmailAddress NVARCHAR(150),
-    @Password NVARCHAR(50),
-	@MembershipType NCHAR(10),
-	@IsAdmin NCHAR(10)
+    @Name           NVARCHAR(150),
+    @EmailAddress   NVARCHAR(150),
+    @Password       NVARCHAR(50),
+    @MembershipType NCHAR(10),
+    @IsAdmin        BIT
 AS
 BEGIN
-    INSERT INTO UserInfoTable (Name, EmailAddress, Password, MembershipType, IsAdmin)
-    VALUES (@Name, @EmailAddress, @Password, @MembershipType, @IsAdmin)
+    INSERT INTO UserInfoTable
+        (Name, EmailAddress, Password, MembershipType, IsAdmin)
+    VALUES
+        (@Name, @EmailAddress, @Password, @MembershipType, @IsAdmin);
 END
-
 RETURN 0;
 
 

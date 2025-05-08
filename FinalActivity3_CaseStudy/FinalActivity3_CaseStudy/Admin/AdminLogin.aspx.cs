@@ -16,12 +16,12 @@ namespace FinalActivity3_CaseStudy
         {
             if (!IsPostBack)
             {
-                // Check if the user is already logged in
-                if (Session["EmailAddress"] != null)
+                // Check if the admin is already logged in
+                if (Session["AdminEmailAddress"] != null)
                 {
                     // If logged in already, Redirect to User Catalog Page
                     Response.AppendHeader("Refresh", "2;url=AdminDashboard.aspx"); 
-                    lblMessage.Text = "Redirecting to Product Page, You already have logged in.";
+                    lblMessage.Text = "Redirecting to Admin Page, You already have logged in.";
                 }
             }
         }
@@ -35,12 +35,11 @@ namespace FinalActivity3_CaseStudy
             if (adminMethod.CheckAdmin(email, passwd))
             {
                 // Login successful - set session variables
-                Session["IsAdmin"] = "0";
-                Session["EmailAddress"] = classMethod.AdminEmailAddressClass;
-                Session["Password"] = classMethod.AdminPasswordClass;
+                Session["AdminEmailAddress"] = classMethod.AdminEmailAddressClass;
+                Session["AdminEmailAddress"] = classMethod.AdminPasswordClass;
 
                 Session["EmailAddress"] = tbUsername.Text;
-                Session["Password"] = tbPassword.Text;
+                Session["EmailAddress"] = tbPassword.Text;
 
                 Response.Redirect("AdminDashboard.aspx");
                 return;

@@ -45,7 +45,7 @@ namespace FinalActivity3_CaseStudy
             else
             {
                 // Login failed - show error message
-                lblMessage.Text = "Invalid Username or Password";
+                lblMessage.Text = "Invalid Username or Password, Or Not an Admin";
                 return;
             }
         }

@@ -14,7 +14,27 @@ namespace FinalActivity3_CaseStudy.Admin
         AdminMethods classObj = new AdminMethods();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                lblMessage.Text = "Logged in as: " + Session["AdminEmailAddress"].ToString();
+                if (Session["AdminEmailAddress"] != null) //login session check
+                {
+                    // User is logged in - enable buttons
+                    tbProductID.Enabled = true;
+                    tbProductName.Enabled = true;
+                    tbPrice.Enabled = true;
+                    tbStocks.Enabled = true;
 
+                }
+                else //Not login
+                {
+                    tbProductID.Enabled = false;
+                    tbProductName.Enabled = false;
+                    tbPrice.Enabled = false;
+                    tbStocks.Enabled = false;
+                    //lblMessage.Text = "⚠️ Not logged in";
+                }
+            }
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)

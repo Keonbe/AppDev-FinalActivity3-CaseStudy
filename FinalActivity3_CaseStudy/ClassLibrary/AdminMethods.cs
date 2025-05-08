@@ -34,6 +34,19 @@ namespace ClassLibrary
             }
         }
 
+        public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable)
+        {
+            sqlConn.Open();
+            SqlCommand saveRecord = new SqlCommand("AddNewProducts", sqlConn);
+            saveRecord.CommandType = CommandType.StoredProcedure;
+            //@productID, @ProductName, @Price, @Stocks
+            saveRecord.Parameters.Add("@productID", SqlDbType.NVarChar).Value = productID;
+            saveRecord.Parameters.Add("@ProductName", SqlDbType.NVarChar).Value = productName;
+            saveRecord.Parameters.Add("@Price", SqlDbType.NVarChar).Value = basePrice;
+            saveRecord.Parameters.Add("@Stocks", SqlDbType.NVarChar).Value = stockAvailable;
+            saveRecord.ExecuteNonQuery();
+            sqlConn.Close();
+        }
 
         public static class DBHelper //static helper class for global/shared access to the connection string
         {

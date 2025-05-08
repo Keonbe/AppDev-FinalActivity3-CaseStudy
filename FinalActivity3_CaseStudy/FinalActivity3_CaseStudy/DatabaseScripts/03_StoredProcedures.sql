@@ -45,7 +45,8 @@ BEGIN
         RETURN 1;  -- Update successful
 END
 
--- Stored Procedure: Admin Login Check
+
+-- Stored Procedure: Admin Login Account Check
 CREATE PROCEDURE [dbo].AdminLoginAccountCheck
 	@userName NVARCHAR(255),
 	@PassWord NVARCHAR(255)
@@ -55,6 +56,8 @@ AS
 	WHERE EmailAddress = @userName 
 	AND PassWord = @PassWord
 RETURN 0
+
+
 
 --Get View All Records
 CREATE PROCEDURE [dbo].GetAllMembers
@@ -77,6 +80,18 @@ AS
 	SELECT ProductID, ProductName, Price, Stocks 
 	FROM ProductInventoryTable;
 RETURN 0
+
+CREATE PROCEDURE [dbo].GetAllProducts
+	--@productID,
+	--@productName,
+	--@price,
+	--@stocks
+AS
+	SELECT ProductID, ProductName, Price, Stocks 
+	FROM ProductInventoryTable;
+RETURN 0
+
+
 
 --Add New Products
 CREATE PROCEDURE [dbo].AddNewProducts

@@ -29,3 +29,13 @@ CREATE TABLE [dbo].[UserInfoTable] (
     [IsAdmin]        BIT            NOT NULL,
     PRIMARY KEY CLUSTERED ([EmailAddress] ASC)
 );
+
+--Transaction Table
+CREATE TABLE [dbo].[TransactionsTable] (
+    [TransactionID]  INT          NOT NULL,
+    [UserID]         INT          NOT NULL,
+    [DateTime]       DATETIME     NOT NULL,
+    [TotalAmount]    DECIMAL (18) NOT NULL,
+    [MembershipType] NCHAR (10)   NULL,
+    PRIMARY KEY CLUSTERED ([TransactionID] ASC)
+);

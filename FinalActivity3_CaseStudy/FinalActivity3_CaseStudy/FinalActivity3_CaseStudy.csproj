@@ -70,6 +70,7 @@
     <Content Include="Admin\AddProduct.aspx" />
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminLogout.aspx" />
+    <Content Include="Admin\RegisterAdmin.aspx" />
     <Content Include="Admin\ReportModule.aspx" />
     <Content Include="Admin\AdminView.aspx" />
     <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="Admin\AdminMasterpage.Master.designer.cs">
       <DependentUpon>AdminMasterpage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RegisterAdmin.aspx.cs">
+      <DependentUpon>RegisterAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RegisterAdmin.aspx.designer.cs">
+      <DependentUpon>RegisterAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ReportModule.aspx.cs">
       <DependentUpon>ReportModule.aspx</DependentUpon>

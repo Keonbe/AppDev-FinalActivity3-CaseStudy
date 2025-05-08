@@ -78,3 +78,17 @@ AS
 	FROM ProductInventoryTable;
 RETURN 0
 
+--Add New Products
+CREATE PROCEDURE [dbo].AddNewProducts
+    @productID  NCHAR (10),
+    @ProductName NVARCHAR (150),
+    @Price DECIMAL (18),
+	@Stocks INT
+
+AS
+BEGIN
+    INSERT INTO ProductInventoryTable(ProductID, ProductName, Price, Stocks)
+    VALUES (@productID, @ProductName, @Price, @Stocks)
+END
+
+RETURN 0;

@@ -16,7 +16,6 @@ namespace FinalActivity3_CaseStudy.Admin
         {
             if (!IsPostBack)
             {
-                lblMessage.Text = "Logged in as: " + Session["AdminEmailAddress"].ToString();
                 if (Session["AdminEmailAddress"] != null) //login session check
                 {
                     // User is logged in - enable buttons
@@ -24,6 +23,7 @@ namespace FinalActivity3_CaseStudy.Admin
                     tbProductName.Enabled = true;
                     tbPrice.Enabled = true;
                     tbStocks.Enabled = true;
+                    btnAddProduct.Visible = true;
 
                 }
                 else //Not login
@@ -32,7 +32,10 @@ namespace FinalActivity3_CaseStudy.Admin
                     tbProductName.Enabled = false;
                     tbPrice.Enabled = false;
                     tbStocks.Enabled = false;
-                    //lblMessage.Text = "⚠️ Not logged in";
+                    btnAddProduct.Visible = false;
+                    lblMessage.Text = "⚠️ Not logged in";
+                    Response.AppendHeader("Refresh", "2;url=AdminLogin.aspx"); //Delays 2 seconds for lblMessage, Redirects
+
                 }
             }
         }

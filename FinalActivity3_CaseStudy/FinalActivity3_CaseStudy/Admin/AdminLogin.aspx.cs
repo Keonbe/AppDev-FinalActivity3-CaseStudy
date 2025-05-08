@@ -38,8 +38,8 @@ namespace FinalActivity3_CaseStudy
                 Session["AdminEmailAddress"] = classMethod.AdminEmailAddressClass;
                 Session["AdminEmailAddress"] = classMethod.AdminPasswordClass;
 
-                Session["EmailAddress"] = tbUsername.Text;
-                Session["EmailAddress"] = tbPassword.Text;
+                Session["AdminEmailAddress"] = tbUsername.Text;
+                Session["AdminEmailAddress"] = tbPassword.Text;
 
                 Response.Redirect("AdminDashboard.aspx");
                 return;

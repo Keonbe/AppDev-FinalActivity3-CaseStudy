@@ -11,7 +11,7 @@ namespace ClassLibrary
 
         SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
-        public bool CheckAdmin(string emailAddress, string passWord)
+        public bool CheckAdmin(string emailAddress, string passWord) //Check if user is an admin
         {
             const string procedureName = "AdminLoginAccountCheck";
             using (var conn = new SqlConnection(ConnStr))
@@ -30,7 +30,7 @@ namespace ClassLibrary
         }
 
 
-        public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable)
+        public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable) //Add new products to AddProducts.aspx
         {
             sqlConn.Open();
             SqlCommand saveRecord = new SqlCommand("AddNewProducts", sqlConn);
@@ -47,6 +47,22 @@ namespace ClassLibrary
         public static class DBHelper //static helper class for global/shared access to the connection string
         {
             public static string ConnectionString => @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\YourPath\Sales&InvSystemDB.mdf;Integrated Security=True";
+        }
+
+        public void SaveRegisrationAdmin(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from RegisterAdmin(USER)
+        {
+            sqlConn.Open();
+            SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", sqlConn);
+            saveRecord.CommandType = CommandType.StoredProcedure;
+
+            //@Name, @EmailAddress, @Password, @MembershipType, 'false'(IsAdmin)
+            saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
+            saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
+            saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
+            saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
+            saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 1; //BIT accepts 0 or 1 - True
+            saveRecord.ExecuteNonQuery();
+            sqlConn.Close();
         }
 
     }

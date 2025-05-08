@@ -27,3 +27,17 @@ EXEC	@return_value = [dbo].[UpdateUserPassword]
 SELECT	@return_value as 'Return Value'
 
 GO
+
+--Add user admin
+DECLARE	@return_value Int
+
+EXEC	@return_value = [dbo].[SaveUserRegisration]
+		@Name = N'admin123',
+		@EmailAddress = N'admin123@email.com',
+		@Password = N'123',
+		@MembershipType = N'Silver',
+		@IsAdmin = 1
+
+SELECT	@return_value as 'Return Value'
+
+GO

@@ -29,10 +29,11 @@ namespace ClassLibrary
             saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
             saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
             saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
-            saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = false; //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
+            saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 0; //BIT accepts 0 or 1
             saveRecord.ExecuteNonQuery();
             sqlConn.Close();
         }
+        //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
         //or saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = false;  // for new registrations
 
         public bool CheckLogin(string emailAddress, string passWord) //Checks if the user is already logged in

@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
         <div class="master-container">
             <header>
-                <div class="logo">[Logo]</div>
+            <!--<div class="logo">[Logo]</div> -->
                 <div class="title">Sales & Inventory System</div>
             </header>
             

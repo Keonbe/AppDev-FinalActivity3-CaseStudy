@@ -13,8 +13,8 @@
 <body>
     <form id="form1" runat="server">
         <div class="admin-container">
-            <header>
-                <div class="logo">[Logo]</div>
+            <header> 
+           <!--< div class="logo">[Logo]</div> -->
                 <div class="title">Admin Dashboard</div>
             </header>
             

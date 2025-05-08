@@ -34,7 +34,6 @@ namespace ClassLibrary
             sqlConn.Close();
         }
         //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
-        //or saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = false;  // for new registrations
 
         public bool CheckLogin(string emailAddress, string passWord) //Checks if the user is already logged in
         {

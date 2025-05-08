@@ -59,6 +59,6 @@
     <p>
     </p>
     <p>
-        <a href="/User/AdminLogin.aspx">Already Have an Account?</a>
+        <a href="AdminLogin.aspx">Already Have an Account?</a>
     </p>
 </asp:Content>

@@ -54,3 +54,26 @@ AS
 	WHERE EmailAddress = @userName 
 	AND PassWord = @PassWord
 RETURN 0
+
+--Get View All Records
+CREATE PROCEDURE [dbo].GetAllMembers
+	--@userID,
+	--@Name,
+	--@emailAddress,
+	--@membershipType,
+	--@IsAdmin
+AS
+	SELECT UserID, Name, EmailAddress, MembershipType, IsAdmin
+	FROM UserInfoTable;
+RETURN 0
+
+CREATE PROCEDURE [dbo].GetAllProducts
+	--@productID,
+	--@productName,
+	--@price,
+	--@stocks
+AS
+	SELECT ProductID, ProductName, Price, Stocks 
+	FROM ProductInventoryTable;
+RETURN 0
+

@@ -17,9 +17,6 @@ namespace FinalActivity3_CaseStudy.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                LoadGrid(rblViewSelector.SelectedValue);
-
-            if (!IsPostBack)
             {
                 LoadGrid(rblViewSelector.SelectedValue); //Load the grid with the default value(rblViewSelector.SelectedValue - View Products)
                 if (Session["AdminEmailAddress"] != null) //login session check
@@ -39,7 +36,7 @@ namespace FinalActivity3_CaseStudy.Admin
 
         protected void rblViewSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadGrid(rblViewSelector.SelectedValue);
+            LoadGrid(rblViewSelector.SelectedValue); //Each time SelectedIndexChanged, reload the grid with the selected value(rblViewSelector.SelectedValue; Stored Procedure name)
         }
 
         protected void btnLoad_Click(object sender, EventArgs e)
@@ -50,11 +47,11 @@ namespace FinalActivity3_CaseStudy.Admin
         {
             DataTable dt = new DataTable();
             using (var conn = new SqlConnection(connStr))
-            using (var cmd = new SqlCommand(storedProcName, conn))
+            using (var cmd = new SqlCommand(storedProcName, conn)) //StoredProc name @ rblViewSelector
             using (var da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                conn.Open();
+                conn.Open(); 
                 da.Fill(dt);
             }
 

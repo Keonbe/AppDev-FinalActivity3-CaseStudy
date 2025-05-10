@@ -19,7 +19,7 @@ namespace FinalActivity3_CaseStudy
                 if (Session["EmailAddress"] != null)
                 {
                     // If logged in already, Redirect to User Catalog Page
-                    Response.AppendHeader("Refresh", "2;url=ProductCatalog.aspx"); //Delays 2 seconds for lblMessage, Redirects
+                    Response.AppendHeader("Refresh", "2;url=ProductCatalog.aspx"); //Delays 2 seconds for lblMessage, Redirects to product catalog page
                     lblMessage.Text = "Redirecting to Product Page, You already have logged in.";
                 }
             }
@@ -27,12 +27,12 @@ namespace FinalActivity3_CaseStudy
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string email = tbEmailAddress.Text.Trim();
+            string email = tbEmailAddress.Text.Trim(); //.Trim() removes leading and trailing whitespace
             string pwd = tbPassword.Text.Trim();
 
             if (classMethod.CheckLogin(email, pwd, out int userId))
             {
-                // Login successful – store both Email and UserID
+                // Login successful – store both Email and UserID from UserTable
                 Session["EmailAddress"] = email;
                 Session["UserID"] = userId;
 

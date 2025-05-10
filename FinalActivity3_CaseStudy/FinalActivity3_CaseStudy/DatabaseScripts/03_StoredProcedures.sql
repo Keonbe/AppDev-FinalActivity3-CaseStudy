@@ -1,4 +1,5 @@
-﻿-- Stored Procedure: Save User Records from Registration to the database table.
+﻿--Start Here
+-- Stored Procedure: Save User Records from Registration to the database table.
 CREATE PROCEDURE [dbo].SaveUserRegisration
     @Name           NVARCHAR(150),
     @EmailAddress   NVARCHAR(150),
@@ -15,6 +16,7 @@ END
 RETURN 0;
 
 
+--Start Here
 -- Stored Procedure: Login Check
 CREATE PROCEDURE [dbo].LoginAccountCheck
 	@userName NVARCHAR(255),
@@ -26,6 +28,7 @@ AS
 RETURN 0
 
 
+--Start Here
 -- Stored Procedure: PROFILE MANAGER(CHANGE PASSWORD ONLY)
 CREATE PROCEDURE [dbo].UpdateUserPassword
     @EmailAddress NVARCHAR(150),  -- Unique identifier to find the record
@@ -46,6 +49,7 @@ BEGIN
 END
 
 
+--Start Here
 -- Stored Procedure: Admin Login Account Check
 CREATE PROCEDURE [dbo].AdminLoginAccountCheck
 	@userName NVARCHAR(255),
@@ -58,7 +62,7 @@ AS
 RETURN 0
 
 
-
+--Start Here
 --Get View All Records
 CREATE PROCEDURE [dbo].GetAllMembers
 	--@userID,
@@ -92,7 +96,7 @@ AS
 RETURN 0
 
 
-
+--Start Here
 --Add New Products
 CREATE PROCEDURE [dbo].AddNewProducts
     @productID  NCHAR (10),
@@ -107,3 +111,32 @@ BEGIN
 END
 
 RETURN 0;
+
+
+--Start Here
+--GetOrderHistoryUser
+CREATE PROCEDURE [dbo].GetOrderHistoryUser
+    @UserID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        t.TransactionID,
+        t.DateTime,
+        t.TotalAmount,
+        t.MembershipType,
+        u.UserId,
+        u.Name        AS UserName,
+        u.EmailAddress,
+        u.MembershipType AS UserMembership
+    FROM dbo.TransactionsTable AS t
+    INNER JOIN dbo.UserInfoTable AS u
+        ON t.UserID = u.UserId
+    WHERE t.UserID = @UserID
+    ORDER BY t.DateTime;
+END
+/*
+Explain: Gets info from 2 tables: TransactionsTable(Transactions) & UserTable(For user)
+Joins both tables where UserID is same in TransactionsTable & UserID - Acts as FK
+*/

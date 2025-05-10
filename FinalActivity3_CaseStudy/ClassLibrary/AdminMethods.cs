@@ -17,8 +17,8 @@ namespace ClassLibrary
             using (var conn = new SqlConnection(ConnStr))
             using (var cmd = new SqlCommand(procedureName, conn))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@userName", SqlDbType.NVarChar, 150).Value = emailAddress;
+                cmd.CommandType = CommandType.StoredProcedure; //Parameter: @userName @passWord
+                cmd.Parameters.Add("@userName", SqlDbType.NVarChar, 150).Value = emailAddress; 
                 cmd.Parameters.Add("@passWord", SqlDbType.NVarChar, 50).Value = passWord;
 
                 conn.Open();
@@ -33,14 +33,14 @@ namespace ClassLibrary
         public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable) //Add new products to AddProducts.aspx
         {
             sqlConn.Open();
-            SqlCommand saveRecord = new SqlCommand("AddNewProducts", sqlConn);
+            SqlCommand saveRecord = new SqlCommand("AddNewProducts", sqlConn); //Stored Procedure name
             saveRecord.CommandType = CommandType.StoredProcedure;
-            //@productID, @ProductName, @Price, @Stocks
+            //Parameter: @productID, @ProductName, @Price, @Stocks
             saveRecord.Parameters.Add("@productID", SqlDbType.NVarChar).Value = productID;
             saveRecord.Parameters.Add("@ProductName", SqlDbType.NVarChar).Value = productName;
             saveRecord.Parameters.Add("@Price", SqlDbType.NVarChar).Value = basePrice;
             saveRecord.Parameters.Add("@Stocks", SqlDbType.NVarChar).Value = stockAvailable;
-            saveRecord.ExecuteNonQuery();
+            saveRecord.ExecuteNonQuery(); //Execute Stored Procedure
             sqlConn.Close();
         }
 
@@ -52,10 +52,9 @@ namespace ClassLibrary
         public void SaveRegisrationAdmin(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from RegisterAdmin(USER)
         {
             sqlConn.Open();
-            SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", sqlConn);
+            SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", sqlConn); //Stored Procedure name
             saveRecord.CommandType = CommandType.StoredProcedure;
-
-            //@Name, @EmailAddress, @Password, @MembershipType, 'false'(IsAdmin)
+            //Parameter: @Name, @EmailAddress, @Password, @MembershipType, 'false'(IsAdmin)
             saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
             saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
             saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;

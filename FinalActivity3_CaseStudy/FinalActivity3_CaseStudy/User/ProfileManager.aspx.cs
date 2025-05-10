@@ -26,7 +26,7 @@ namespace FinalActivity3_CaseStudy.User
                 }
                 else //Not login
                 {
-                    tbCurrentPassword.Enabled = false;
+                    tbCurrentPassword.Enabled = false; //Disable buttons and icons
                     tbNewPassword.Enabled = false;
                     tbConfirmNewPassword.Enabled = false;
                     btnUpdatePassword.Enabled = false;

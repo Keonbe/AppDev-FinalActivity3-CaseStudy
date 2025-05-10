@@ -29,7 +29,7 @@ namespace FinalActivity3_CaseStudy.Admin
                 }
                 else //Not login
                 {
-                    tbName.Enabled = false;
+                    tbName.Enabled = false; //disable buttons
                     tbEmailAddress.Enabled = false;
                     tbPassword.Enabled = false;
                     ddlMembershipType.Enabled = false;
@@ -43,7 +43,7 @@ namespace FinalActivity3_CaseStudy.Admin
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            classObj.SaveRegisrationAdmin(tbName.Text, tbEmailAddress.Text, tbPassword.Text, ddlMembershipType.SelectedValue);
+            classObj.SaveRegisrationAdmin(tbName.Text, tbEmailAddress.Text, tbPassword.Text, ddlMembershipType.SelectedValue); //Registers an admin user
             Session["AdminEmailAddress"] = tbName.Text;
             lblMessage.Text = "Registration successful! You can now log in.";
         }

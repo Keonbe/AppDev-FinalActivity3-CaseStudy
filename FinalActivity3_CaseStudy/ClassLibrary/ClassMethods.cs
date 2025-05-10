@@ -15,8 +15,7 @@ namespace ClassLibrary
         //Kean ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;Integrated Security=True";
         static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;Integrated Security=True";
 
-        //Conncetion Object
-        SqlConnection sqlConn = new SqlConnection(ConnStr);
+        SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
         public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
         {
@@ -35,7 +34,7 @@ namespace ClassLibrary
         }
         //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
 
-        public bool CheckLogin(string email, string password, out int userId)
+        public bool CheckLogin(string email, string password, out int userId) //Checks if user exists in the database
         {
             userId = 0;
             using (var conn = new SqlConnection(ConnStr))

@@ -18,6 +18,23 @@ namespace FinalActivity3_CaseStudy.Admin
         {
             if (!IsPostBack)
                 LoadGrid(rblViewSelector.SelectedValue);
+
+            if (!IsPostBack)
+            {
+                LoadGrid(rblViewSelector.SelectedValue); //Load the grid with the default value(rblViewSelector.SelectedValue - View Products)
+                if (Session["AdminEmailAddress"] != null) //login session check
+                {
+                    // User is logged in - enable buttons
+                    lblMessage.Text = "Viewing Database Tables as " + Session["AdminEmailAddress"].ToString();
+
+                }
+                else //Not login
+                {
+                    lblMessage.Text = "⚠️ Not logged in";
+                    Response.AppendHeader("Refresh", "1;url=AdminLogin.aspx"); //Delays 2 seconds for lblMessage, Redirects
+
+                }
+            }
         }
 
         protected void rblViewSelector_SelectedIndexChanged(object sender, EventArgs e)

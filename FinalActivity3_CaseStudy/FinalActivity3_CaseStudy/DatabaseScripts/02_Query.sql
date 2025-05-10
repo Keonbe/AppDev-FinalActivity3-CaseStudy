@@ -17,6 +17,8 @@ VALUES
     --UpdateUserPassword Change Password [WORKING]
 GO
 
+
+
 DECLARE	@return_value Int
 
 EXEC	@return_value = [dbo].[UpdateUserPassword]
@@ -27,6 +29,8 @@ EXEC	@return_value = [dbo].[UpdateUserPassword]
 SELECT	@return_value as 'Return Value'
 
 GO
+
+
 
 --Add user admin
 DECLARE	@return_value Int
@@ -41,3 +45,22 @@ EXEC	@return_value = [dbo].[SaveUserRegisration]
 SELECT	@return_value as 'Return Value'
 
 GO
+
+
+--Add user
+INSERT INTO dbo.UserInfoTable (Name, EmailAddress, Password, MembershipType, IsAdmin)
+VALUES
+  ('Alice Santos',    'alice@example.com',   'alice123', 'Silver',    0),
+  ('Bob Reyes',       'bob@example.com',     'bob123',   'Gold',      0),
+  ('Charlie Cruz',    'charlie@example.com', 'charlie1', 'Platinum',  0),
+  ('Diana Velasco',   'diana@example.com',   'diana123', 'Silver',    0),
+  ('Admin User',      'admin@example.com',   'admin123', NULL,        1);
+
+  --Add Samplew Transaction Values
+  INSERT INTO dbo.TransactionsTable (UserID, DateTime, TotalAmount, MembershipType)
+VALUES
+  (28, '2025-01-01T10:15:00',  500.00,  'Silver'),
+  (30, '2025-01-02T14:30:00', 1500.00,  'Gold'),
+  (31, '2025-01-03T09:45:00', 2500.00,  'Platinum'),
+  (32, '2025-01-04T16:20:00',  750.00,  'Silver'),
+  (31, '2025-01-05T11:10:00', 1200.00,  'Silver');

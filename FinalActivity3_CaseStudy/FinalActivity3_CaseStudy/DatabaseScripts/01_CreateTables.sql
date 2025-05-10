@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[UserInfoTable] (
 
 --Transaction Table
 CREATE TABLE [dbo].[TransactionsTable] (
-    [TransactionID]  INT          NOT NULL,
+    [TransactionID]  INT   IDENTITY(1,1) NOT NULL,
     [UserID]         INT          NOT NULL,
     [DateTime]       DATETIME     NOT NULL,
     [TotalAmount]    DECIMAL (18) NOT NULL,

@@ -27,27 +27,24 @@ namespace FinalActivity3_CaseStudy
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
-            // Check user login
-            if (classMethod.CheckLogin(tbEmailAddress.Text, tbPassword.Text))
+            string email = tbEmailAddress.Text.Trim();
+            string pwd = tbPassword.Text.Trim();
+
+            if (classMethod.CheckLogin(email, pwd, out int userId))
             {
-                // Login successful - set session variables
-                Session["EmailAddress"] = classMethod.EmailAddressClass;
-                Session["Password"] = classMethod.PasswordClass;
+                // Login successful – store both Email and UserID
+                Session["EmailAddress"] = email;
+                Session["UserID"] = userId;
 
-                Session["EmailAddress"] = tbEmailAddress.Text;
-                Session["Password"] = tbPassword.Text;
-
-                // Redirect to User Catalog Page
                 Response.Redirect("ProductCatalog.aspx");
                 return;
             }
             else
             {
-                // Login failed - show error message
-                lblMessage.Text = "Invalid Username or Password, Or Not an Admin";
+                lblMessage.Text = "Invalid Username or Password";
                 return;
             }
         }
+
     }
 }

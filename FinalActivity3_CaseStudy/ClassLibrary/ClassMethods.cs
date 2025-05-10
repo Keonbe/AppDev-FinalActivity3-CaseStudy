@@ -35,25 +35,27 @@ namespace ClassLibrary
         }
         //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
 
-        public bool CheckLogin(string emailAddress, string passWord) //Checks if the user is already logged in
+        public bool CheckLogin(string email, string password, out int userId)
         {
-            bool isValid = false;
-            sqlConn.Open();
-            SqlCommand checkLogin = new SqlCommand("LoginAccountCheck", sqlConn);
-            checkLogin.CommandType = CommandType.StoredProcedure;
-            //@EmailAddress, @Password
-            checkLogin.Parameters.Add("@userName", SqlDbType.NVarChar).Value = emailAddress;
-            checkLogin.Parameters.Add("@passWord", SqlDbType.NVarChar).Value = passWord;
-            SqlDataReader reader = checkLogin.ExecuteReader();
-            while (reader.Read())
+            userId = 0;
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("LoginAccountCheck", conn))
             {
-                emailAddress = reader["EmailAddress"].ToString();
-                isValid = true;
-                break;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmailAddress", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    userId = Convert.ToInt32(reader["UserID"]);
+                    return true;
+                }
             }
-            sqlConn.Close();
-            return isValid;
+            return false;
         }
+
 
 
         #region Stores EmailAddress and Password in the class

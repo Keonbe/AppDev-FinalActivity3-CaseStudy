@@ -77,5 +77,18 @@ namespace ClassLibrary
             updateRecord.ExecuteNonQuery();
             sqlConn.Close();
         }
+
+        public void AddToCartMethod(int productID, int quantity)
+        {
+            SqlConnection conn = new SqlConnection(ConnStr);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("AddProductToCart", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@LoanID", loanID);
+            cmd.Parameters.AddWithValue("@Status", newStatus);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

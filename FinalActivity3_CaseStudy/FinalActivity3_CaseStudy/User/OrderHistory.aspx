@@ -6,16 +6,11 @@
         <br /><b><a href="/User/ProductCatalog.aspx">Back to Catalog</a></b>
     </p>
     <p>
-        &nbsp;</p>
-    <p>
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
     </p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        <asp:GridView ID="gvOrderHistory" runat="server" AutoGenerateColumns="True" CssClass="table table-bordered">
+    <div class="grid-container">
+        <asp:GridView ID="gvOrderHistory" runat="server" CssClass="grid-view"
+                      AutoGenerateColumns="True" EmptyDataText="No transaction history found.">
         </asp:GridView>
-    </p>
+    </div>
 </asp:Content>

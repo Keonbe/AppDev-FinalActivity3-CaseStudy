@@ -62,10 +62,10 @@ namespace FinalActivity3_CaseStudy.User
             foreach (DataRow r in dt.Rows)
                 sub += Convert.ToDouble(r["SubTotal"]);
 
-            double vat = sub * 0.10;
-            string memType = Session["MembershipType"].ToString();
-            double discRate = 0;
-            if (sub >= 10000)
+            double vat = sub * 0.10; //VAT = 10% of Total Amount
+            string memType = Session["MembershipType"].ToString(); //MembershipType
+            double discRate = 0; //Discount Rate
+            if (sub >= 10000) //MembershipType DiscountRate
             {
                 switch (memType)
                 {
@@ -77,13 +77,13 @@ namespace FinalActivity3_CaseStudy.User
             double discount = sub * discRate;
             double finalAmount = (sub + vat) - discount;
 
-            lblTotalAmount.Text = sub.ToString("C");
-            lblVat.Text = vat.ToString("C");
-            lblDiscount.Text = discount.ToString("C");
-            lblFinalAmount.Text = finalAmount.ToString("C");
+            lblTotalAmount.Text = sub.ToString("C"); //TotalAmount
+            lblVat.Text = vat.ToString("C"); //VAT
+            lblDiscount.Text = discount.ToString("C"); //Discount
+            lblFinalAmount.Text = finalAmount.ToString("C"); //TotalAmount
         }
 
-        protected void gvCartItems_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvCartItems_RowCommand(object sender, GridViewCommandEventArgs e) //Remove Item
         {
             if (e.CommandName == "RemoveItem")
             {
@@ -95,12 +95,12 @@ namespace FinalActivity3_CaseStudy.User
             }
         }
 
-        protected void btnContinueShopping_Click(object sender, EventArgs e)
+        protected void btnContinueShopping_Click(object sender, EventArgs e) //Redirects to Product Catalog
         {
             Response.Redirect("~/User/ProductCatalog.aspx");
         }
 
-        protected void btnCheckout_Click(object sender, EventArgs e)
+        protected void btnCheckout_Click(object sender, EventArgs e) //Proceeds to transaction
         {
             int userId = (int)Session["UserID"];
 

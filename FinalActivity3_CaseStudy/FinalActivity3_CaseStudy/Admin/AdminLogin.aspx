@@ -23,7 +23,7 @@
         <tr>
             <td>Password</td>
             <td>
-                <asp:TextBox ID="tbPassword" runat="server" CssClass="auto-style2" Width="512px"></asp:TextBox>
+                <asp:TextBox ID="tbPassword" runat="server" CssClass="auto-style2" Width="512px" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
             </td>
         </tr>

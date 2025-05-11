@@ -40,9 +40,10 @@ namespace ClassLibrary
         /// <summary>
         /// Check if account exist in database by calling the LoginAccountCheck stored procedure.
         /// </summary>
-        public bool CheckLogin(string email, string password, out int userId) //Checks if user exists in the database
+        public bool CheckLogin(string email, string password, out int userId, out string memType)
         {
             userId = 0;
+            memType = string.Empty;
             using (var conn = new SqlConnection(ConnStr))
             using (var cmd = new SqlCommand("LoginAccountCheck", conn))
             {
@@ -55,11 +56,14 @@ namespace ClassLibrary
                 if (reader.Read())
                 {
                     userId = Convert.ToInt32(reader["UserID"]);
+                    memType = reader["MembershipType"].ToString(); // ✅ Read from result set
                     return true;
                 }
             }
+
             return false;
         }
+
 
         #region Stores EmailAddress and Password in the class
         string EmailAddress, Password; //CTRL R + E
@@ -89,19 +93,25 @@ namespace ClassLibrary
         /// Add products to carttable by calling the AddProductToCart stored procedure.
         /// </summary>
         public void AddToCartMethod(int userId, string productID, int quantity)
-        {   //stored procedure to add to cart
-            using (var conn = new SqlConnection(ConnStr))
-            using (var cmd = new SqlCommand("AddProductToCart", conn))
+        {
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                // Match the stored-proc parameters:
-                cmd.Parameters.AddWithValue("@UserID", userId);
-                cmd.Parameters.AddWithValue("@ProductID", productID);
-                cmd.Parameters.AddWithValue("@Quantity", quantity);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                using (var conn = new SqlConnection(ConnStr))
+                using (var cmd = new SqlCommand("AddProductToCart", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // Explicitly define parameters
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.NChar, 10).Value = productID.PadRight(10).Substring(0, 10); // Ensure 10 chars
+                    cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = quantity;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error or rethrow
+                throw new Exception("AddToCart failed: " + ex.Message, ex);
             }
         }
 
@@ -120,6 +130,57 @@ namespace ClassLibrary
                 da.Fill(dt);
             }
             return dt;
+        }
+
+        //-------------------------------------------------------------------// Main: Shopping Cart
+
+        /// <summary>
+        /// Retrieves all cart items for the given user.
+        /// </summary>
+        public DataTable GetCartItems(int userId)
+        {
+            var dt = new DataTable();
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("SC_GetCartItems", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                conn.Open();
+                using (var da = new SqlDataAdapter(cmd))
+                    da.Fill(dt);
+            }
+            return dt;
+        }
+
+        /// <summary>
+        /// Removes one item from the user's cart.
+        /// </summary>
+        public void RemoveCartItem(int userId, int cartId)
+        {
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("SC_RemoveCartItem", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.Parameters.AddWithValue("@CartId", cartId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Processes the user's entire cart checkout in one atomic operation.
+        /// </summary>
+        public void ProcessCartCheckout(int userId)
+        {
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("SC_ProcessCartCheckout", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }

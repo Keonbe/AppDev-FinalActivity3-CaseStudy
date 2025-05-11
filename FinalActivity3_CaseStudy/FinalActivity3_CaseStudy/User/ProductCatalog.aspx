@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/MainMasterpage.Master" AutoEventWireup="true" CodeBehind="ProductCatalog.aspx.cs" Inherits="FinalActivity3_CaseStudy.User.ProductPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
@@ -11,10 +16,12 @@
     </p>
     <p>
         &nbsp;
+        <b><a href="ShoppingCart.aspx">Your shopping Cart</a></b>
+    </p>
     </p>
     <div>
         <asp:GridView ID="gvProductTable" runat="server" AutoGenerateColumns="False"
-            OnRowCommand="gvProductTable_RowCommand" DataKeyNames="ProductID">
+            OnRowCommand="gvProductTable_RowCommand" DataKeyNames="ProductID,Stocks">
 
             <Columns>
                 <asp:BoundField DataField="ProductID" HeaderText="Product ID" />

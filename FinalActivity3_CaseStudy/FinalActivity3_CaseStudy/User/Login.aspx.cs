@@ -30,12 +30,12 @@ namespace FinalActivity3_CaseStudy
             string email = tbEmailAddress.Text.Trim(); //.Trim() removes leading and trailing whitespace
             string pwd = tbPassword.Text.Trim();
 
-            if (classMethod.CheckLogin(email, pwd, out int userId))
+            if (classMethod.CheckLogin(email, pwd, out int userId, out string memType))
             {
                 // Login successful – store both Email and UserID from UserTable
                 Session["EmailAddress"] = email;
                 Session["UserID"] = userId;
-
+                Session["MembershipType"] = memType;
                 Response.Redirect("ProductCatalog.aspx");
                 return;
             }

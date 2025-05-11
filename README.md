@@ -43,6 +43,7 @@ A company needs an **automated sales and inventory system**. As developers, your
 
 ### 💡 Formula:
 Total Amount Purchase = (Total Amount + VAT) – Discount (if any)
+<br>
 VAT = 10% of Total Amount
 
 

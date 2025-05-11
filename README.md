@@ -1,4 +1,4 @@
-# FinalActivity3[LC} / Final Exam [LA]
+# FinalActivity3[LC] / Final Exam [LA]
 ---
 
 # Sales and Inventory System - Case Study

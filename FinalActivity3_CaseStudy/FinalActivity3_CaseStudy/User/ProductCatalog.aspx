@@ -14,7 +14,7 @@
     </p>
     <div>
         <asp:GridView ID="gvProductTable" runat="server" AutoGenerateColumns="False"
-            OnRowCommand="gvProductTable_RowCommand" DataKeyNames="LoanID">
+            OnRowCommand="gvProductTable_RowCommand" DataKeyNames="ProductID">
 
             <Columns>
                 <asp:BoundField DataField="ProductID" HeaderText="Product ID" />
@@ -25,6 +25,16 @@
                 <asp:TemplateField HeaderText="Quantity">
                     <ItemTemplate>
                         <asp:TextBox ID="txtQty" runat="server" Text="1" Width="40px" />
+                        <asp:RangeValidator
+                            ID="rvQty"
+                            runat="server"
+                            ControlToValidate="txtQty"
+                            Type="Integer"
+                            MinimumValue="1"
+                            MaximumValue='<%# Eval("Stocks") %>'
+                            ErrorMessage="Qty must be between 1 and available stock"
+                            Display="Dynamic"
+                            ForeColor="Red" />
                     </ItemTemplate>
                 </asp:TemplateField>
 
@@ -42,6 +52,7 @@
         <br />
         <p>
             &nbsp;
+            <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </p>
 
     </div>

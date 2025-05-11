@@ -17,6 +17,9 @@ namespace ClassLibrary
 
         SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
+        /// <summary>
+        /// Saves user input registered by calling the SaveUserRegisration stored procedure.
+        /// </summary>
         public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
         {
             sqlConn.Open();
@@ -34,6 +37,9 @@ namespace ClassLibrary
         }
         //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
 
+        /// <summary>
+        /// Check if account exist in database by calling the LoginAccountCheck stored procedure.
+        /// </summary>
         public bool CheckLogin(string email, string password, out int userId) //Checks if user exists in the database
         {
             userId = 0;
@@ -55,8 +61,6 @@ namespace ClassLibrary
             return false;
         }
 
-
-
         #region Stores EmailAddress and Password in the class
         string EmailAddress, Password; //CTRL R + E
         public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
@@ -66,6 +70,9 @@ namespace ClassLibrary
         public string AdminPasswordClass { get => AdminPassword; set => AdminPassword = value; }
         #endregion
 
+        /// <summary>
+        /// Update user password to a new one by calling the UpdateUserPassword stored procedure.
+        /// </summary>
         public void UpdateProfileManager(string emailAddress, string passWord, string newPassword) //Updates Password @ ProfileManager.aspx
         {
             sqlConn.Open();
@@ -78,17 +85,42 @@ namespace ClassLibrary
             sqlConn.Close();
         }
 
-        public void AddToCartMethod(int productID, int quantity)
-        {
-            SqlConnection conn = new SqlConnection(ConnStr);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("AddProductToCart", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@LoanID", loanID);
-            cmd.Parameters.AddWithValue("@Status", newStatus);
+        /// <summary>
+        /// Add products to carttable by calling the AddProductToCart stored procedure.
+        /// </summary>
+        public void AddToCartMethod(int userId, string productID, int quantity)
+        {   //stored procedure to add to cart
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("AddProductToCart", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.ExecuteNonQuery();
-            conn.Close();
+                // Match the stored-proc parameters:
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
+
+        /// <summary>
+        /// Returns a DataTable of all products by calling the GetAllProducts stored procedure.
+        /// </summary>
+        public DataTable GetAllProducts()
+        {
+            var dt = new DataTable();
+            using (var conn = new SqlConnection(ConnStr))
+            using (var cmd = new SqlCommand("GetAllProducts", conn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                da.Fill(dt);
+            }
+            return dt;
+        }
+
     }
 }

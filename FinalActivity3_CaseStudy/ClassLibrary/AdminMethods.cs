@@ -11,6 +11,9 @@ namespace ClassLibrary
 
         SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
+        /// <summary>
+        /// Checks if user is admin by calling the AdminLoginAccountCheck stored procedure.
+        /// </summary>
         public bool CheckAdmin(string emailAddress, string passWord) //Check if user is an admin
         {
             const string procedureName = "AdminLoginAccountCheck";
@@ -29,7 +32,9 @@ namespace ClassLibrary
             }
         }
 
-
+        /// <summary>
+        /// Add new products to products table by calling the AddNewProducts stored procedure.
+        /// </summary>
         public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable) //Add new products to AddProducts.aspx
         {
             sqlConn.Open();
@@ -49,6 +54,9 @@ namespace ClassLibrary
             public static string ConnectionString => @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\YourPath\Sales&InvSystemDB.mdf;Integrated Security=True";
         }
 
+        /// <summary>
+        /// Add a admin account to userTable by calling the SaveUserRegisration stored procedure(IsAdmin = 1).
+        /// </summary>
         public void SaveRegisrationAdmin(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from RegisterAdmin(USER)
         {
             sqlConn.Open();

@@ -36,10 +36,8 @@ namespace FinalActivity3_CaseStudy
             {
                 // Login successful - set session variables
                 Session["AdminEmailAddress"] = classMethod.AdminEmailAddressClass;
-                Session["AdminEmailAddress"] = classMethod.AdminPasswordClass;
 
                 Session["AdminEmailAddress"] = tbUsername.Text;
-                Session["AdminEmailAddress"] = tbPassword.Text;
 
                 Response.Redirect("AdminDashboard.aspx");
                 return;

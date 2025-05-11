@@ -171,17 +171,24 @@ namespace ClassLibrary
         /// <summary>
         /// Processes the user's entire cart checkout in one atomic operation.
         /// </summary>
-        public void ProcessCartCheckout(int userId)
+        public void ProcessCartCheckout(int userId, double subTotal, string memType, double discountRate, double finalTotal)
         {
-            using (var conn = new SqlConnection(ConnStr))
-            using (var cmd = new SqlCommand("SC_ProcessCartCheckout", conn))
+            using (SqlConnection conn = new SqlConnection(ConnStr))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@UserID", userId);
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand("SC_ProcessCheckout", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    cmd.Parameters.AddWithValue("@SubTotal", subTotal);
+                    cmd.Parameters.AddWithValue("@MemType", memType);
+                    cmd.Parameters.AddWithValue("@DiscountRate", discountRate);
+                    cmd.Parameters.AddWithValue("@FinalTotal", finalTotal);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
-
     }
 }

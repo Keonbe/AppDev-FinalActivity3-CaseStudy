@@ -17,6 +17,7 @@ namespace FinalActivity3_CaseStudy.User
                     AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;
                     Integrated Security=True";
         ClassMethods methods = new ClassMethods();
+        ClassComputations ClassComputations = new ClassComputations();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,7 +34,7 @@ namespace FinalActivity3_CaseStudy.User
             }
         }
 
-        private void BindCart()
+        private void BindCart() //Bind table
         {
             try
             {
@@ -62,20 +63,18 @@ namespace FinalActivity3_CaseStudy.User
             foreach (DataRow r in dt.Rows)
                 sub += Convert.ToDouble(r["SubTotal"]);
 
-            double vat = sub * 0.10; //VAT = 10% of Total Amount
+            // Use helper to compute VAT
+            double vat = ClassComputations.CalculateVAT(sub); // Use helper to compute VAT
             string memType = Session["MembershipType"].ToString(); //MembershipType
-            double discRate = 0; //Discount Rate
-            if (sub >= 10000) //MembershipType DiscountRate
-            {
-                switch (memType)
-                {
-                    case "Platinum": discRate = 0.15; break;
-                    case "Gold": discRate = 0.10; break;
-                    case "Silver": discRate = 0.05; break;
-                }
-            }
-            double discount = sub * discRate;
-            double finalAmount = (sub + vat) - discount;
+            double discRate = 0; //Discount Rate 
+            int memIndex = memType == "Platinum" ? 0 
+                          : memType == "Gold" ? 1
+                          : 2; //MembershipType DiscountRate
+            // Use helper to compute final amount (includes VAT & discount)
+            double finalAmount = ClassComputations.CalculateFinalAmount(sub, memIndex);
+
+            // Derive discount back out if you need to display it
+            double discount = (sub + vat) - finalAmount;
 
             lblTotalAmount.Text = sub.ToString("C"); //TotalAmount
             lblVat.Text = vat.ToString("C"); //VAT
@@ -83,32 +82,54 @@ namespace FinalActivity3_CaseStudy.User
             lblFinalAmount.Text = finalAmount.ToString("C"); //TotalAmount
         }
 
-        protected void gvCartItems_RowCommand(object sender, GridViewCommandEventArgs e) //Remove Item
+        //Remove Item
+        protected void gvCartItems_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "RemoveItem")
             {
                 int cartId = Convert.ToInt32(e.CommandArgument);
                 int userId = (int)Session["UserID"];
-
                 methods.RemoveCartItem(userId, cartId);
                 BindCart();
             }
         }
 
-        protected void btnContinueShopping_Click(object sender, EventArgs e) //Redirects to Product Catalog
-        {
-            Response.Redirect("~/User/ProductCatalog.aspx");
-        }
-
-        protected void btnCheckout_Click(object sender, EventArgs e) //Proceeds to transaction
+        //Checkout Btn = Transaction
+        protected void btnCheckout_Click(object sender, EventArgs e)
         {
             int userId = (int)Session["UserID"];
+            DataTable dt = methods.GetCartItems(userId);
 
-            methods.ProcessCartCheckout(userId);
+            // Compute subtotal via DataTable helper
+            double sub = Convert.ToDouble(dt.Compute("SUM(SubTotal)", ""));
+
+            // Compute VAT & final using helpers
+            double vat = ClassComputations.CalculateVAT(sub);
+            string memType = Session["MembershipType"].ToString();
+            int memIndex = memType == "Platinum" ? 0
+                          : memType == "Gold" ? 1
+                          : 2;
+            double finalTotal = ClassComputations.CalculateFinalAmount(sub, memIndex);
+
+            // Pass calculated values to SQL
+            // Call SP with all pre-computed values
+            methods.ProcessCartCheckout(
+                userId: userId,
+                subTotal: (double)sub,
+                memType: memType,
+                discountRate: (double)((sub + vat - finalTotal) / sub),
+                finalTotal: (double)finalTotal
+            );
+
             BindCart();
-
             lblMessage.ForeColor = System.Drawing.Color.Green;
-            lblMessage.Text = "✅ Your order has been successfully placed!";
+            lblMessage.Text = "✅ Order placed successfully!";
+        }
+
+        //Continue Shopping Btn = Redirect to ProductCatalog
+        protected void btnContinueShopping_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/ProductCatalog.aspx");
         }
     }
 }

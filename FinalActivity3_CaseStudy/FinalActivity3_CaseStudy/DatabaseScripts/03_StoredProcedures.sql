@@ -140,3 +140,133 @@ END
 Explain: Gets info from 2 tables: TransactionsTable(Transactions) & UserTable(For user)
 Joins both tables where UserID is same in TransactionsTable & UserID - Acts as FK
 */
+
+
+--Start Here
+--Add product to cart
+CREATE PROCEDURE dbo.AddProductToCart
+    @UserID    INT,
+    @ProductID NCHAR(10),
+    @Quantity  INT
+AS
+BEGIN
+    INSERT INTO dbo.AddCartTable (UserID, ProductID, Quantity)
+    VALUES (@UserID, @ProductID, @Quantity);
+END
+RETURN 0;
+
+
+------------------------------------------------- Main Cart Procedures -------------------------------------------------
+
+--Start Here
+-- Remove a single item from the cart
+CREATE PROCEDURE dbo.SC_RemoveCartItem
+    @UserID INT,
+    @CartId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DELETE FROM AddCartTable
+    WHERE UserID = @UserID
+      AND CartId = @CartId;
+END
+
+
+--Start Here
+-- Fetch the cart items for display
+CREATE PROCEDURE [dbo].SC_GetCartItems
+    @UserID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT
+        c.CartId,
+        c.ProductID,
+        p.ProductName,
+        p.Price       AS Price,
+        c.Quantity,
+        (p.Price * c.Quantity) AS SubTotal
+    FROM AddCartTable c
+    JOIN ProductInventoryTable p
+      ON c.ProductID = p.ProductID
+    WHERE c.UserID = @UserID;
+END
+
+
+--Start Here
+-- ProcessCheckout: Producttable, Transactionstable, AddCartTable 
+CREATE PROCEDURE [dbo].SC_ProcessCheckout
+    @UserID        INT,           -- The ID of the user performing the checkout
+    @SubTotal      DECIMAL(18,2), -- The sum of (Price × Quantity) from the user’s cart
+    @MemType       NCHAR(10),     -- The user’s membership tier (e.g. 'Silver', 'Gold', 'Platinum')
+    @DiscountRate  DECIMAL(18,2), -- The decimal discount rate (e.g. 0.10 for 10%)
+    @FinalTotal    DECIMAL(18,2)  -- The final amount to charge: (SubTotal + VAT) – Discount
+AS
+BEGIN
+    SET NOCOUNT ON;  -- Suppress “n rows affected” messages
+
+    BEGIN TRY
+        BEGIN TRANSACTION;  -- Start an atomic transaction
+
+        ----------------------------------------------------------------
+        -- 1) Insert the transaction header (one row in TransactionsTable)
+        ----------------------------------------------------------------
+        INSERT INTO TransactionsTable
+            (UserID, DateTime, TotalAmount, MembershipType)
+        VALUES
+            (@UserID,          -- which user
+             GETDATE(),        -- current timestamp
+             @FinalTotal,      -- final computed total
+             @MemType);        -- membership tier
+
+        -- Capture the newly generated TransactionID for use in detail rows
+        DECLARE @TransID INT = SCOPE_IDENTITY();
+
+        ----------------------------------------------------------------
+        -- 2) Insert all cart items as detail rows
+        ----------------------------------------------------------------
+        INSERT INTO TransactionDetails
+            (TransactionID, ProductID, Quantity, [Unit Price], Discount, TotalAmount)
+        SELECT
+            @TransID,                   -- link back to the header
+            c.ProductID,                -- product code
+            c.Quantity,                 -- quantity purchased
+            p.Price,                    -- unit price from inventory
+            @DiscountRate,              -- same rate applied to all lines
+            (p.Price * c.Quantity)      -- gross line total
+              * (1 - @DiscountRate)      -- net after discount
+        FROM
+            AddCartTable    AS c
+            JOIN ProductInventoryTable AS p
+              ON c.ProductID = p.ProductID
+        WHERE
+            c.UserID = @UserID;         -- only this user’s cart items
+
+        ----------------------------------------------------------------
+        -- 3) Decrement inventory stocks for each purchased item
+        ----------------------------------------------------------------
+        UPDATE p
+        SET
+            Stocks = p.Stocks - c.Quantity  -- subtract quantity sold
+        FROM
+            ProductInventoryTable AS p
+            JOIN AddCartTable AS c
+              ON p.ProductID = c.ProductID
+        WHERE
+            c.UserID = @UserID;        -- only this user’s cart
+
+        ----------------------------------------------------------------
+        -- 4) Clear out the user’s cart (they’ve just checked out)
+        ----------------------------------------------------------------
+        DELETE FROM AddCartTable
+        WHERE UserID = @UserID;
+
+        COMMIT TRANSACTION;  -- Everything succeeded, persist changes
+    END TRY
+    BEGIN CATCH
+        -- On any error, roll back and re-throw
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END

@@ -115,71 +115,99 @@ ACCOUNT EXIST?
 
 # 🛠️ Project Setup Guide for Collaborators  
 
-## 1. Clone the Repository  
-**In Visual Studio:**  
-1. Go to **Git** → **Clone Repository**  
-2. Paste the repository URL: `https://github.com/YourUsername/FinalActivity3.git`  
-3. Choose a local folder → Click **Clone**  
+A C# ASP .NET WebForms + ADO.NET project for managing products, cart & checkout, and reporting.
+---
+
+## 1. Clone the Repository
+
+1. In Visual Studio, **Git → Clone Repository**  
+2. Paste URL: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy`  
+3. Choose your local folder → **Clone**
 
 ---
 
-## 2. Clean Up App_Data  
-After cloning:  
-1. **Delete the existing `App_Data` folder** (if present) to avoid conflicts.  
-2. **Create a new `App_Data` folder**:  
-   - Right-click project → **Add** → **New Folder** → Name it `App_Data`.  
+## 2. App_Data & Database Scripts
+
+### Why _not_ commit the `.mdf` file
+
+- **Binary & locked** — Git can’t diff or merge it, and VS/SQL Server locks it.
+- **Team use** — everyone runs the same SQL scripts instead.
+
+### Prepare your local DB
+
+1. Delete any existing **App_Data** folder.  
+2. Add a new **App_Data** folder to the project.  
+3. Open **SQL Server Management Studio (SSMS)** and create a new database, e.g. `SalesInventoryDB`.  
+4. In SSMS, in this order execute the scripts in `/DatabaseScripts`:
+
+   - `01_CreateTables.sql`  
+   - `02_InsertSeedData.sql`  
+   - `03_StoredProcedures.sql`  
+
+   Each `GO` block will create tables, seed data, and install SPs.
 
 ---
 
-## 3. Database Setup  
-### 🚫 Why We Don’t Sync `.mdf` Files  
-- **Binary files**: Git can’t track changes or merge `.mdf` files.  
-- **Locked files**: SQL Server/Visual Studio often locks them, causing errors like `Permission Denied`.  
+## 3. Configure Connection String
 
-### ✅ Use SQL Scripts Instead  
-1. **Run the scripts** in `/DatabaseScripts` in order:  
-   ```sql
-   01_CreateTables.sql → 02_InsertSeedData.sql → 03_StoredProcedures.sql  
-   ```  
-2. **Execute in SQL Server Management Studio (SSMS)**:  
-   - Create a new database (e.g., `SalesInventoryDB`).  
-   - Open each script → Execute (F5).  
+In **ClassLibrary/DatabaseHelper.cs** (or wherever `ConnStr` is defined):
 
-### 🔄 Keeping the Database in Sync  
-If you modify the database schema:  
-- Add/update `.sql` files in `/DatabaseScripts`.  
-- **Never commit `.mdf`/`.ldf` files** (they’re excluded via `.gitignore`).  
-
----
-
-## 4. Configure Connection String  
-Update the **hardcoded connection string** in your class file (e.g., `DatabaseHelper.cs`):  
 ```csharp
-static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                        AttachDbFilename=C:\Your\Project\Path\App_Data\SalesInventoryDB.mdf;
-                        Integrated Security=True";
-```
+static string ConnStr = @"
+  Data Source=(LocalDB)\MSSQLLocalDB;
+  AttachDbFilename=C:\FULL\PATH\TO\PROJECT\App_Data\SalesInventoryDB.mdf;
+  Integrated Security=True";
+````
 
-### 🔧 Customization Notes:  
-- Replace `C:\Your\Project\Path\` with your actual project directory.  
-- **No `Web.config` changes**: The connection is managed directly in code.  
-- Verify your SQL Server instance name (e.g., `(LocalDB)\MSSQLLocalDB`).  
+* **Replace** `C:\FULL\PATH\TO\PROJECT\…` with your local path.
+* Confirm your LocalDB instance name (often `(LocalDB)\MSSQLLocalDB`).
+* No need to edit Web.config; the code reads it directly.
 
 ---
 
-## 5. Build and Run  (BE CAUTIOUS ABOUT THIS!)
-1. **Clean**: `Build` → `Clean Solution`.  
-2. **Rebuild**: `Build` → `Rebuild Solution`.  
-3. **Run**: `Debug` → `Start Debugging (F5)`.  
-Note: Rebuilding and building project can make the project fail at run time. As much as possible refrain from this, Use only under certain circumstances
+## 4. Build & Run
+
+1. **Clean** → Build → Clean Solution
+2. **Rebuild** → Build → Rebuild Solution
+3. **Start** → Debug → Start Debugging (F5)
+
+> **Tip:** Avoid rebuilding mid-session unless you’ve changed references—clean/rebuild can sometimes break the runtime ASPX↔code-behind mapping.
+
 ---
 
-## 🚨 Troubleshooting  
-| Issue                          | Solution                                      |  
-|--------------------------------|-----------------------------------------------|  
-| **"Database cannot be opened"** | Close SQL Server/VS → Delete `.mdf/.ldf` file.     |  
-| **Login failed**               | Use `Integrated Security=True` for local auth.|  
-| **Missing stored procedures**  | Re-run the SQL scripts.                       |  
+## 🔧 Troubleshooting
+
+| Issue                                      | Cause & Fix                                                                                                                                                       |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **“Database cannot be opened”**            | Close VS & SSMS, delete the stale `.mdf`/`.ldf` in **App\_Data**, then re-run the scripts in SSMS.                                                                |
+| **Login failed**                           | Ensure your connection string uses `Integrated Security=True`; run SSMS as your Windows user; verify the `UserInfoTable` contains the credentials you’re testing. |
+| **Default page (403.14)**                  | No root default document: <br>• In VS, right-click **Homepage.aspx** → **Set as Start Page** <br>• OR add `<defaultDocument>` in Web.config.                      |
+| **MasterPage or hyperlink 404/403 errors** | Check `<asp:HyperLink NavigateUrl="~/User/Page.aspx">` paths; ensure the target `.aspx` exists under the correct folder. Use `~/` for site root.                  |
+| **GridView won’t render Columns**          | If you declare `<Columns>…</Columns>`, set `AutoGenerateColumns="False"`. Correct syntax: add a space between attributes (`DataField="X" HeaderText="Y"`).        |
+| **“Conversion failed…” SQL errors**        | Mismatch between table column types: confirm your SPs and table schema align (e.g. `ProductID` text vs. int PK). Adjust column type or SP JOIN accordingly.       |
+| **Stored procedure not found**             | Make sure you ran `03_StoredProcedures.sql`, and that the procedure name in code matches exactly (including schema, e.g. `dbo.SC_ProcessCheckout`).               |
+| **Pages not updating after code change**   | Clear browser cache or stop/start IIS Express. In VS, **Project → Clean**, then **Rebuild**.                                                                      |
+
+---
+
+## 5. Tips for Collaborators
+
+* **When you change the schema**: add a new numbered SQL script (`04_…`) under `/DatabaseScripts` and update README.
+* **Never** commit `*.mdf`/`*.ldf` — they’re in `.gitignore`.
+* **Quick Checklist** below before each PR.
+
+---
+
+### 📝 Quick Checklist
+
+1. **Define** the feature’s “why.”
+2. **Plan** pages, methods & data flow.
+3. **Build small** & test often.
+4. **Understand** AI-generated code; ask “why.”
+5. **Name** methods & SQL clearly.
+6. **Document** complex logic in comments.
+7. **Test** edge cases & error paths.
+
 
 **Need help?**  
 Contact [Your Name] at [your.email@example.com] or propose fixes via a pull request.  

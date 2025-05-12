@@ -85,32 +85,15 @@ AS
 	FROM ProductInventoryTable;
 RETURN 0
 
-CREATE PROCEDURE [dbo].GetAllProducts
-	--@productID,
-	--@productName,
-	--@price,
-	--@stocks
+CREATE PROCEDURE GetAllTransactions 
+	--@transactionID
+	--@userID,
+	--@dateTime,
+	--@totalAmount,
+	--@membershipType
 AS
-	SELECT ProductID, ProductName, Price, Stocks 
-	FROM ProductInventoryTable;
-RETURN 0
-
-
---Start Here
---Add New Products
-CREATE PROCEDURE [dbo].AddNewProducts
-    @productID  NCHAR (10),
-    @ProductName NVARCHAR (150),
-    @Price DECIMAL (18),
-	@Stocks INT
-
-AS
-BEGIN
-    INSERT INTO ProductInventoryTable(ProductID, ProductName, Price, Stocks)
-    VALUES (@productID, @ProductName, @Price, @Stocks)
-END
-
-RETURN 0;
+	SELECT TransactionID, UserID, DateTime, TotalAmount, MembershipType
+	FROM TransactionsTable;
 
 
 --Start Here
@@ -140,6 +123,23 @@ END
 Explain: Gets info from 2 tables: TransactionsTable(Transactions) & UserTable(For user)
 Joins both tables where UserID is same in TransactionsTable & UserID - Acts as FK
 */
+
+
+--Start Here
+--Add New Products
+CREATE PROCEDURE [dbo].AddNewProducts
+    @productID  NCHAR (10),
+    @ProductName NVARCHAR (150),
+    @Price DECIMAL (18),
+	@Stocks INT
+
+AS
+BEGIN
+    INSERT INTO ProductInventoryTable(ProductID, ProductName, Price, Stocks)
+    VALUES (@productID, @ProductName, @Price, @Stocks)
+END
+
+RETURN 0;
 
 
 --Start Here

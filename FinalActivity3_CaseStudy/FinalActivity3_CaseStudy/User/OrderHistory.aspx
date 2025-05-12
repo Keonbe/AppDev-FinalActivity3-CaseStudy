@@ -8,7 +8,10 @@
     <p>
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
     </p>
+    <br>
+    <h2>
     <asp:Label ID="lblOrderhistory" runat="server">Transaction History</asp:Label>
+    </h2>
     <div class="grid-container">
         <asp:GridView ID="gvOrderHistory" runat="server" CssClass="grid-view"
                       AutoGenerateColumns="True" EmptyDataText="No transaction history found.">
@@ -17,7 +20,9 @@
 
     <br>
     <br>
+    <h2>
     <asp:Label ID="Label1" runat="server">Order Details</asp:Label>
+    </h2>
     <div class="grid-container">
     <asp:GridView ID="gvOrderDetails" runat="server" CssClass="grid-view"
                   AutoGenerateColumns="True" EmptyDataText="No transaction history found.">

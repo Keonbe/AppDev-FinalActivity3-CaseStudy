@@ -54,34 +54,39 @@ header {
 
 /* Navigation Styles */
 nav {
-    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
     padding: 10px 15px;
-    border-bottom: 1px solid #e0e0e0;
 }
 
+/* nav links */
 .nav-links {
     display: flex;
+    width: 100%; /* full width so auto margin works */
     list-style: none;
     gap: 24px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
-    .nav-links li {
-        margin: 0;
-        padding: 0;
+.cart-link {
+    margin-left: auto; /* push this li to the far right */
+}
+
+.cart-button {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    /* remove float: right; */
+}
+
+    .cart-button:hover {
+        background-color: #f0f0f0;
     }
 
-    .nav-links a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        padding: 4px 8px;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-    }
-
-        .nav-links a:hover {
-            background-color: #e0e0e0;
-        }
 
 /* Main Content Styles */
 main {

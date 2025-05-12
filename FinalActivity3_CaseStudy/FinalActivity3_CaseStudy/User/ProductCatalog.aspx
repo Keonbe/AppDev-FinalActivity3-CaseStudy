@@ -1,22 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/MainMasterpage.Master" AutoEventWireup="true" CodeBehind="ProductCatalog.aspx.cs" Inherits="FinalActivity3_CaseStudy.User.ProductPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-    </style>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        Product Catalog
-    </p>
+    <h2>Product Catalog</h2>
     <p>
         &nbsp;
     </p>
     <p>
         &nbsp;
-        <b><a href="ShoppingCart.aspx">Your shopping Cart</a></b>
+        <h3>Featured Products</h3>
+            <div style="float: right;">
+            <b><a href="ShoppingCart.aspx">🛒 Your shopping Cart</a></b>
+        </div>
+        <br>
     </p>
     </p>
     <div>

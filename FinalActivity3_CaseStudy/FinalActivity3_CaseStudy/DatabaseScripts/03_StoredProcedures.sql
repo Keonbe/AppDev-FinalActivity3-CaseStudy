@@ -270,3 +270,27 @@ BEGIN
         THROW;
     END CATCH
 END
+
+--Start Here
+--GetOrderHistory-TransactionDetails
+CREATE PROCEDURE dbo.GetTransactionDetails
+    @TransactionID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+		-- adjust the JOIN in your SP:
+		SELECT
+		  td.DetailID,
+		  td.TransactionID,
+		  td.ProductID,
+		  p.ProductName,
+		  td.Quantity,
+		  td.[Unit Price],
+		  td.Discount,
+		  td.TotalAmount
+		FROM TransactionDetails AS td
+		JOIN ProductInventoryTable AS p
+		  ON td.ProductID = p.ProductID
+		WHERE td.TransactionID = @TransactionID
+		ORDER BY td.DetailID;
+END

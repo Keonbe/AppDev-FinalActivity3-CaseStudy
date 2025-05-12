@@ -39,3 +39,18 @@ CREATE TABLE [dbo].[TransactionsTable] (
     [MembershipType] NCHAR (10)   NULL,
     PRIMARY KEY CLUSTERED ([TransactionID] ASC)
 );
+
+--Transaction Details
+CREATE TABLE [dbo].[TransactionDetails] (
+    [DetailID]      INT             IDENTITY (1, 1) NOT NULL,
+    [TransactionID] INT             NOT NULL,
+    [ProductID]     NCHAR (10)      NOT NULL,
+    [Quantity]      INT             NOT NULL,
+    [Unit Price]    DECIMAL (18, 2) NOT NULL,
+    [Discount]      DECIMAL (18, 2) NOT NULL,
+    [TotalAmount]   DECIMAL (18, 2) NOT NULL,
+    [CreatedAt]     DATETIME        DEFAULT (getdate()) NOT NULL,
+    [UpdatedAt]     DATETIME        DEFAULT (getdate()) NOT NULL,
+    CONSTRAINT [PK_TransactionDetails] PRIMARY KEY CLUSTERED ([DetailID] ASC)
+);
+

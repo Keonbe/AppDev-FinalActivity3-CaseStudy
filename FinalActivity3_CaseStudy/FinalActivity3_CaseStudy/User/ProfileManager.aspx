@@ -10,8 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        Profile Manager</p>
+    <h2>Profile Manager</h2>
     <table class="auto-style1">
         <tr>
             <td class="auto-style2">Current Password</td>

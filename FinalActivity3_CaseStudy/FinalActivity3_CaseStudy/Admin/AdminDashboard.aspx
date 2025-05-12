@@ -2,8 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        Admin Homepage</p>
+    <h2>Admin Homepage</h2>
     <p>
         <br />
         <b><a href="AdminLogin.aspx">Admin Login</a></b>

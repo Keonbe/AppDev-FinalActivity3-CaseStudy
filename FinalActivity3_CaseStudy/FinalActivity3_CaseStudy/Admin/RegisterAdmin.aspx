@@ -2,8 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <p>
-      Add Admin User</p>
+    <h2>Add Admin User</h2>
     <table class="auto-style1">
         <tr>
             <td class="auto-style2">Name</td>

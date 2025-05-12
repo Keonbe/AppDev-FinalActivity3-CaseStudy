@@ -10,8 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-    Admin Login Page</p>
+    <h2>Admin Login Page</h2>
     <table class="auto-style1">
         <tr>
             <td>Username</td>

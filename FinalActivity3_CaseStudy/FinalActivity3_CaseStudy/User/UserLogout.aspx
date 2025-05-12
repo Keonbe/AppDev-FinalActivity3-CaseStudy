@@ -7,8 +7,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        Logout</p>
+    <h2>Logout</h2>
     <table class="auto-style1">
         <tr>
             <td>&nbsp;</td>

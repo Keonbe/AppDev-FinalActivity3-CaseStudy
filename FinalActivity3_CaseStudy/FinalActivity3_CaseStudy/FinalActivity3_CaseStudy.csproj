@@ -287,7 +287,7 @@
     <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Admin\report\Report1.rdlc" />
+    <EmbeddedResource Include="Admin\report\ReportSales.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

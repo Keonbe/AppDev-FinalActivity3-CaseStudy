@@ -24,11 +24,12 @@
             <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProfileManager.aspx">Profile Manager</asp:HyperLink></li>
             <li><asp:HyperLink runat="server" NavigateUrl="~/User/OrderHistory.aspx">Order History</asp:HyperLink></li>
             <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProductCatalog.aspx">Product Catalog</asp:HyperLink></li>
+            <li><asp:HyperLink runat="server" NavigateUrl="~/User/UserLogout.aspx">Logout</asp:HyperLink></li>
+
             <li class="cart-link">
               <asp:HyperLink runat="server" NavigateUrl="~/User/ShoppingCart.aspx" CssClass="cart-button">
                 🛒 Cart
               </asp:HyperLink>
-            <li><asp:HyperLink runat="server" NavigateUrl="~/User/UserLogout.aspx">Logout</asp:HyperLink></li>
         </nav>
       <main>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />

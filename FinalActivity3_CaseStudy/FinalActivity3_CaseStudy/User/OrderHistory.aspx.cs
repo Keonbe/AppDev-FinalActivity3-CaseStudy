@@ -14,9 +14,7 @@ namespace FinalActivity3_CaseStudy.User
     public partial class OrderHistory : System.Web.UI.Page
     {
 
-        private readonly string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                    AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;
-                    Integrated Security=True";
+        private readonly string connStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString; // Remove hardcoded connection string 
 
         protected void Page_Load(object sender, EventArgs e)
         {

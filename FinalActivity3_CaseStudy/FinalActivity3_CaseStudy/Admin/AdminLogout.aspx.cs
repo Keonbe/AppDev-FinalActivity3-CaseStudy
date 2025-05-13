@@ -15,7 +15,7 @@ namespace FinalActivity3_CaseStudy.Admin
             if (!IsPostBack)
             {
                 // Check if the user is already logged in
-                if (Session["IsAdmin"] == null)
+                if (Session["AdminEmailAddress"] == null)
                 {
                     // If not logged in, Redirect and Display message
                     lblMessage.Text = "⚠️ Not logged in - Redirecting to Login Page";

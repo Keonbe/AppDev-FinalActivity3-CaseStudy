@@ -15,7 +15,7 @@
         <tr>
             <td class="auto-style2">Current Password</td>
             <td>
-                <asp:TextBox ID="tbCurrentPassword" runat="server" Width="320px"></asp:TextBox>
+                <asp:TextBox ID="tbCurrentPassword" runat="server" Width="320px" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
                         ControlToValidate="tbCurrentPassword" ErrorMessage="*" 
                         ForeColor="Red"></asp:RequiredFieldValidator>
@@ -24,16 +24,16 @@
         <tr>
             <td class="auto-style2">New Password</td>
             <td>
-                <asp:TextBox ID="tbNewPassword" runat="server" Width="321px"></asp:TextBox>
+                <asp:TextBox ID="tbNewPassword" runat="server" Width="321px" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail0" runat="server" 
                         ControlToValidate="tbNewPassword" ErrorMessage="*" 
                         ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
+                <asp:Label ID="lblPlaceHolder" runat="server" ForeColor="Red"></asp:Label>
         </tr>
         <tr>
             <td class="auto-style2">Confirm New Password</td>
             <td>
-                <asp:TextBox ID="tbConfirmNewPassword" runat="server" Width="320px"></asp:TextBox>
+                <asp:TextBox ID="tbConfirmNewPassword" runat="server" Width="320px" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail1" runat="server" 
                         ControlToValidate="tbConfirmNewPassword" ErrorMessage="*" 
                         ForeColor="Red"></asp:RequiredFieldValidator>

@@ -51,6 +51,15 @@ namespace FinalActivity3_CaseStudy.User
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail0;
 
         /// <summary>
+        /// lblPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlaceHolder;
+
+        /// <summary>
         /// tbConfirmNewPassword control.
         /// </summary>
         /// <remarks>

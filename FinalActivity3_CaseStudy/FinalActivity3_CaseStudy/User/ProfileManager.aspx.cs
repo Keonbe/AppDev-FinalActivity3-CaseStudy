@@ -39,6 +39,14 @@ namespace FinalActivity3_CaseStudy.User
 
         protected void btnUpdatePassword_Click(object sender, EventArgs e)
         {
+            string password = tbNewPassword.Text;
+            if (password.Length < 8)     // Password length validation error
+            {
+                lblPlaceHolder.Text = "Error: Password must be at least 8 characters long.";
+                lblPlaceHolder.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             string emailAddress = Session["EmailAddress"].ToString();
             string passWord = Session["Password"].ToString();
             classMethods.UpdateProfileManager(emailAddress, passWord, tbNewPassword.Text.Trim());

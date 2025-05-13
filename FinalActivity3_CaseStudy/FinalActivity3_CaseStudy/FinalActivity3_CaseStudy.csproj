@@ -103,12 +103,12 @@
     <Content Include="DatabaseScripts\03_StoredProcedures.sql" />
     <Content Include="DatabaseScripts\02_Query.sql" />
     <Content Include="DatabaseScripts\01_CreateTables.sql" />
-    <Content Include="Homepage.aspx" />
-    <Content Include="User\Login.aspx" />
+    <Content Include="HomePage\LandingPage.aspx" />
+    <Content Include="HomePage\newLogin.aspx" />
+    <Content Include="HomePage\newRegisration.aspx" />
     <Content Include="User\OrderHistory.aspx" />
     <Content Include="User\ProductCatalog.aspx" />
     <Content Include="User\ProfileManager.aspx" />
-    <Content Include="User\Regisration.aspx" />
     <Content Include="User\ShoppingCart.aspx" />
     <Content Include="User\UserLogout.aspx" />
     <Content Include="Web.config" />
@@ -175,19 +175,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Homepage.aspx.cs">
-      <DependentUpon>Homepage.aspx</DependentUpon>
+    <Compile Include="HomePage\LandingPage.aspx.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Homepage.aspx.designer.cs">
-      <DependentUpon>Homepage.aspx</DependentUpon>
+    <Compile Include="HomePage\LandingPage.aspx.designer.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="HomePage\LandingPage.Master.cs">
+      <DependentUpon>LandingPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="HomePage\LandingPage.Master.designer.cs">
+      <DependentUpon>LandingPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\newLogin.aspx.cs">
+      <DependentUpon>newLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage\newLogin.aspx.designer.cs">
+      <DependentUpon>newLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\newRegisration.aspx.cs">
+      <DependentUpon>newRegisration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage\newRegisration.aspx.designer.cs">
+      <DependentUpon>newRegisration.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\MainMasterpage.Master.cs">
       <DependentUpon>MainMasterpage.Master</DependentUpon>
@@ -218,13 +232,6 @@
     <Compile Include="User\ProfileManager.aspx.designer.cs">
       <DependentUpon>ProfileManager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\Regisration.aspx.cs">
-      <DependentUpon>Regisration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Regisration.aspx.designer.cs">
-      <DependentUpon>Regisration.aspx</DependentUpon>
-    </Compile>
     <Compile Include="User\ShoppingCart.aspx.cs">
       <DependentUpon>ShoppingCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +261,7 @@
     <Content Include="Admin\report\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="HomePage\LandingPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

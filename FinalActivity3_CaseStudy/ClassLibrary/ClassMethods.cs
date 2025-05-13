@@ -22,7 +22,41 @@ namespace ClassLibrary
 
         /// <summary>
         /// Saves user input registered by calling the SaveUserRegisration stored procedure.
+        /// Tries to register a new user. 
+        /// Throws InvalidOperationException if the email already exists.
         /// </summary>
+        public void SaveRecordRegistration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
+        {
+            using (var conn = new SqlConnection(ConnStr))
+            {
+                conn.Open();
+
+                // 1) Check for existing email
+                using (var check = new SqlCommand(
+                    "SELECT COUNT(1) FROM UserInfoTable WHERE EmailAddress = @Email", conn))
+                {
+                    check.Parameters.AddWithValue("@Email", emailAddress);
+                    var exists = (int)check.ExecuteScalar() > 0;
+                    if (exists)
+                        throw new InvalidOperationException(
+                            $"A user with email '{emailAddress}' already exists.");
+                }
+
+                // 2) If not exists, call your stored procedure
+                using (var saveRecord = new SqlCommand("SaveUserRegisration", conn))
+                {
+                    saveRecord.CommandType = CommandType.StoredProcedure;
+                    saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar, 150).Value = name;
+                    saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 150).Value = emailAddress;
+                    saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar, 50).Value = passWord;
+                    saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar, 10).Value = membershipType;
+                    saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 0;
+
+                    saveRecord.ExecuteNonQuery();
+                } // Connection automatically closed here
+            }
+        } //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
+        /* OLD CODE
         public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
         {
             using (SqlConnection conn = new SqlConnection(ConnStr))
@@ -39,7 +73,7 @@ namespace ClassLibrary
                 saveRecord.ExecuteNonQuery();
             } // Connection automatically closed here
         }
-        //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
+        */
 
         /// <summary>
         /// Check if account exist in database by calling the LoginAccountCheck stored procedure.

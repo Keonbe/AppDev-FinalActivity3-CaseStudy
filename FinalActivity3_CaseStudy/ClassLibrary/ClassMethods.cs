@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ClassLibrary
 {
@@ -13,27 +14,30 @@ namespace ClassLibrary
     {
         //Connection String
         //Kean ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;Integrated Security=True";
-        static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;Integrated Security=True";
+        //SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
-        SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
+        // Use ConfigurationManager to get the connection string frtom webconfig
+        string ConnStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
+
 
         /// <summary>
         /// Saves user input registered by calling the SaveUserRegisration stored procedure.
         /// </summary>
         public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
         {
-            sqlConn.Open();
-            SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", sqlConn);
-            saveRecord.CommandType = CommandType.StoredProcedure;
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", conn))
+            {
+                saveRecord.CommandType = CommandType.StoredProcedure;
+                saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
+                saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
+                saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
+                saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
+                saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 0;
 
-            //@Name, @EmailAddress, @Password, @MembershipType, 'false'(IsAdmin)
-            saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
-            saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
-            saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
-            saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
-            saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 0; //BIT accepts 0 or 1
-            saveRecord.ExecuteNonQuery();
-            sqlConn.Close();
+                conn.Open();
+                saveRecord.ExecuteNonQuery();
+            } // Connection automatically closed here
         }
         //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
 
@@ -79,14 +83,18 @@ namespace ClassLibrary
         /// </summary>
         public void UpdateProfileManager(string emailAddress, string passWord, string newPassword) //Updates Password @ ProfileManager.aspx
         {
-            sqlConn.Open();
-            SqlCommand updateRecord = new SqlCommand("UpdateUserPassword", sqlConn);
-            updateRecord.CommandType = CommandType.StoredProcedure;
-            updateRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
-            updateRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
-            updateRecord.Parameters.Add("@NewPassword", SqlDbType.NVarChar).Value = newPassword;
-            updateRecord.ExecuteNonQuery();
-            sqlConn.Close();
+
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlCommand updateRecord = new SqlCommand("UpdateUserPassword", conn))
+            {
+                updateRecord.CommandType = CommandType.StoredProcedure;
+                updateRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
+                updateRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
+                updateRecord.Parameters.Add("@NewPassword", SqlDbType.NVarChar).Value = newPassword;
+
+                conn.Open();
+                updateRecord.ExecuteNonQuery();
+            }
         }
 
         /// <summary>

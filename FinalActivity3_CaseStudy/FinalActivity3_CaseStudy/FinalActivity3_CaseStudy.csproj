@@ -94,9 +94,9 @@
     <Content Include="Admin\RegisterAdmin.aspx" />
     <Content Include="Admin\ReportModule.aspx" />
     <Content Include="Admin\AdminView.aspx" />
-    <Content Include="App_Data\Sales&amp;InvSystemDB.mdf" />
-    <Content Include="App_Data\Sales&amp;InvSystemDB_log.ldf">
-      <DependentUpon>Sales&amp;InvSystemDB.mdf</DependentUpon>
+    <Content Include="App_Data\SalesInvSystemDB.mdf" />
+    <Content Include="App_Data\SalesInvSystemDB_log.ldf">
+      <DependentUpon>SalesInvSystemDB.mdf</DependentUpon>
     </Content>
     <Content Include="assets\css\AdminStyle.css" />
     <Content Include="assets\css\UserStyle.css" />

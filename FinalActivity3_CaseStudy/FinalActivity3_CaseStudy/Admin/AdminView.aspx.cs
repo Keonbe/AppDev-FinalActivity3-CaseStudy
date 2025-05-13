@@ -6,14 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace FinalActivity3_CaseStudy.Admin
 {
     public partial class TestAdminView : System.Web.UI.Page
     {
-        private string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                    AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;
-                    Integrated Security=True";
+
+        private readonly string connStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString; // Remove hardcoded connection string
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

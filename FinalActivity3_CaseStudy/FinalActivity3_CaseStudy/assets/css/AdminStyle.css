@@ -348,3 +348,79 @@ h2 {
         flex-direction: column;
     }
 }
+
+/* Enhanced GridView Styles */
+.gridview {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.gridview-header {
+    background-color: #343a40 !important;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px 15px;
+    border-bottom: 2px solid #2c3136;
+}
+
+.gridview-row {
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+    .gridview-row:hover {
+        background-color: #f8f9fa !important;
+    }
+
+.gridview-altrow {
+    background-color: #f8f9fa;
+}
+
+.gridview td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+}
+
+.gridview-pager {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Admin Theme Alignment */
+.gridview {
+    border: 1px solid #dee2e6;
+}
+
+.gridview-header th:first-child {
+    border-radius: 4px 0 0 0;
+}
+
+.gridview-header th:last-child {
+    border-radius: 0 4px 0 0;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .gridview {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .gridview-header {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+
+    .gridview td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+}

@@ -211,4 +211,66 @@ Pro Tip: Use Solution Explorer's "Copy Path" feature to ensure correct reference
 | **Session errors or null session data**                                                | If you're trying to use session variables (`Session["X"]`) too early (e.g., before login or on the wrong page), they may be null. Add null checks and consider default redirects.                                                                                                                                                                          |
 | **CSS/JS not loading**                                                                 | 1. Use relative paths properly in `<link>` and `<script>` tags: <br>• Prefer `~/Content/style.css` via `<asp:Content>` instead of plain HTML pathing. <br>2. ASP.NET treats folders like `/Scripts`, `/Content`, and `/App_Data` differently—ensure your static files are not in restricted folders.                                                       |
 
+<br>
+
+---
+---
+
+## 🔧 Quick “Free Fixes” for Fresh Clones
+
+When you first clone the repo, you might hit one of these errors. Try these in order:
+
+### 1. Roslyn Compiler Missing (`roslyn\csc.exe`)
+
+**Symptom:**  
+```
+Could not find a part of the path '…\bin\roslyn\csc.exe'
+```
+
+**Fix:**  
+1. In Visual Studio, right-click your WebForms project → **Manage NuGet Packages…**  
+2. Install or update **Microsoft.CodeDom.Providers.DotNetCompilerPlatform**.  
+3. Rebuild—Visual Studio will recreate `bin/roslyn/csc.exe`.
+
+---
+
+### 2. Native SQL Server Types Missing
+
+**Symptom:** 
+```
+Could not copy '…\SqlServerTypes\x64\SqlServerSpatial140.dll' because it was not found.
+```
+**Fix:**  
+1. In **Manage NuGet Packages**, install/update **Microsoft.SqlServer.Types**.  
+2. In Solution Explorer, expand the package to **build\native\x64** and **x86**, right-click each folder → **Include In Project**.  
+3. For each DLL, set **Copy to Output Directory = Always**.  
+4. Rebuild so those native DLLs are deployed.
+
+---
+
+### 3. 403.14 Forbidden — No Default Document
+
+**Symptom:**  
+Visiting `http://localhost:xxxxx/` shows directory listing forbidden.
+
+**Fix A (Quick):**  
+- Right-click `Homepage.aspx` (or your landing page) → **Set as Start Page** → F5.
+
+**Fix B (Persistent):**  
+Add to `Web.config` under `<system.webServer>`:
+
+```xml
+<defaultDocument>
+  <files>
+    <clear />
+    <add value="Homepage.aspx" />
+  </files>
+</defaultDocument>
+````
+
+Replace `Homepage.aspx` with the correct root page.
+
+e most common startup blockers so your project builds and serves its homepage correctly.
+
+
 

@@ -16,11 +16,13 @@
     <p>
         &nbsp;
     </p>
+    <!--
     <asp:Button
         ID="btnLoad"
         runat="server"
         Text="Load"
         OnClick="btnLoad_Click" />
+    -->
     <p>
         &nbsp;
     </p>
@@ -29,7 +31,15 @@
         ID="gvAdmin"
         runat="server"
         AutoGenerateColumns="True"
-        CssClass="table table-bordered">
+        CssClass="gridview"
+        HeaderStyle-CssClass="gridview-header"
+        RowStyle-CssClass="gridview-row"
+        AlternatingRowStyle-CssClass="gridview-altrow"
+        PagerStyle-CssClass="gridview-pager"
+        AllowPaging="True"
+        PageSize="10">
+        <HeaderStyle HorizontalAlign="Left" />
+        <RowStyle VerticalAlign="Top" />
     </asp:GridView>
 
 

@@ -14,6 +14,7 @@ BEGIN
         (@Name, @EmailAddress, @Password, @MembershipType, @IsAdmin);
 END
 RETURN 0;
+GO
 
 
 --Start Here
@@ -26,6 +27,7 @@ AS
 	FROM UserInfoTable
 	WHERE EmailAddress = @userName AND PassWord = @PassWord
 RETURN 0
+GO
 
 
 --Start Here
@@ -47,7 +49,7 @@ BEGIN
     ELSE
         RETURN 1;  -- Update successful
 END
-
+GO
 
 --Start Here
 -- Stored Procedure: Admin Login Account Check
@@ -60,8 +62,10 @@ AS
 	WHERE EmailAddress = @userName 
 	AND PassWord = @PassWord
 RETURN 0
+GO
 
 
+---Get Stored Procedures for Admin--
 --Start Here
 --Get View All Records
 CREATE PROCEDURE [dbo].GetAllMembers
@@ -74,7 +78,9 @@ AS
 	SELECT UserID, Name, EmailAddress, MembershipType, IsAdmin
 	FROM UserInfoTable;
 RETURN 0
+GO
 
+--Start Here
 CREATE PROCEDURE [dbo].GetAllProducts
 	--@productID,
 	--@productName,
@@ -84,7 +90,9 @@ AS
 	SELECT ProductID, ProductName, Price, Stocks 
 	FROM ProductInventoryTable;
 RETURN 0
+GO
 
+--Start Here
 CREATE PROCEDURE dbo.GetAllTransactions
     @SortDir NVARCHAR(4) = 'ASC'  -- ASC or DESC
 AS
@@ -104,6 +112,7 @@ BEGIN
 
     EXEC sp_executesql @sql;
 END
+GO
 
 
 --Start Here
@@ -129,11 +138,12 @@ BEGIN
     WHERE t.UserID = @UserID
     ORDER BY t.DateTime;
 END
+GO
 /*
 Explain: Gets info from 2 tables: TransactionsTable(Transactions) & UserTable(For user)
 Joins both tables where UserID is same in TransactionsTable & UserID - Acts as FK
 */
-
+--End Get Stored Procedures for Admin--
 
 --Start Here
 --Add New Products
@@ -148,9 +158,8 @@ BEGIN
     INSERT INTO ProductInventoryTable(ProductID, ProductName, Price, Stocks)
     VALUES (@productID, @ProductName, @Price, @Stocks)
 END
-
 RETURN 0;
-
+GO
 
 --Start Here
 --Add product to cart
@@ -164,7 +173,7 @@ BEGIN
     VALUES (@UserID, @ProductID, @Quantity);
 END
 RETURN 0;
-
+GO
 
 ------------------------------------------------- Main Cart Procedures -------------------------------------------------
 
@@ -180,6 +189,7 @@ BEGIN
     WHERE UserID = @UserID
       AND CartId = @CartId;
 END
+GO
 
 
 --Start Here
@@ -201,6 +211,7 @@ BEGIN
       ON c.ProductID = p.ProductID
     WHERE c.UserID = @UserID;
 END
+GO
 
 
 --Start Here
@@ -304,3 +315,4 @@ BEGIN
 		WHERE td.TransactionID = @TransactionID
 		ORDER BY td.DetailID;
 END
+GO

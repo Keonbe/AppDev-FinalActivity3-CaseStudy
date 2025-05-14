@@ -9,13 +9,10 @@ VALUES
     ('PRNDT', 'Printer Dot Matrix', 5000.00, 100),
     ('MNTRLc', 'LCD Monitor', 6500.00, 100),
     ('MNTRLe', 'LED Monitor', 7500.00, 100);
-
-
-    ---
+ GO
     ---Test/Execute Stored Procedure Query
-
     --UpdateUserPassword Change Password [WORKING]
-GO
+
 
 
 
@@ -27,7 +24,6 @@ EXEC	@return_value = [dbo].[UpdateUserPassword]
 		@newpassword = N'321'
 
 SELECT	@return_value as 'Return Value'
-
 GO
 
 
@@ -43,7 +39,6 @@ EXEC	@return_value = [dbo].[SaveUserRegisration]
 		@IsAdmin = 1
 
 SELECT	@return_value as 'Return Value'
-
 GO
 
 
@@ -55,8 +50,9 @@ VALUES
   ('Charlie Cruz',    'charlie@example.com', 'charlie1', 'Platinum',  0),
   ('Diana Velasco',   'diana@example.com',   'diana123', 'Silver',    0),
   ('Admin User',      'admin@example.com',   'admin123', NULL,        1);
+GO
 
-  --Add Samplew Transaction Values
+  --Add Sample Transaction Values
   INSERT INTO dbo.TransactionsTable (UserID, DateTime, TotalAmount, MembershipType)
 VALUES
   (28, '2025-01-01T10:15:00',  500.00,  'Silver'),
@@ -64,3 +60,25 @@ VALUES
   (31, '2025-01-03T09:45:00', 2500.00,  'Platinum'),
   (32, '2025-01-04T16:20:00',  750.00,  'Silver'),
   (31, '2025-01-05T11:10:00', 1200.00,  'Silver');
+GO
+
+----> Add Sample Transaction Values:
+  -- Add sample admin user
+INSERT INTO UserInfoTable (Name, EmailAddress, Password, MembershipType, IsAdmin)
+VALUES ('Admin User', 'admin@example.com', 'AdminPass123', 'Platinum', 1);
+GO
+
+-- Add sample regular users
+INSERT INTO UserInfoTable (Name, EmailAddress, Password, MembershipType, IsAdmin)
+VALUES 
+    ('John Doe', 'john@example.com', 'Pass123', 'Silver', 0),
+    ('Jane Smith', 'jane@example.com', 'Pass456', 'Gold', 0);
+GO
+
+-- Add sample products
+INSERT INTO ProductInventoryTable (ProductID, ProductName, Price, Stocks)
+VALUES 
+    ('PROD001', 'Laptop Computer', 899.99, 15),
+    ('PROD002', 'Wireless Mouse', 25.99, 50),
+    ('PROD003', 'Bluetooth Headphones', 149.99, 30);
+GO

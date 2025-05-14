@@ -1,4 +1,5 @@
-﻿--Product Table(Run Query or Add values first, run this)
+﻿-- Create ProductInventoryTable
+--Product Table(Run Query or Add values first, run this)
 CREATE TABLE [dbo].[ProductInventoryTable] (
     [Id]          INT            NOT NULL,
     [ProductID]   NCHAR (10)     NOT NULL,
@@ -17,9 +18,9 @@ CREATE TABLE [dbo].[ProductInventoryTable] (
     [Stocks]      INT            NULL,
     CONSTRAINT [PK_ProductInventoryTable] PRIMARY KEY CLUSTERED ([ProductID] ASC)
 );
+GO
 
-
---User Table
+-- Create UserInfoTable
 CREATE TABLE [dbo].[UserInfoTable] (
     [UserId]         INT            IDENTITY (1, 1) NOT NULL,
     [Name]           NVARCHAR (150) NOT NULL,
@@ -29,8 +30,9 @@ CREATE TABLE [dbo].[UserInfoTable] (
     [IsAdmin]        BIT            NOT NULL,
     PRIMARY KEY CLUSTERED ([EmailAddress] ASC)
 );
+GO
 
---Transaction Table
+-- Create TransactionsTable
 CREATE TABLE [dbo].[TransactionsTable] (
     [TransactionID]  INT   IDENTITY(1,1) NOT NULL,
     [UserID]         INT          NOT NULL,
@@ -39,8 +41,9 @@ CREATE TABLE [dbo].[TransactionsTable] (
     [MembershipType] NCHAR (10)   NULL,
     PRIMARY KEY CLUSTERED ([TransactionID] ASC)
 );
+GO
 
---Transaction Details
+-- Create TransactionDetails
 CREATE TABLE [dbo].[TransactionDetails] (
     [DetailID]      INT             IDENTITY (1, 1) NOT NULL,
     [TransactionID] INT             NOT NULL,
@@ -53,4 +56,14 @@ CREATE TABLE [dbo].[TransactionDetails] (
     [UpdatedAt]     DATETIME        DEFAULT (getdate()) NOT NULL,
     CONSTRAINT [PK_TransactionDetails] PRIMARY KEY CLUSTERED ([DetailID] ASC)
 );
+GO
 
+-- Create AddCartTable
+CREATE TABLE [dbo].[AddCartTable] (
+    [CartId]    INT        IDENTITY (1, 1) NOT NULL,
+    [UserID]    INT        NOT NULL,
+    [ProductID] NCHAR (10) NOT NULL,
+    [Quantity]  INT        NOT NULL,
+    PRIMARY KEY CLUSTERED ([CartId] ASC)
+);
+GO

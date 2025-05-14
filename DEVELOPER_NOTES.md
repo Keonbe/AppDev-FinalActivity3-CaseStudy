@@ -42,7 +42,7 @@ Avoid pushing `.mdf` and `.ldf` files to Git. They are **excluded in `.gitignore
 ## 1. Clone the Repository  
 **In Visual Studio:**  
 1. Go to **Git** → **Clone Repository**  
-2. Paste the repository URL: `https://github.com/YourUsername/FinalActivity3.git`  
+2. Paste the repository URL: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy`  
 3. Choose a local folder → Click **Clone**  
 
 ---

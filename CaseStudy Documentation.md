@@ -48,7 +48,7 @@ Here’s an updated **Project Setup** section that switches you from a hard-code
 In Visual Studio:
 
 1. **Git → Clone Repository**
-2. Paste the repository URL: `https://github.com/YourUsername/FinalActivity3.git`
+2. Paste the repository URL: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy`
 3. Choose a local folder → **Clone**
 
 ---
@@ -256,7 +256,7 @@ CodeBehind="Registration.aspx.cs"
 | **.mdf file won't attach / "cannot be opened because it is version XXX"** | • Delete and recreate the `.mdf` using your SQL Server version. <br>• Or create the DB manually in SSMS and skip the `.mdf` entirely (just use the server-based DB). |
 | **Login failed for user 'IIS APPPOOL\DefaultAppPool'** | • Use `Integrated Security=True` to avoid hardcoding usernames/passwords. <br>• Or configure SQL Server to allow access to that user. |
 | **ASP.NET designer.cs file not updating / code-behind error** | 1. Close and reopen the `.aspx` file. <br>2. Delete `bin/` and `obj/` folders. <br>3. Rebuild solution. <br>4. Make sure `Inherits="YourNamespace.YourPage"` matches the code-behind class. |
-| **Default homepage won't show** | Set `Homepage.aspx` (or whatever default) as **Start Page**: right-click the file in Solution Explorer → Set as Start Page. |
+| **Default homepage won't show** | Set `LandingPage.aspx` (or whatever default) as **Start Page**: right-click the file in Solution Explorer → Set as Start Page. |
 | **Changes to table or SP aren't reflected in app** | You may be editing an `.sql` file but not re-running it in SSMS. Every time you change schema/data logic, **re-execute the script manually in SSMS**. |
 | **Project won't build after clean** | If you get missing reference errors: <br>• Right-click the solution → Rebuild Solution. <br>• If that fails, check that all projects are properly referenced (Class Library → WebForms). |
 | **Error: "Keyword not supported: 'attachdbfilename'"** | You're likely trying to use `.mdf` with a non-LocalDB provider. Make sure your connection string uses `LocalDB`, not `SQLEXPRESS` or an actual SQL Server instance. |
@@ -298,7 +298,7 @@ Could not copy '…\SqlServerTypes\x64\SqlServerSpatial140.dll' because it was n
 Visiting `http://localhost:xxxxx/` shows directory listing forbidden.
 
 **Fix A (Quick):**  
-- Right-click `Homepage.aspx` (or your landing page) → **Set as Start Page** → F5.
+- Right-click `LandingPage.aspx` (or your landing page) → **Set as Start Page** → F5.
 
 **Fix B (Persistent):**  
 Add to `Web.config` under `<system.webServer>`:
@@ -306,11 +306,11 @@ Add to `Web.config` under `<system.webServer>`:
 <defaultDocument>
   <files>
     <clear />
-    <add value="Homepage.aspx" />
+    <add value="LandingPage.aspx" />
   </files>
 </defaultDocument>
 ```
-Replace `Homepage.aspx` with the correct root page.
+Replace `LandingPage.aspx` with the correct root page.
 
 ## Database Connection Best Practices
 

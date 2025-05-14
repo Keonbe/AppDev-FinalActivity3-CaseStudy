@@ -5,18 +5,38 @@ using System.Data.SqlClient;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Provides data access methods for administrator operations in the system,
+    /// including admin authentication, product management, and admin account creation.
+    /// </summary>
     public class AdminMethods
     {
         //Connection String
         //Kean static string ConnStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;Integrated Security=True";
         //SqlConnection sqlConn = new SqlConnection(ConnStr); //Conncetion Object
 
+        /// <summary>
+        /// Connection string retrieved from the application's configuration.
+        /// </summary>
         string ConnStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
 
 
         /// <summary>
-        /// Checks if user is admin by calling the AdminLoginAccountCheck stored procedure.
+        /// Verifies if the provided email and password match an existing admin account.
         /// </summary>
+        /// <param name="emailAddress">The email address of the admin attempting to log in.</param>
+        /// <param name="passWord">The password associated with the admin account.</param>
+        /// <returns>
+        /// Returns <c>true</c> if the admin exists and credentials match; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// Thrown when database access fails or an unexpected error occurs.
+        /// </exception>
+        /// <remarks>
+        /// This method executes the AdminLoginAccountCheck stored procedure to verify admin credentials.
+        /// If an exception occurs during the database operation, the method wraps it in a more descriptive
+        /// exception before rethrowing.
+        /// </remarks>
         public bool CheckAdmin(string emailAddress, string passWord)
         {
             const string procedureName = "AdminLoginAccountCheck";
@@ -51,8 +71,18 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Add new products to products table by calling the AddNewProducts stored procedure.
+        /// Adds a new product to the product catalog in the database.
         /// </summary>
+        /// <param name="productID">The unique identifier for the product (max 10 characters).</param>
+        /// <param name="productName">The name of the product (max 100 characters).</param>
+        /// <param name="basePrice">The base price of the product.</param>
+        /// <param name="stockAvailable">The initial quantity of stock available for the product.</param>
+        /// <exception cref="Exception">
+        /// Thrown when the product cannot be added to the database due to SQL errors.
+        /// </exception>
+        /// <remarks>
+        /// This method calls the AddNewProducts stored procedure to insert the product data.
+        /// </remarks>
         public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable)
         {
             try
@@ -76,14 +106,22 @@ namespace ClassLibrary
             }
         }
 
-        public static class DBHelper //static helper class for global/shared access to the connection string
-        {
-            public static string ConnectionString => @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\YourPath\Sales&InvSystemDB.mdf;Integrated Security=True";
-        }
 
         /// <summary>
-        /// Add a admin account to userTable by calling the SaveUserRegisration stored procedure(IsAdmin = 1).
+        /// Creates a new administrator account in the system.
         /// </summary>
+        /// <param name="name">The full name of the administrator.</param>
+        /// <param name="emailAddress">The email address for the administrator account (must be unique).</param>
+        /// <param name="passWord">The password for the administrator account.</param>
+        /// <param name="membershipType">The type of membership to assign to the administrator.</param>
+        /// <exception cref="Exception">
+        /// Thrown when the administrator account cannot be created due to SQL errors.
+        /// </exception>
+        /// <remarks>
+        /// This method calls the SaveUserRegisration stored procedure with IsAdmin set to 1 to indicate
+        /// that the created account has administrator privileges. Unlike regular user registration,
+        /// this method does not check for existing email addresses before attempting to save.
+        /// </remarks>
         public void SaveRegisrationAdmin(string name, string emailAddress, string passWord, string membershipType)
         {
             try

@@ -24,6 +24,15 @@ namespace FinalActivity3_CaseStudy.Admin
         protected global::System.Web.UI.WebControls.RadioButtonList rblViewSelector;
 
         /// <summary>
+        /// ddlSortDir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSortDir;
+
+        /// <summary>
         /// btnLoad control.
         /// </summary>
         /// <remarks>

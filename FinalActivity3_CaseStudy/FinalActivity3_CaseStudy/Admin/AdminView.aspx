@@ -4,15 +4,28 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Admin View</h2>
+
     <asp:RadioButtonList
         ID="rblViewSelector"
         runat="server"
         AutoPostBack="True"
         OnSelectedIndexChanged="rblViewSelector_SelectedIndexChanged">
-        <asp:ListItem Text="View Products" Value="GetAllProducts" Selected="True" />
-        <asp:ListItem Text="View Members" Value="GetAllMembers" />
-        <asp:ListItem Text="View Transactions" Value="GetAllTransactions" />
+      <asp:ListItem Text="View Products"     Value="GetAllProducts"  Selected="True" />
+      <asp:ListItem Text="View Members"      Value="GetAllMembers"   />
+      <asp:ListItem Text="View Transactions" Value="GetAllTransactions" />
     </asp:RadioButtonList>
+
+    <asp:DropDownList
+        ID="ddlSortDir"
+        runat="server"
+        AutoPostBack="True"
+        OnSelectedIndexChanged="rblViewSelector_SelectedIndexChanged"
+        Visible="False">
+      <asp:ListItem Text="Date ↑"  Value="ASC"  />
+      <asp:ListItem Text="Date ↓"  Value="DESC" />
+    </asp:DropDownList>
+
+
     <p>
         &nbsp;
     </p>

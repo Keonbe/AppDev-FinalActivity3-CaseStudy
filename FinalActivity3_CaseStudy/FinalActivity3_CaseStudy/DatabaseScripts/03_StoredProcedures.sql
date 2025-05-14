@@ -85,15 +85,25 @@ AS
 	FROM ProductInventoryTable;
 RETURN 0
 
-CREATE PROCEDURE GetAllTransactions 
-	--@transactionID
-	--@userID,
-	--@dateTime,
-	--@totalAmount,
-	--@membershipType
+CREATE PROCEDURE dbo.GetAllTransactions
+    @SortDir NVARCHAR(4) = 'ASC'  -- ASC or DESC
 AS
-	SELECT TransactionID, UserID, DateTime, TotalAmount, MembershipType
-	FROM TransactionsTable;
+BEGIN
+    SET NOCOUNT ON;
+
+    IF UPPER(@SortDir) NOT IN ('ASC','DESC')
+        SET @SortDir = 'ASC';
+
+    DECLARE @sql NVARCHAR(MAX) = N'
+        SELECT 
+            DateTime, 
+            TotalAmount, 
+            MembershipType
+        FROM dbo.TransactionsTable
+        ORDER BY DateTime ' + @SortDir;
+
+    EXEC sp_executesql @sql;
+END
 
 
 --Start Here

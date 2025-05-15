@@ -1,166 +1,176 @@
-# Sales and Inventory System Documentation
+# Sales and Inventory System (FinalActivity3)
+A **Sales and Inventory Management System** built using **ASP.NET Web Forms**, **ADO.NET**, and **MSSQL LocalDB**, structured for academic purposes. The system supports Admin and User roles with core features such as product management, member tracking, and transaction monitoring.
+
+---
 
 ## Table of Contents
-- [Database Setup](#database-setup)
-- [Project Setup](#project-setup)
-- [File Directory Structure](#file-directory-structure)
-- [Common Issues and Solutions](#common-issues-and-solutions)
-- [Quick Fixes for Fresh Clones](#quick-fixes-for-fresh-clones)
-- [Database Connection Best Practices](#database-connection-best-practices)
+* [Overview](#overview)
+* [Tech Stack](#tech-stack)
+* [Project Structure](#project-structure)
+* [Setup Instructions](#setup-instructions)
+  * [1. Clone the Repository](#1-clone-the-repository)
+  * [2. Clean Up App\_Data](#2-clean-up-app_data)
+  * [3. Set Up Local Database](#3-set-up-local-database)
+  * [4. Configure Connection String](#4-configure-connection-string)
+  * [5. Build and Run](#5-build-and-run)
+* [Usage](#usage)
+* [Development Notes](#development-notes)
+* [Database Setup](#database-setup)
+* [File Directory Structure](#file-directory-structure)
+* [Common Issues and Solutions](#common-issues-and-solutions)
+* [Quick Fixes for Fresh Clones](#quick-fixes-for-fresh-clones)
+* [Database Connection Best Practices](#database-connection-best-practices)
+* [Contributing](#contributing)
+* [Credits](#credits)
+
+---
+
+## Overview
+This system is designed to:
+* Manage products, members, and transactions
+* Separate user views for Admin and Customers
+* Enable database filtering, sorting, and secure login sessions
+
+---
+
+## Tech Stack
+* **Frontend:** ASP.NET Web Forms (ASPX, C#)
+* **Backend:** ADO.NET with SQL Server (LocalDB)
+* **Database:** `.mdf` file in `App_Data`
+* **Tools:** Visual Studio, SQL Server Management Studio (SSMS)
+
+---
+
+## Project Structure
+```
+/FinalActivity3
+├── /Admin                ← Admin dashboard pages
+├── /User                 ← Customer pages
+├── /App_Data             ← Local .mdf database file
+├── /assets/css           ← Stylesheets
+├── /ClassLibrary         ← All business logic (use this for backend logic)
+├── /DatabaseScripts      ← SQL scripts for setting up the DB
+├── Web.config            ← Web application configuration
+├── README.md             ← Project documentation
+```
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+1. In Visual Studio: `Git → Clone Repository`
+2. Paste: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy/`
+3. Choose a local folder → Click Clone
+
+### 2. Clean Up App\_Data
+* Delete existing `App_Data` if present
+* Create a new one: `Right-click → Add → New Folder → App_Data`
+
+### 3. Set Up Local Database
+**Option A: Create New Database**
+* Open SSMS or Visual Studio SQL Object Explorer
+* Create a DB named `SalesInventoryDB`
+* Run scripts in this order from `/DatabaseScripts`:
+  1. `01_CreateTables.sql`
+  2. `02_InsertSeedData.sql`
+  3. `03_StoredProcedures.sql`
+* The `.mdf` will appear in your `App_Data` automatically
+
+**Option B: Attach Existing Database**
+* Add new `.mdf`: `Right-click App_Data → Add → SQL Server Database`
+* In SSMS: `Right-click Databases → Attach → Browse to .mdf`
+
+### 4. Configure Connection String
+In `Web.config`, make sure this connection string exists:
+```xml
+<connectionStrings>
+  <add name="DBMS" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SalesInventoryDB.mdf;Integrated Security=True" providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
+**Important:** Use `|DataDirectory|` to avoid absolute paths.
+
+### 5. Build and Run
+* `Build → Clean Solution`
+* `Build → Rebuild Solution`
+* `Debug → Start Debugging (F5)`
+
+---
+
+## Usage
+* Login as Admin or Customer
+* Admin can:
+  * View Products, Members, and Transactions via GridView
+  * Use RadioButtonList to switch between views
+  * Sort Transactions by Date ascending/descending (ddlSortDir shown only when Transactions selected)
+* Database logic (inserts, calculations, discounts, etc.) handled in `ClassLibrary`
+
+---
+
+## Development Notes
+* **Admin View** dynamically loads stored procedures using the `rblViewSelector`
+* **Connection String** moved from class files to `Web.config` for better management
+* **Filtering and Sorting** uses stored procedures + GridView binding
+* **Security:** Basic session checking using `Session["AdminEmailAddress"]`
+
+---
 
 ## Database Setup
 
 ### Why We Don't Version Control `.mdf` Files
 This project uses a local SQL Server `.mdf` file for development, but these files aren't suitable for version control because:
-- They are **binary** files, so Git can't track changes effectively
-- They're often **locked** by SQL Server or Visual Studio
-- Git may show errors like `Permission Denied` or `unable to process path`
+* They are **binary** files, so Git can't track changes effectively
+* They're often **locked** by SQL Server or Visual Studio
+* Git may show errors like `Permission Denied` or `unable to process path`
 
 ### Setting Up the Database Locally
-
 1. Open **SQL Server Management Studio** or Visual Studio's **Server Explorer**
 2. Create a new local database (e.g., `SalesInventoryDB`)
 3. Execute the SQL files from `/DatabaseScripts` in this order:
-   - `01_CreateTables.sql`
-   - `02_InsertSeedData.sql`
-   - `03_StoredProcedures.sql`
+   * `01_CreateTables.sql`
+   * `02_InsertSeedData.sql`
+   * `03_StoredProcedures.sql`
+
+### Connection String Configuration
+This project uses **Web.config** for database connection management, which is the recommended approach for ASP.NET applications:
+1. **Check your Web.config file** for the correct connection string:
+
+```xml
+<connectionStrings>
+  <add name="DBMS" 
+       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
+                         AttachDbFilename=|DataDirectory|\SalesInventoryDB.mdf;
+                         Integrated Security=True;
+                         Connect Timeout=30;" 
+       providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
+
+2. **Using the connection string in code**:
+
+```csharp
+using System.Configuration;
+// ...
+string connStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
+```
+
+3. **Key advantages**:
+   * No hardcoded paths - the `|DataDirectory|` token automatically resolves to your `App_Data` folder
+   * Portable across different developer machines
+   * More secure than embedding connection strings in code
 
 ### Keeping the Database in Sync
-
 When you make database changes:
-- Add a new table
-- Modify columns
-- Insert default data
-- Add a stored procedure
+* Add a new table
+* Modify columns
+* Insert default data
+* Add a stored procedure
 
 Please update or create a new `.sql` file in the `/DatabaseScripts` folder to keep everyone in sync.
 
 > **Note:** `.mdf` and `.ldf` files are excluded in `.gitignore`.
 
-Here’s an updated **Project Setup** section that switches you from a hard-coded connection string to using **Web.config** and `ConfigurationManager`. This makes it portable and avoids path issues.
-
 ---
-
-## 📦 Project Setup
-
-### 1. Clone the Repository
-
-In Visual Studio:
-
-1. **Git → Clone Repository**
-2. Paste the repository URL: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy`
-3. Choose a local folder → **Clone**
-
----
-
-### 2. Clean Up App\_Data
-
-After cloning:
-
-1. **Delete** any existing `App_Data` folder (if present).
-2. **Add** a fresh `App_Data` folder to your project:
-
-   * Right-click project → **Add → New Folder** → name it `App_Data`.
-
----
-
-### 3. Set Up Local Database
-
-#### Option A: Create New Database via SQL Scripts
-
-1. Open **SQL Server Object Explorer** (View → SQL Server Object Explorer).
-2. Right-click **(localdb)\MSSQLLocalDB** → **Add New Database…** → Name: `SalesInventoryDB`.
-3. In **Solution Explorer**, under `/DatabaseScripts`, run in order:
-
-   ```sql
-   01_CreateTables.sql  
-   02_InsertSeedData.sql  
-   03_StoredProcedures.sql  
-   ```
-
-   This will create tables, seed data, and stored procedures in `SalesInventoryDB` (and drop the `.mdf` into `App_Data`).
-
-#### Option B: Attach Existing Database (Advanced)
-
-1. Right-click **App\_Data** → **Add → New Item → SQL Server Database** → name `SalesInventoryDB.mdf`.
-2. In SSMS or SQL Server Object Explorer:
-
-   * Right-click **Databases** → **Attach…** → browse to `/App_Data/SalesInventoryDB.mdf`.
-
----
-
-### 4. Configure Connection String (Web.config)
-
-1. Open **Web.config**, find (or add) the `<connectionStrings>` section, and insert:
-
-   ```xml
-   <connectionStrings>
-     <add name="DBMS"
-          connectionString="
-            Data Source=(LocalDB)\MSSQLLocalDB;
-            AttachDbFilename=|DataDirectory|\SalesInventoryDB.mdf;
-            Integrated Security=True;
-            Connect Timeout=30;"
-          providerName="System.Data.SqlClient" />
-   </connectionStrings>
-   ```
-
-2. Remove any **hard-coded** `AttachDbFilename` strings in your `.cs` files.
-
-3. In your code-behind or class library, use:
-
-   ```csharp
-   using System.Configuration;
-
-   public class DatabaseHelper
-   {
-       // Reads the connection string named "DBMS" from Web.config
-       private static readonly string ConnStr =
-           ConfigurationManager
-             .ConnectionStrings["DBMS"]
-             .ConnectionString;
-
-       // Example usage:
-       public DataTable GetAllProducts()
-       {
-           var dt = new DataTable();
-           using var conn = new SqlConnection(ConnStr);
-           using var cmd  = new SqlCommand("GetAllProducts", conn) {
-               CommandType = CommandType.StoredProcedure
-           };
-           using var da   = new SqlDataAdapter(cmd);
-           conn.Open();
-           da.Fill(dt);
-           return dt;
-       }
-   }
-   ```
-
----
-
-### 5. Build and Run
-
-1. **Build → Clean Solution**
-2. **Build → Rebuild Solution**
-3. **Debug → Start Debugging (F5)**
-
----
-
-## 🔧 Troubleshooting
-
-* **“Cannot open database”**:
-
-  * Ensure you ran your scripts against `(LocalDB)\MSSQLLocalDB` and created `SalesInventoryDB`.
-  * Verify `App_Data\SalesInventoryDB.mdf` matches the file you attached.
-* **“Login failed”**:
-
-  * Since you’re using `Integrated Security=True`, be sure your Windows user has access to the LocalDB instance (usually automatic).
-* **Special characters in filename**:
-
-  * Use `SalesInventoryDB.mdf` (no `&` or spaces).
-
-With these steps you’ll have a fully portable connection configuration—no machine-specific paths or hard-coded strings, and everyone on the team can clone, build, and run without editing code.
-
 
 ## File Directory Structure
 
@@ -242,6 +252,8 @@ CodeBehind="Registration.aspx.cs"
 
 > **Pro Tip:** Use Solution Explorer's "Copy Path" feature to ensure correct references!
 
+---
+
 ## Common Issues and Solutions
 
 | Issue | Cause & Fix |
@@ -262,6 +274,12 @@ CodeBehind="Registration.aspx.cs"
 | **Error: "Keyword not supported: 'attachdbfilename'"** | You're likely trying to use `.mdf` with a non-LocalDB provider. Make sure your connection string uses `LocalDB`, not `SQLEXPRESS` or an actual SQL Server instance. |
 | **Session errors or null session data** | If you're trying to use session variables (`Session["X"]`) too early (e.g., before login or on the wrong page), they may be null. Add null checks and consider default redirects. |
 | **CSS/JS not loading** | 1. Use relative paths properly in `<link>` and `<script>` tags: <br>• Prefer `~/Content/style.css` via `<asp:Content>` instead of plain HTML pathing. <br>2. ASP.NET treats folders like `/Scripts`, `/Content`, and `/App_Data` differently—ensure your static files are not in restricted folders. |
+| **`.mdf` not attaching** | Rename file or reattach in SSMS |
+| **Login session not detected** | Check if cookies or session expired |
+| **No transactions shown** | Make sure SP `GetAllTransactions` runs and DB is seeded |
+| **Sort not working** | Ensure `ddlSortDir` is visible only when Transaction view is selected |
+
+---
 
 ## Quick Fixes for Fresh Clones
 
@@ -312,6 +330,8 @@ Add to `Web.config` under `<system.webServer>`:
 ```
 Replace `LandingPage.aspx` with the correct root page.
 
+---
+
 ## Database Connection Best Practices
 
 This project uses a local SQL Server `.mdf` database file located in the `App_Data` folder. The recommended way to manage database connections is via the `Web.config` file using `<connectionStrings>`.
@@ -325,7 +345,7 @@ Make sure you have the following inside your `<configuration>` section:
 <connectionStrings>
   <add name="DBMS" 
        connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
-                         AttachDbFilename=|DataDirectory|\SalesInvSystemDB.mdf;
+                         AttachDbFilename=|DataDirectory|\SalesInventoryDB.mdf;
                          Integrated Security=True;
                          Connect Timeout=30;" 
        providerName="System.Data.SqlClient" />
@@ -423,3 +443,23 @@ using (SqlConnection conn = new SqlConnection(connStr))
     }
 }
 ```
+
+---
+
+## Contributing
+1. Fork this repo
+2. Create a branch (`git checkout -b feature/yourFeature`)
+3. Commit with clear messages (`git commit -m "Add member filter"`)
+4. Push to your fork and open a Pull Request
+
+**Contribution Rules:**
+* Don't commit `.mdf` changes
+* Add new SPs to `/DatabaseScripts`
+* Write clear `<summary>` in public methods
+* Only bind stored procedures via `LoadGrid()`
+
+---
+
+## Credits
+Developed by: *X Group* — DLSU-D Information Technology (2025)
+> For questions or support, please open an Issue.

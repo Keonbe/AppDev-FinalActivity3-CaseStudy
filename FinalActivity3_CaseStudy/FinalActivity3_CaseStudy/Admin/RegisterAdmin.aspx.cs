@@ -35,7 +35,7 @@ namespace FinalActivity3_CaseStudy.Admin
                     ddlMembershipType.Enabled = false;
                     btnRegister.Visible = false;
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=AdminLogin.aspx");
+                    Response.AppendHeader("Refresh", "1;url=AdminLoginPage.aspx");
 
                 }
             }

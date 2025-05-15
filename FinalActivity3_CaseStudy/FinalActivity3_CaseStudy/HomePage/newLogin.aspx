@@ -41,7 +41,7 @@
             <tr>
                 <td colspan="2">
                     <br />
-                    <b><a href="/Admin/AdminLogin.aspx">Are you admin?</a></b>
+                    <b><a href="/Admin/AdminLoginPage.aspx">Are you admin?</a></b>
                 </td>
             </tr>
         </table>

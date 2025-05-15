@@ -34,7 +34,7 @@ namespace FinalActivity3_CaseStudy.Admin
                 else
                 {
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=AdminLogin.aspx");
+                    Response.AppendHeader("Refresh", "1;url=AdminLoginPage.aspx");
                 }
 
                 //LoadGrid(rblViewSelector.SelectedValue); //Load the grid with the default value(rblViewSelector.SelectedValue - View Products)
@@ -48,7 +48,7 @@ namespace FinalActivity3_CaseStudy.Admin
                 else //Not login
                 {
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=AdminLogin.aspx"); //Delays 2 seconds for lblMessage, Redirects
+                    Response.AppendHeader("Refresh", "1;url=AdminLoginPage.aspx"); //Delays 2 seconds for lblMessage, Redirects
 
                 }
             }

@@ -20,7 +20,7 @@ namespace FinalActivity3_CaseStudy.Admin
                     // If not logged in, Redirect and Display message
                     lblMessage.Text = "⚠️ Not logged in - Redirecting to Login Page";
                     btnLogout.Visible = false; // If not login, Hide the logout button
-                    Response.AppendHeader("Refresh", "2;url=AdminLogin.aspx");
+                    Response.AppendHeader("Refresh", "2;url=AdminLoginPage.aspx");
                 }
             }
         }
@@ -30,7 +30,7 @@ namespace FinalActivity3_CaseStudy.Admin
             Session.Clear();        // Clear session data
             Session.Abandon();      // Ends session
             lblMessage.Text = "Account Successfully Logged Out. Redirecting to Home Page...";
-            Response.AppendHeader("Refresh", "2;url=/Homepage.aspx"); 
+            Response.AppendHeader("Refresh", "2;url=/HomePage/LandingPage.aspx"); 
         }
     }
 }

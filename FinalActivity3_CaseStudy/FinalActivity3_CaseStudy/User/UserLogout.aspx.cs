@@ -29,7 +29,7 @@ namespace FinalActivity3_CaseStudy.User
             Session.Clear();        // Clear session data
             Session.Abandon();      // Ends session
             lblMessage.Text = "Account Successfully Logged Out. Redirecting to Home Page...";
-            Response.AppendHeader("Refresh", "2;url=/Homepage.aspx"); //Redirect to homepage.aspx
+            Response.AppendHeader("Refresh", "2;url=/HomePage/LandingPage.aspx"); //Redirect to homepage.aspx
             // Use "/webform.aspx" or "~/folder/webform.aspx" for specific webform @ admin or user
         }
     }

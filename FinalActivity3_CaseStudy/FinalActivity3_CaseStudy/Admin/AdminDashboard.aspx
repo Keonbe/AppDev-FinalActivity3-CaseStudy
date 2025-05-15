@@ -5,10 +5,11 @@
     <h2>Admin Homepage</h2>
     <p>
         <br />
-        <b><a href="AdminLogin.aspx">Admin Login</a></b>
+        <!-- <b><a href="AdminLogin.aspx">Admin Login</a></b> -->
+        <b><a href="ReportModule.aspx">Summary of Sales</a></b> 
     </p>
     <br />
-    <b><a href="AdminView.aspx">View Records</a></b> </p>
+    <b><a href="AdminView.aspx">View Record Tables</a></b> </p>
             <br />
     <b><a href="RegisterAdmin.aspx">Add Admin User</a></b> </p>
     <p>

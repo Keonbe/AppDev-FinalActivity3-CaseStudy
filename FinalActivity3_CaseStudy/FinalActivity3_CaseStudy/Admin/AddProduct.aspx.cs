@@ -34,7 +34,7 @@ namespace FinalActivity3_CaseStudy.Admin
                     tbStocks.Enabled = false;
                     btnAddProduct.Visible = false;
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=AdminLogin.aspx"); //Delays 2 seconds for lblMessage, Redirects
+                    Response.AppendHeader("Refresh", "1;url=AdminLoginPage.aspx"); //Delays 2 seconds for lblMessage, Redirects
 
                 }
             }

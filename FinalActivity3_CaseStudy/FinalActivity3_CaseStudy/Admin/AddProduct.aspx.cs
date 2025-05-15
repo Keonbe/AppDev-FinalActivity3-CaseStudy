@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -51,6 +52,31 @@ namespace FinalActivity3_CaseStudy.Admin
             double basePrice = tbPrice.Text == "" ? 0 : Convert.ToDouble(tbPrice.Text);
             int stocksAvailable = tbStocks.Text == "" ? 0 : Convert.ToInt32(tbStocks.Text);
             classObj.AddNewProducts(tbProductID.Text, tbProductName.Text, basePrice, stocksAvailable);
+
+            try
+            {
+                classObj.AddNewProducts(
+                    tbProductID.Text.Trim(),
+                    tbProductName.Text.Trim(),
+                    basePrice,
+                    stocksAvailable
+                );
+
+                lblMessage.ForeColor = Color.Green;
+                lblMessage.Text = "Product added successfully!";
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Duplicate ProductID
+                lblMessage.ForeColor = Color.Red;
+                lblMessage.Text = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                // Other errors
+                lblMessage.ForeColor = Color.Red;
+                lblMessage.Text = "Error: " + ex.Message;
+            }
         }
     }
 }

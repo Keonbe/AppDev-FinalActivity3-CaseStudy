@@ -85,9 +85,23 @@ namespace ClassLibrary
         /// </remarks>
         public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable)
         {
+            var conn = new SqlConnection(ConnStr);
+            conn.Open();
+
+            // 1) Check for existing product
+            using (var check = new SqlCommand(
+                "SELECT COUNT(1) FROM ProductInventoryTable WHERE ProductID = @PID", conn))
+            {
+                check.Parameters.AddWithValue("@PID", productID);
+                bool exists = (int)check.ExecuteScalar() > 0;
+                if (exists)
+                    throw new InvalidOperationException(
+                        $"Product with ID '{productID}' already exists.");
+            }
+
+            // 2) Insert via stored procedure or inline SQL
             try
             {
-                using (var conn = new SqlConnection(ConnStr))
                 using (var saveRecord = new SqlCommand("AddNewProducts", conn))
                 {
                     saveRecord.CommandType = CommandType.StoredProcedure;
@@ -124,9 +138,24 @@ namespace ClassLibrary
         /// </remarks>
         public void SaveRegisrationAdmin(string name, string emailAddress, string passWord, string membershipType)
         {
+
+            var conn = new SqlConnection(ConnStr);
+            conn.Open();
+
+            // 1) Check for existing email
+            using (var check = new SqlCommand(
+                "SELECT COUNT(1) FROM UserInfoTable WHERE EmailAddress = @Email", conn))
+            {
+                check.Parameters.AddWithValue("@Email", emailAddress);
+                bool exists = (int)check.ExecuteScalar() > 0;
+                if (exists)
+                    throw new InvalidOperationException(
+                        $"A user with email '{emailAddress}' already exists.");
+            }
+
+            // 2) Insert via stored procedure or inline SQL
             try
             {
-                using (var conn = new SqlConnection(ConnStr))
                 using (var saveRecord = new SqlCommand("SaveUserRegisration", conn))
                 {
                     saveRecord.CommandType = CommandType.StoredProcedure;
@@ -135,7 +164,6 @@ namespace ClassLibrary
                     saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
                     saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
                     saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 1;
-
                     conn.Open();
                     saveRecord.ExecuteNonQuery();
                 }

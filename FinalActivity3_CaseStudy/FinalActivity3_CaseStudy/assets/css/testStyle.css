@@ -1,0 +1,599 @@
+﻿/* Modern Sales & Inventory System Styles */
+:root {
+    --primary-color: #3a7bd5;
+    --primary-dark: #2d64b1;
+    --primary-light: #e9f0fd;
+    --secondary-color: #00d2ff;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --text-muted: #6c757d;
+    --background-light: #f8f9fa;
+    --background-white: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --border-radius: 0.375rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.master-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    min-height: 100vh;
+    background-color: var(--background-white);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    margin-right: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    transition: transform var(--transition-speed);
+}
+
+    .logo:hover {
+        transform: scale(1.1);
+    }
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: var(--spacing-xs);
+}
+
+/* Navigation Styles */
+nav {
+    background-color: var(--background-white);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+    .nav-links li {
+        position: relative;
+    }
+
+.nav-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: var(--spacing-md) var(--spacing-lg);
+    transition: all var(--transition-speed);
+    font-weight: 500;
+}
+
+    .nav-link i {
+        margin-right: var(--spacing-xs);
+        opacity: 0.7;
+    }
+
+    .nav-link:hover {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+    }
+
+.cart-link {
+    margin-left: auto;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+    font-weight: 600;
+    background-color: var(--primary-light);
+}
+
+    .cart-button i {
+        margin-right: var(--spacing-xs);
+        font-size: 1.1em;
+    }
+
+    .cart-button:hover {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+    }
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    padding: var(--spacing-xl);
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+    /* ASP.NET Form Controls Styling */
+    main label {
+        display: inline-block;
+        margin-bottom: var(--spacing-sm);
+        font-weight: 500;
+        color: var(--text-dark);
+    }
+
+    main input[type="text"],
+    main input[type="password"],
+    main input[type="email"],
+    main input[type="number"],
+    main select,
+    main textarea {
+        width: 100%;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        margin-bottom: var(--spacing-md);
+        font-size: 1rem;
+        transition: border-color var(--transition-speed);
+    }
+
+        main input[type="text"]:focus,
+        main input[type="password"]:focus,
+        main input[type="email"]:focus,
+        main input[type="number"]:focus,
+        main select:focus,
+        main textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
+        }
+
+    main input[type="submit"],
+    main input[type="button"],
+    main button {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        margin-right: var(--spacing-md);
+        font-weight: 500;
+        transition: background-color var(--transition-speed), transform var(--transition-speed);
+    }
+
+        main input[type="submit"]:hover,
+        main input[type="button"]:hover,
+        main button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        main input[type="submit"]:active,
+        main input[type="button"]:active,
+        main button:active {
+            transform: translateY(1px);
+        }
+
+/* Footer Styles */
+footer {
+    padding: var(--spacing-lg);
+    color: var(--text-muted);
+    background-color: var(--background-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.copyright {
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed);
+}
+
+    .footer-link:hover {
+        color: var(--primary-color);
+    }
+
+/* Universal Table and GridView Styling */
+.grid-container,
+div[id*="Grid"],
+div[id*="grid"],
+div[id*="Table"],
+div[id*="table"] {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md);
+}
+
+/* Apply to all tables and GridViews */
+table,
+.grid-view,
+[id*="GridView"],
+[id*="Gridview"],
+[id*="gridview"] {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+}
+
+    /* Header styles for all tables */
+    table th,
+    .grid-view th,
+    [id*="GridView"] th,
+    [id*="Gridview"] th,
+    [id*="gridview"] th,
+    table tr:first-child td[style*="background-color"],
+    table tr.header td,
+    table tr.HeaderStyle td {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-align: left;
+        font-weight: 600;
+        height: 50px;
+        vertical-align: middle;
+        border: none;
+        white-space: nowrap;
+    }
+
+    /* Cell styles for all tables */
+    table td,
+    .grid-view td,
+    [id*="GridView"] td,
+    [id*="Gridview"] td,
+    [id*="gridview"] td {
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-bottom: 1px solid var(--border-color);
+        height: 45px;
+        vertical-align: middle;
+    }
+
+    /* Zebra striping for all tables */
+    table tr:nth-child(even),
+    .grid-view tr:nth-child(even),
+    [id*="GridView"] tr:nth-child(even),
+    [id*="Gridview"] tr:nth-child(even),
+    [id*="gridview"] tr:nth-child(even) {
+        background-color: var(--primary-light);
+    }
+
+    /* Hover effect for all tables */
+    table tr:hover,
+    .grid-view tr:hover,
+    [id*="GridView"] tr:hover,
+    [id*="Gridview"] tr:hover,
+    [id*="gridview"] tr:hover {
+        background-color: rgba(58, 123, 213, 0.1);
+    }
+
+    /* Empty state styling */
+    .EmptyDataRow td,
+    .empty-message,
+    tr.EmptyDataRowStyle td,
+    [id*="GridView"] tr.EmptyDataRowStyle td {
+        text-align: center !important;
+        padding: var(--spacing-xl) !important;
+        font-style: italic;
+        color: var(--text-muted);
+        background-color: transparent !important;
+    }
+
+    /* Pagination styles for ASP.NET controls */
+    .Pager,
+    .PagerStyle,
+    .pagination,
+    [id*="GridView"] tr td table {
+        margin-top: var(--spacing-md);
+        text-align: center;
+    }
+
+        .Pager a,
+        .PagerStyle a,
+        .pagination a,
+        [id*="GridView"] tr td table a {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            margin: 0 var(--spacing-xs);
+            border-radius: var(--border-radius);
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            text-decoration: none;
+            min-width: 30px;
+            text-align: center;
+        }
+
+            .Pager a:hover,
+            .PagerStyle a:hover,
+            .pagination a:hover,
+            [id*="GridView"] tr td table a:hover {
+                background-color: var(--primary-color);
+                color: var(--text-light);
+            }
+
+        /* Selected page number */
+        .Pager span,
+        .PagerStyle span,
+        .pagination span,
+        [id*="GridView"] tr td table span {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            margin: 0 var(--spacing-xs);
+            border-radius: var(--border-radius);
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+/* Validation Control Styles */
+.validator {
+    color: #dc3545;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: calc(-1 * var(--spacing-sm));
+    margin-bottom: var(--spacing-md);
+}
+
+/* Form Layout Styles */
+.form-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+    display: block;
+}
+
+.form-label {
+    display: inline-block;
+    width: 150px;
+    margin-right: var(--spacing-md);
+    vertical-align: top;
+    padding-top: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.form-field {
+    display: inline-block;
+    width: calc(100% - 180px);
+    vertical-align: top;
+}
+
+.button-container {
+    margin-top: var(--spacing-xl);
+    margin-left: 160px;
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Heading Styles */
+h2 {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-dark);
+    font-weight: 600;
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        border-radius: var(--border-radius);
+    }
+
+/* Card Styles for Content Blocks */
+.card {
+    background-color: var(--background-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-speed);
+}
+
+    .card:hover {
+        box-shadow: var(--shadow-md);
+    }
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    main {
+        padding: var(--spacing-lg);
+    }
+
+    .form-label,
+    .form-field {
+        width: 100%;
+        display: block;
+    }
+
+    .button-container {
+        margin-left: 0;
+    }
+
+    .grid-view {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: relative;
+        padding: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        background-color: var(--background-white);
+        box-shadow: var(--shadow-md);
+        max-height: 0;
+        overflow: hidden;
+        z-index: 100;
+        transition: max-height var(--transition-speed);
+    }
+
+    nav.active .nav-links {
+        max-height: 500px;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: var(--spacing-md) var(--spacing-xl);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .cart-link {
+        margin-left: 0;
+        order: -1;
+    }
+
+    .cart-button {
+        justify-content: center;
+        width: 100%;
+        border-radius: 0;
+        background-color: var(--primary-color);
+        color: var(--text-light);
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 576px) {
+    .title {
+        font-size: 1.25rem;
+    }
+
+    main {
+        padding: var(--spacing-md);
+    }
+
+    .card {
+        padding: var(--spacing-md);
+    }
+
+    .grid-view th,
+    .grid-view td {
+        padding: var(--spacing-sm);
+    }
+}

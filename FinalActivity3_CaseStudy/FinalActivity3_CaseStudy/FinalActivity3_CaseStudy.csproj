@@ -100,6 +100,7 @@
       <DependentUpon>SalesInvSystemDB.mdf</DependentUpon>
     </Content>
     <Content Include="assets\css\AdminStyle.css" />
+    <Content Include="assets\css\testStyle.css" />
     <Content Include="assets\css\UserStyle.css" />
     <Content Include="DatabaseScripts\03_StoredProcedures.sql" />
     <Content Include="DatabaseScripts\02_Query.sql" />

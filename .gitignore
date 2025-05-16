@@ -362,3 +362,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/Sales&InvSystemDB.mdf
 /FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/Sales&InvSystemDB_log.ldf
+/FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/SalesInvSystemDB.mdf
+/FinalActivity3_CaseStudy/FinalActivity3_CaseStudy/App_Data/SalesInvSystemDB_log.ldf

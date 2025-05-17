@@ -20,7 +20,7 @@ namespace FinalActivity3_CaseStudy.Admin
                     // If not logged in, Redirect and Display message
                     lblMessage.Text = "⚠️ Not logged in - Redirecting to Login Page";
                     btnLogout.Visible = false; // If not login, Hide the logout button
-                    Response.AppendHeader("Refresh", "2;url=AdminLoginPage.aspx");
+                    Response.AppendHeader("Refresh", "2;url=/HomePage/LandingPage.aspx");
                 }
             }
         }

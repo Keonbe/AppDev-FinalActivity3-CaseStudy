@@ -66,6 +66,18 @@ namespace FinalActivity3_CaseStudy.Admin
             LoadGrid(selected);
         }
 
+        protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e) //For more than one pages
+        {
+            // 1) Set the new page index for the grid view
+            //    This is done when the user clicks on a page number in the pager.
+            //    The event is fired before the data is reloaded, so we need to set it here.
+            gvAdmin.PageIndex = e.NewPageIndex;
+
+            // 2) Re-load the data for the new page
+            //    Use the same logic that populates your grid originally.
+            LoadGrid(rblViewSelector.SelectedValue);
+        }
+
         protected void btnLoad_Click(object sender, EventArgs e)
         {
             LoadGrid(rblViewSelector.SelectedValue);

@@ -50,10 +50,12 @@
         AlternatingRowStyle-CssClass="gridview-altrow"
         PagerStyle-CssClass="gridview-pager"
         AllowPaging="True"
-        PageSize="10">
+        PageSize="10"
+        OnPageIndexChanging="gvAdmin_PageIndexChanging">
         <HeaderStyle HorizontalAlign="Left" />
-        <RowStyle VerticalAlign="Top" />
+        <RowStyle    VerticalAlign="Top" />
     </asp:GridView>
+
 
 
     <p>

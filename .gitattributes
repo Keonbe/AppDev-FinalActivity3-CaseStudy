@@ -61,3 +61,20 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+
+# ---
+
+###############################################################################
+# .mdf (SQL Server database) diff behavior
+#
+# SQL Server database files are binary and cannot be diffed as text.
+# Marking them as binary prevents Git (and GUIs like Visual Studio)
+# from attempting a line-by-line diff, which otherwise leads to
+# “unrecognized sequence when parsing git diff output” errors.
+#
+# If you also want to store them via Git LFS, uncomment the filter lines.
+###############################################################################
+# Treat .mdf files as binary (no text diff)
+*.mdf    -text
+

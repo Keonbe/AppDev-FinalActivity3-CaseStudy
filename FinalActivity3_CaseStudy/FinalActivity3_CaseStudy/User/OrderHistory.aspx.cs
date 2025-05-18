@@ -87,8 +87,25 @@ namespace FinalActivity3_CaseStudy.User
         /// </summary>
         protected void gvOrderHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Grab the selected TransactionID
+            // 1) Re-load the history so DataKeys are fresh
+            int userId = Convert.ToInt32(Session["UserID"]);
+            LoadOrderHistory(userId);
+
+            // 2) Now grab the newly selected key
             int transId = (int)gvOrderHistory.SelectedDataKey.Value;
+            LoadOrderDetails(transId);
+        }
+
+        protected void gvOrderHistory_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName != "ViewDetails") return;
+
+            // e.CommandSource is the Button; find its row
+            GridViewRow row = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            int index = row.RowIndex;
+
+            // DataKeys will be populated because the grid was bound already
+            int transId = (int)gvOrderHistory.DataKeys[index].Value;
             LoadOrderDetails(transId);
         }
 

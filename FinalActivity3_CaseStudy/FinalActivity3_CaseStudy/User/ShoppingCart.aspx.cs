@@ -43,43 +43,35 @@ namespace FinalActivity3_CaseStudy.User
                     lblMessage.Text = "⚠️ No items in cart.";
                     return;
                 }
+
+                int userId = Convert.ToInt32(Session["UserID"]);
+                DataTable dt = methods.GetCartItems(userId);
+                gvCartItems.DataSource = dt;
+                gvCartItems.DataBind();
+
+                // Compute subtotal
+                double sub = 0;
+                foreach (DataRow r in dt.Rows)
+                    sub += Convert.ToDouble(r["SubTotal"]);
+
+                // Get membership from session
+                string memType = Session["MembershipType"]?.ToString() ?? "";
+
+                // Compute VAT, Discount, Final Amount
+                double vat = ClassComputations.CalculateVAT(sub);
+                double finalAmount = ClassComputations.CalculateFinalAmount(sub, memType);
+                double discount = (sub + vat) - finalAmount;
+
+                // Display values
+                lblTotalAmount.Text = sub.ToString("C");
+                lblVat.Text = vat.ToString("C");
+                lblDiscount.Text = discount.ToString("C");
+                lblFinalAmount.Text = finalAmount.ToString("C");
             }
             catch (Exception ex)
             {
                 lblMessage.Text = "⚠️ Error: " + ex.Message;
-                return;
             }
-
-
-            // Get the user ID from the session
-            int userId = Convert.ToInt32(Session["UserID"]);
-            DataTable dt = methods.GetCartItems(userId);
-
-            gvCartItems.DataSource = dt;
-            gvCartItems.DataBind();
-
-            // Compute totals
-            double sub = 0;
-            foreach (DataRow r in dt.Rows)
-                sub += Convert.ToDouble(r["SubTotal"]);
-
-            // Use helper to compute VAT
-            double vat = ClassComputations.CalculateVAT(sub); // Use helper to compute VAT
-            string memType = Session["MembershipType"].ToString(); //MembershipType
-            double discRate = 0; //Discount Rate 
-            int memIndex = memType == "Platinum" ? 0 
-                          : memType == "Gold" ? 1
-                          : 2; //MembershipType DiscountRate
-            // Use helper to compute final amount (includes VAT & discount)
-            double finalAmount = ClassComputations.CalculateFinalAmount(sub, memIndex);
-
-            // Derive discount back out if you need to display it
-            double discount = (sub + vat) - finalAmount;
-
-            lblTotalAmount.Text = sub.ToString("C"); //TotalAmount
-            lblVat.Text = vat.ToString("C"); //VAT
-            lblDiscount.Text = discount.ToString("C"); //Discount
-            lblFinalAmount.Text = finalAmount.ToString("C"); //TotalAmount
         }
 
         //Remove Item
@@ -100,25 +92,29 @@ namespace FinalActivity3_CaseStudy.User
             int userId = (int)Session["UserID"];
             DataTable dt = methods.GetCartItems(userId);
 
-            // Compute subtotal via DataTable helper
+            // 1) Compute subtotal via DataTable helper
             double sub = Convert.ToDouble(dt.Compute("SUM(SubTotal)", ""));
 
-            // Compute VAT & final using helpers
+            // 2) Get membership
+            string memType = Session["MembershipType"]?.ToString() ?? "";
+
+            // 3) Compute VAT, discount, and final total using your helpers
             double vat = ClassComputations.CalculateVAT(sub);
-            string memType = Session["MembershipType"].ToString();
-            int memIndex = memType == "Platinum" ? 0
-                          : memType == "Gold" ? 1
-                          : 2;
-            double finalTotal = ClassComputations.CalculateFinalAmount(sub, memIndex);
+            double discount = ClassComputations.CalculateDiscount(sub, memType);
+            double finalTotal = ClassComputations.CalculateFinalAmount(sub, memType);
+
+            // 4) Compute discountRate as a fraction of the subtotal
+            //    (so e.g. 0.15 for 15%)
+            double discountRate = sub > 0 ? (discount / sub) : 0;
 
             // Pass calculated values to SQL
             // Call SP with all pre-computed values
             methods.ProcessCartCheckout(
                 userId: userId,
-                subTotal: (double)sub,
+                subTotal: sub,
                 memType: memType,
-                discountRate: (double)((sub + vat - finalTotal) / sub),
-                finalTotal: (double)finalTotal
+                discountRate: discountRate,
+                finalTotal: finalTotal
             );
 
             BindCart();

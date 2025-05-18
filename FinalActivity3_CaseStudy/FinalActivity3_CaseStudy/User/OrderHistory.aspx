@@ -18,6 +18,7 @@
         AutoGenerateColumns="False"             
         DataKeyNames="TransactionID"
         OnSelectedIndexChanged="gvOrderHistory_SelectedIndexChanged"
+        OnRowCommand="gvOrderHistory_RowCommand"
         EmptyDataText="No transaction history found for your account.">
       <Columns>
         <asp:BoundField DataField="TransactionID"   HeaderText="Order ID" />

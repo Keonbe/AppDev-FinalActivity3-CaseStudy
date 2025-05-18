@@ -318,5 +318,14 @@ namespace ClassLibrary
                 }
             }
         }
+        public DataSet DisplaySalesSummary()
+        { 
+            SqlDataAdapter da = new SqlDataAdapter("rdlc_GetSalesSummaryByProduct", ConnStr);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            da.Fill(ds, "MyTable");
+            return ds;
+        }
+
     }
 }

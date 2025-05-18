@@ -3,9 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2> Report</h2>
-<p> &nbsp;</p>
-<p> </p>
-<rsweb:ReportViewer ID="ReportViewer1" runat="server">
-</rsweb:ReportViewer>
+    <h2>Report: Sales Summary</h2>
+    <p>&nbsp;</p>
+    <div class="report-container">
+        <div>
+            <rsweb:ReportViewer ID="rvSales" runat="server" Width="100%" Height="600px">
+              <LocalReport ReportPath="ReportSales.rdlc" />
+            </rsweb:ReportViewer>
+        </div>
+    </div>
+    <p>
+        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+    </p>
 </asp:Content>

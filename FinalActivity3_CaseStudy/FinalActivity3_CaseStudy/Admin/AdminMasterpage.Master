@@ -12,6 +12,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="admin-container">
             <header> 
            <!--< div class="logo">[Logo]</div> -->
@@ -23,7 +24,7 @@
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminDashboard.aspx">Dashboard Home</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AddProduct.aspx">Add Product</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminView.aspx">View Records</asp:HyperLink></li>
-                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/Reports.aspx">Reports</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/ReportModule.aspx">Reports</asp:HyperLink></li>
                     <li><asp:HyperLink runat="server" NavigateUrl="~/Admin/AdminLogout.aspx">Logout</asp:HyperLink></li>
                 </ul>
             </nav>

@@ -339,3 +339,25 @@ BEGIN
 		ORDER BY td.DetailID;
 END
 GO
+
+--Start Here
+-- rldc stored procedure for sales summary by user
+CREATE PROCEDURE [dbo].rdlc_GetSalesSummaryByProduct
+AS
+BEGIN
+    SELECT
+        p.ProductID,
+        p.ProductName,
+        COUNT(t.TransactionID) AS NumberOfTransactions,
+        SUM(td.Quantity) AS TotalQuantitySold,
+        SUM(td.TotalAmount) AS TotalSales
+    FROM
+        ProductInventoryTable p
+    INNER JOIN TransactionDetails td ON p.ProductID = td.ProductID
+    INNER JOIN TransactionsTable t ON td.TransactionID = t.TransactionID
+    GROUP BY
+        p.ProductID,
+        p.ProductName
+    ORDER BY
+        p.ProductName;
+END

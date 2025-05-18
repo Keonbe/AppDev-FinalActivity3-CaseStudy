@@ -12,7 +12,6 @@ using System.Xml.Linq;
 using ClassLibrary;
 using Microsoft.Identity.Client;
 using Microsoft.Reporting.WebForms;
-using Microsoft.Reporting.WebForms;
 using Microsoft.Reporting.WebForms.Internal.Soap.ReportingServices2005.Execution;
 
 namespace FinalActivity3_CaseStudy.Admin

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.master.cs" Inherits="FinalActivity3_CaseStudy.HomePage.LandingPage" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.master.cs" Inherits="FinalActivity3_CaseStudy.HomePage.LandingPage" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sales & Inventory System</title>
-  <link rel="stylesheet" href="~/assets/css/UserStyle.css" />
+  <link rel="stylesheet" href="~/assets/css/landingpageStyle.css" /> <!-- testUserStyle.css -->
   <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>

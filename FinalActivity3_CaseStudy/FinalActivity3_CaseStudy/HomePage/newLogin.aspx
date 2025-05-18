@@ -44,6 +44,13 @@
                     <b><a href="/Admin/AdminLoginPage.aspx">Are you admin?</a></b>
                 </td>
             </tr>
+             <tr>
+                <td colspan="2">
+                    <br />
+                    <b><a href="newRegisration.aspx">Not registered?</a></b>
+                </td>
+            </tr>
         </table>
     </div>
+
 </asp:Content>

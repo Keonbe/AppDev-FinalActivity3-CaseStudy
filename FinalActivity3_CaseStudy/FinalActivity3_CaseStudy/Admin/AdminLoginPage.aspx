@@ -162,7 +162,7 @@
                 <asp:Label ID="lblMessage" runat="server" CssClass="error"></asp:Label>
             </div>
             
-            <a href="/User/Login.aspx" class="redirect-link">Not an Admin? Login as User</a>
+            <a href="/HomePage/newLogin.aspx" class="redirect-link">Not an Admin? Login as User</a>
         </div>
     </form>
 </body>

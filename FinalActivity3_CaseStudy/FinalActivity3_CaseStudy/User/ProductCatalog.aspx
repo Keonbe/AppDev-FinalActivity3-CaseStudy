@@ -23,18 +23,20 @@
             border-bottom: 2px solid #ddd;
             padding-bottom: 5px;
         }
-        .cart-link {
-            float: right;
-            font-size: 16px;
-            margin-top: -30px;
+
+        .product-catalog .pc-cart-link {
+          float: right;
+          font-size: 16px;
+          margin-top: -30px;
         }
-        .cart-link a {
-            text-decoration: none;
-            color: #007bff;
+        .product-catalog .pc-cart-link a {
+          text-decoration: none;
+          color: #007bff;
         }
-        .cart-link a:hover {
-            text-decoration: underline;
+        .product-catalog .pc-cart-link a:hover {
+          text-decoration: underline;
         }
+
         #gvProductTable {
             width: 100%;
             border-collapse: collapse;
@@ -88,7 +90,7 @@
 
         <div class="clearfix">
             <h3>Featured Products</h3>
-            <div class="cart-link">
+            <div class="pc-cart-link">
                 🛒 <a href="ShoppingCart.aspx">Your Shopping Cart</a>
             </div>
         </div>

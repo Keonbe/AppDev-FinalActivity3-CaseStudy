@@ -1,41 +1,73 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true"
+﻿
+<%@ Master Language="C#" AutoEventWireup="true"
     CodeBehind="MainMasterpage.master.cs"
     Inherits="FinalActivity3_CaseStudy.assets.MainMasterpage" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sales & Inventory System</title>
-  <link rel="stylesheet" href="~/assets/css/UserStyle.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="~/assets/css/testUserStyle.css" />
   <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>
   <form id="form1" runat="server">
     <div class="master-container">
       <header>
-        <div class="title">Sales &amp; Inventory System</div>
+        <div class="header-content">
+          <div class="logo-container">
+            <div class="logo"><i class="fas fa-box-open"></i></div>
+          </div>
+          <div class="title">Sales &amp; Inventory System</div>
+          <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
       </header>
-      <nav>
-          <!-- Main navigation -->
-          <ul class="nav-links">
-            <!--- <li><asp:HyperLink runat="server" NavigateUrl="~/Homepage.aspx">Home</asp:HyperLink></li> -->
-            <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProfileManager.aspx">Profile Manager</asp:HyperLink></li>
-            <li><asp:HyperLink runat="server" NavigateUrl="~/User/OrderHistory.aspx">Order History</asp:HyperLink></li>
-            <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProductCatalog.aspx">Product Catalog</asp:HyperLink></li>
-            <li><asp:HyperLink runat="server" NavigateUrl="~/User/UserLogout.aspx">Logout</asp:HyperLink></li>
-
-            <li class="cart-link">
-              <asp:HyperLink runat="server" NavigateUrl="~/User/ShoppingCart.aspx" CssClass="cart-button">
-                🛒 Cart
-              </asp:HyperLink>
-        </nav>
+      <nav id="mainNav">
+        <!-- Main navigation -->
+        <ul class="nav-links">
+          <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProfileManager.aspx" CssClass="nav-link"><i class="fas fa-user"></i> Profile Manager</asp:HyperLink></li>
+          <li><asp:HyperLink runat="server" NavigateUrl="~/User/OrderHistory.aspx" CssClass="nav-link"><i class="fas fa-clipboard-list"></i> Order History</asp:HyperLink></li>
+          <li><asp:HyperLink runat="server" NavigateUrl="~/User/ProductCatalog.aspx" CssClass="nav-link"><i class="fas fa-shopping-basket"></i> Product Catalog</asp:HyperLink></li>
+          <li><asp:HyperLink runat="server" NavigateUrl="~/User/UserLogout.aspx" CssClass="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</asp:HyperLink></li>
+          <li class="cart-link">
+            <asp:HyperLink runat="server" NavigateUrl="~/User/ShoppingCart.aspx" CssClass="cart-button">
+              <i class="fas fa-shopping-cart"></i> Cart
+            </asp:HyperLink>
+          </li>
+        </ul>
+      </nav>
       <main>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
       </main>
-      <footer>&copy; <%= DateTime.Now.Year %> Keanu - Keisha - Chaze</footer>
+      <footer>
+        <div class="footer-content">
+          <div class="copyright">&copy; <%= DateTime.Now.Year %> Keanu - Keisha - Chaze</div>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Contact Us</a>
+          </div>
+        </div>
+      </footer>
     </div>
   </form>
+  
+  <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          // Mobile menu toggle
+          const menuToggle = document.getElementById('mobileMenuToggle');
+          const mainNav = document.getElementById('mainNav');
+
+          if (menuToggle && mainNav) {
+              menuToggle.addEventListener('click', function () {
+                  mainNav.classList.toggle('active');
+              });
+          }
+      });
+  </script>
 </body>
 </html>

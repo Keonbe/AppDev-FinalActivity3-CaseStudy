@@ -1,0 +1,406 @@
+﻿/* testUserStyle.css for Sales & Inventory System */
+
+/* === GLOBAL STYLES === */
+:root {
+    /* Primary color palette */
+    --primary-color: #4a6fa5;
+    --primary-dark: #3a5982;
+    --primary-light: #f0f6ff;
+    /* Secondary colors */
+    --secondary-color: #e0e0e0;
+    --secondary-dark: #c4c4c4;
+    /* Text colors */
+    --text-dark: #333;
+    --text-medium: #555;
+    --text-light: #666;
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+    /* Border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    /* Box shadow */
+    --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* === MASTER PAGE LAYOUT === */
+.master-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--box-shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+    header .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+/* Main content area */
+main {
+    flex: 1;
+    padding: var(--spacing-md);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-sm);
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* === COMMON COMPONENTS === */
+/* Buttons */
+.btn, input[type="submit"],
+button,
+#Button1,
+#btnRegister {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+    .btn:hover,
+    input[type="submit"]:hover,
+    button:hover,
+    #Button1:hover,
+    #btnRegister:hover {
+        background-color: var(--primary-dark);
+    }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+    }
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+}
+
+    .btn-secondary:hover {
+        background-color: var(--secondary-dark);
+    }
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: var(--primary-dark);
+    }
+
+/* Forms */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-control,
+input[type="text"],
+input[type="password"],
+select,
+textarea,
+#tbName,
+#tbEmailAddress,
+#tbPassword,
+#tbConfirmPassword {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+    .form-control:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus,
+    #tbName:focus,
+    #tbEmailAddress:focus,
+    #tbPassword:focus,
+    #tbConfirmPassword:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+    }
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text-medium);
+}
+
+/* === AUTH PAGES (LOGIN/REGISTER) === */
+.auth-container {
+    max-width: 450px;
+    margin: var(--spacing-xl) auto;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-medium);
+    padding: var(--spacing-lg);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.auth-subtitle {
+    color: var(--text-medium);
+    font-size: 1rem;
+}
+
+.auth-form {
+    margin-top: var(--spacing-md);
+}
+
+.auth-footer {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.auth-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .auth-link:hover {
+        text-decoration: underline;
+    }
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+    .remember-me input {
+        margin-right: var(--spacing-xs);
+    }
+
+.auth-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: space-between;
+}
+
+    .auth-buttons .btn {
+        flex: 1;
+    }
+
+/* Form validation */
+.validation-error,
+.RequiredFieldValidator,
+.CompareValidator,
+.CustomValidator {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-left: var(--spacing-xs);
+}
+
+/* === TABLE STYLES === */
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-medium);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+    table tr td {
+        padding: var(--spacing-sm);
+    }
+
+        /* Style for the left column in registration/login tables */
+        .auto-style2,
+        table tr td:first-child {
+            width: 200px;
+            font-weight: 500;
+            color: var(--text-medium);
+        }
+
+    /* Space between rows */
+    table tr {
+        margin-bottom: var(--spacing-md);
+    }
+
+/* Style for dropdown */
+select,
+#ddlMembershipType {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius-sm);
+    background-color: white;
+    width: auto;
+    min-width: 180px;
+}
+
+/* Title styles for login and registration pages */
+h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Container for login and registration pages */
+#ContentPlaceHolder1 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+/* Specific width adjustments for registration page */
+#tbName,
+#tbEmailAddress,
+#tbPassword,
+#tbConfirmPassword {
+    width: 100%;
+    max-width: 512px;
+}
+
+/* Add space after the form elements */
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Error message styling */
+#lblMessage {
+    display: block;
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+}
+
+/* Make sure validation messages look nice */
+span[id*="Validator"] {
+    margin-left: var(--spacing-sm);
+}
+
+/* === RESPONSIVE STYLES === */
+@media (max-width: 768px) {
+    .auth-container {
+        max-width: 100%;
+        margin: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+    }
+
+        .auth-buttons .btn {
+            margin-bottom: var(--spacing-xs);
+        }
+
+    /* Make tables responsive */
+    table,
+    table tr,
+    table td {
+        display: block;
+        width: 100%;
+    }
+
+        table tr {
+            margin-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: var(--spacing-md);
+        }
+
+            table tr:last-child {
+                border-bottom: none;
+            }
+
+            .auto-style2,
+            table tr td:first-child {
+                width: 100%;
+                font-weight: 600;
+                padding-bottom: var(--spacing-xs);
+            }
+
+    #tbName,
+    #tbEmailAddress,
+    #tbPassword,
+    #tbConfirmPassword {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Add responsive menu for future navigation */
+@media (max-width: 576px) {
+    header .title {
+        font-size: 1.2rem;
+    }
+
+    .auth-title {
+        font-size: 1.5rem;
+    }
+
+    table {
+        padding: var(--spacing-sm);
+    }
+}

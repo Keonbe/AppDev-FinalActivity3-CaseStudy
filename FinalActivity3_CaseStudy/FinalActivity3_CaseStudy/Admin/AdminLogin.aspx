@@ -41,5 +41,5 @@
     <p>
 </p>
     <p>
-        <a href="/User/Login.aspx">Not an Admin?</a></p>
+        <a href="/HomePage/newLogin.aspx">Not an Admin?</a></p>
 </asp:Content>

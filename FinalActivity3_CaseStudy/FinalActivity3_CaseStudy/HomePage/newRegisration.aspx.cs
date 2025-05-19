@@ -47,6 +47,7 @@ namespace FinalActivity3_CaseStudy.HomePage
                 // Success feedback & clear form
                 lblMessage.ForeColor = Color.Green;
                 lblMessage.Text = "Registration successful!";
+                Response.Redirect("~/User/ProductCatalog.aspx");
                 ClearForm();
             }
             catch (InvalidOperationException dupEx)

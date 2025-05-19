@@ -273,11 +273,6 @@
     <Compile Include="Admin\AdminMasterpage.Master.designer.cs">
       <DependentUpon>AdminMasterpage.Master</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Chart1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Chart1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Admin\RegisterAdmin.aspx.cs">
       <DependentUpon>RegisterAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -385,17 +380,6 @@
     <Content Include="User\MainMasterpage.Master" />
     <Content Include="Admin\AdminMasterpage.Master" />
     <Content Include="HomePage\LandingPage.Master" />
-    <Content Include="Admin\Chart1.xsc">
-      <DependentUpon>Chart1.xsd</DependentUpon>
-    </Content>
-    <None Include="Admin\Chart1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Chart1.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Admin\Chart1.xss">
-      <DependentUpon>Chart1.xsd</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Admin\SalesSummaryByProductDataSet.xsc">
       <DependentUpon>SalesSummaryByProductDataSet.xsd</DependentUpon>

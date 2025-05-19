@@ -13,9 +13,14 @@ A **Sales and Inventory Management System** built using **ASP.NET Web Forms**, *
   * [3. Set Up Local Database](#3-set-up-local-database)
   * [4. Configure Connection String](#4-configure-connection-string)
   * [5. Build and Run](#5-build-and-run)
+* [Database Setup Guide](#database-setup-guide)
+  * [Why We Don't Version Control `.mdf` Files](#why-we-dont-version-control-mdf-files)
+  * [Setting Up the Database Locally](#setting-up-the-database-locally)
+  * [Obtaining Working .mdf File](#obtaining-working-mdf-file)
+  * [Connection String Configuration](#connection-string-configuration)
+  * [Keeping the Database in Sync](#keeping-the-database-in-sync)
 * [Usage](#usage)
 * [Development Notes](#development-notes)
-* [Database Setup](#database-setup)
 * [File Directory Structure](#file-directory-structure)
 * [Common Issues and Solutions](#common-issues-and-solutions)
 * [Quick Fixes for Fresh Clones](#quick-fixes-for-fresh-clones)
@@ -63,13 +68,22 @@ This system is designed to:
 1. In Visual Studio: `Git → Clone Repository`
 2. Paste: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy/`
 3. Choose a local folder → Click Clone
+4. Make sure you are on the latest branch/version: `git pull origin main`
 
 ### 2. Clean Up App\_Data
-* Delete existing `App_Data` if present
+* Delete existing `App_Data` folder if present (it may contain broken or outdated `.mdf` files)
 * Create a new one: `Right-click → Add → New Folder → App_Data`
 
 ### 3. Set Up Local Database
-**Option A: Create New Database**
+You have three options for setting up the database:
+
+**Option A: Use the Provided Working .mdf File (Recommended)**
+* Download the working database file (`.mdf`) from the shared OneDrive link on the latest cloud link provided
+* In Visual Studio, **right-click** on `App_Data` → **Add** → **Existing Item...**
+* Select the downloaded `.mdf` file
+* This ensures the database is recognized as part of the project
+
+**Option B: Create New Database**
 * Open SSMS or Visual Studio SQL Object Explorer
 * Create a DB named `SalesInventoryDB`
 * Run scripts in this order from `/DatabaseScripts`:
@@ -78,7 +92,7 @@ This system is designed to:
   3. `03_StoredProcedures.sql`
 * The `.mdf` will appear in your `App_Data` automatically
 
-**Option B: Attach Existing Database**
+**Option C: Attach Existing Database**
 * Add new `.mdf`: `Right-click App_Data → Add → SQL Server Database`
 * In SSMS: `Right-click Databases → Attach → Browse to .mdf`
 
@@ -98,31 +112,14 @@ In `Web.config`, make sure this connection string exists:
 
 ---
 
-## Usage
-* Login as Admin or Customer
-* Admin can:
-  * View Products, Members, and Transactions via GridView
-  * Use RadioButtonList to switch between views
-  * Sort Transactions by Date ascending/descending (ddlSortDir shown only when Transactions selected)
-* Database logic (inserts, calculations, discounts, etc.) handled in `ClassLibrary`
-
----
-
-## Development Notes
-* **Admin View** dynamically loads stored procedures using the `rblViewSelector`
-* **Connection String** moved from class files to `Web.config` for better management
-* **Filtering and Sorting** uses stored procedures + GridView binding
-* **Security:** Basic session checking using `Session["AdminEmailAddress"]`
-
----
-
-## Database Setup
+## Database Setup Guide
 
 ### Why We Don't Version Control `.mdf` Files
 This project uses a local SQL Server `.mdf` file for development, but these files aren't suitable for version control because:
 * They are **binary** files, so Git can't track changes effectively
 * They're often **locked** by SQL Server or Visual Studio
 * Git may show errors like `Permission Denied` or `unable to process path`
+* Database files can become corrupted when transferred via Git
 
 ### Setting Up the Database Locally
 1. Open **SQL Server Management Studio** or Visual Studio's **Server Explorer**
@@ -131,6 +128,19 @@ This project uses a local SQL Server `.mdf` file for development, but these file
    * `01_CreateTables.sql`
    * `02_InsertSeedData.sql`
    * `03_StoredProcedures.sql`
+
+### Obtaining Working .mdf File
+**Important:** GitHub cannot properly track binary `.mdf` files. A working version is required for the project to run correctly.
+
+* Download the working database file (`.mdf`) from the OneDrive link provided by your instructor
+* In Visual Studio, **right-click** on `App_Data` → **Add** → **Existing Item...**
+* Select the downloaded `.mdf` file
+* This ensures the database is recognized as part of the project
+
+If you encounter issues:
+* Make sure Visual Studio shows the `.mdf` under `Solution Explorer`
+* Check that the file is not locked by another process
+* Verify the filename matches exactly with the one specified in `Web.config`
 
 ### Connection String Configuration
 This project uses **Web.config** for database connection management, which is the recommended approach for ASP.NET applications:
@@ -170,6 +180,24 @@ When you make database changes:
 Please update or create a new `.sql` file in the `/DatabaseScripts` folder to keep everyone in sync.
 
 > **Note:** `.mdf` and `.ldf` files are excluded in `.gitignore`.
+
+---
+
+## Usage
+* Login as Admin or Customer
+* Admin can:
+  * View Products, Members, and Transactions via GridView
+  * Use RadioButtonList to switch between views
+  * Sort Transactions by Date ascending/descending (ddlSortDir shown only when Transactions selected)
+* Database logic (inserts, calculations, discounts, etc.) handled in `ClassLibrary`
+
+---
+
+## Development Notes
+* **Admin View** dynamically loads stored procedures using the `rblViewSelector`
+* **Connection String** moved from class files to `Web.config` for better management
+* **Filtering and Sorting** uses stored procedures + GridView binding
+* **Security:** Basic session checking using `Session["AdminEmailAddress"]`
 
 ---
 
@@ -266,7 +294,7 @@ CodeBehind="Registration.aspx.cs"
 | **ASP.NET page links broken (404/403 errors)** | • Check your `MasterPage.master` or other hyperlinks: always use `~/` (root-based paths) for ASP.NET, e.g.: <br>`<asp:HyperLink NavigateUrl="~/Admin/ProductPage.aspx">` <br>• Make sure the `.aspx` page exists at the specified path. |
 | **Page opens blank with no error** | 1. Check if Page_Load has `if (!IsPostBack)` around critical logic. <br>2. Verify no exception is being silently caught. <br>3. Try setting a breakpoint in Page_Load to step through. |
 | **Stored Procedure not found / fails at runtime** | 1. You forgot to run `03_StoredProcedures.sql` in SSMS. <br>2. You're calling `SC_ProcessCheckout` but the actual name is different or not under `dbo`. Confirm full name. <br>3. Check for typos and case sensitivity. |
-| **.mdf file won't attach / "cannot be opened because it is version XXX"** | • Delete and recreate the `.mdf` using your SQL Server version. <br>• Or create the DB manually in SSMS and skip the `.mdf` entirely (just use the server-based DB). |
+| **.mdf file won't attach / "cannot be opened because it is version XXX"** | • Delete and recreate the `.mdf` using your SQL Server version. <br>• Or create the DB manually in SSMS and skip the `.mdf` entirely (just use the server-based DB). <br>• Download the working `.mdf` file from the OneDrive link provided by your instructor. |
 | **Login failed for user 'IIS APPPOOL\DefaultAppPool'** | • Use `Integrated Security=True` to avoid hardcoding usernames/passwords. <br>• Or configure SQL Server to allow access to that user. |
 | **ASP.NET designer.cs file not updating / code-behind error** | 1. Close and reopen the `.aspx` file. <br>2. Delete `bin/` and `obj/` folders. <br>3. Rebuild solution. <br>4. Make sure `Inherits="YourNamespace.YourPage"` matches the code-behind class. |
 | **Default homepage won't show** | Set `LandingPage.aspx` (or whatever default) as **Start Page**: right-click the file in Solution Explorer → Set as Start Page. |
@@ -275,10 +303,12 @@ CodeBehind="Registration.aspx.cs"
 | **Error: "Keyword not supported: 'attachdbfilename'"** | You're likely trying to use `.mdf` with a non-LocalDB provider. Make sure your connection string uses `LocalDB`, not `SQLEXPRESS` or an actual SQL Server instance. |
 | **Session errors or null session data** | If you're trying to use session variables (`Session["X"]`) too early (e.g., before login or on the wrong page), they may be null. Add null checks and consider default redirects. |
 | **CSS/JS not loading** | 1. Use relative paths properly in `<link>` and `<script>` tags: <br>• Prefer `~/Content/style.css` via `<asp:Content>` instead of plain HTML pathing. <br>2. ASP.NET treats folders like `/Scripts`, `/Content`, and `/App_Data` differently—ensure your static files are not in restricted folders. |
-| **`.mdf` not attaching** | Rename file or reattach in SSMS |
+| **`.mdf` not attaching** | Rename file or reattach in SSMS. <br>• Try using the pre-configured `.mdf` from the OneDrive link. |
 | **Login session not detected** | Check if cookies or session expired |
 | **No transactions shown** | Make sure SP `GetAllTransactions` runs and DB is seeded |
 | **Sort not working** | Ensure `ddlSortDir` is visible only when Transaction view is selected |
+| **Can't load RDLC reports** | • Make sure `.mdf` is correctly set up in `App_Data`. <br>• Check if the database connection is working. |
+| **DataSource instance not supplied** | • This usually indicates a problem with the `.mdf` file. <br>• Try using the pre-configured `.mdf` from the OneDrive link. |
 
 ---
 
@@ -462,5 +492,5 @@ using (SqlConnection conn = new SqlConnection(connStr))
 ---
 
 ## Credits
-Developed by: *X Group* — DLSU-D Information Technology (2025)
+Developed by: Bembo Group — DLSU-D Information Technology (2025)
 > For questions or support, please open an Issue.

@@ -36,15 +36,26 @@
         <tr>
             <td class="auto-style2">Base Price:</td>
             <td>
-                <asp:TextBox ID="tbPrice" runat="server" Width="249px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbPrice" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+             <asp:TextBox ID="tbPrice" runat="server" Width="249px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                ControlToValidate="tbPrice" ErrorMessage="Price is required" 
+                ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cvPrice" runat="server" 
+                ControlToValidate="tbPrice" ErrorMessage="Must be a decimal number"
+                Operator="DataTypeCheck" Type="Double" ForeColor="Red" Display="Dynamic">*</asp:CompareValidator>
+    </td>
             </td>
         </tr>
         <tr>
             <td class="auto-style2">Stocks Available:</td>
             <td>
-                <asp:TextBox ID="tbStocks" runat="server" Width="247px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbStocks" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+            <asp:TextBox ID="tbStocks" runat="server" Width="247px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                ControlToValidate="tbStocks" ErrorMessage="Stock is required" 
+                ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cvStocks" runat="server" 
+                ControlToValidate="tbStocks" ErrorMessage="Must be a whole number"
+                Operator="DataTypeCheck" Type="Integer" ForeColor="Red" Display="Dynamic">*</asp:CompareValidator>
             </td>
         </tr>
         <tr>

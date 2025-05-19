@@ -43,18 +43,38 @@ namespace FinalActivity3_CaseStudy.Admin
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbProductID.Text) || string.IsNullOrEmpty(tbProductName.Text))
+            // Clear previous messages
+            lblMessage.Text = "";
+
+            // Validate required fields
+            if (string.IsNullOrEmpty(tbProductID.Text) ||
+                string.IsNullOrEmpty(tbProductName.Text) ||
+                string.IsNullOrEmpty(tbPrice.Text) ||
+                string.IsNullOrEmpty(tbStocks.Text))
             {
-                lblMessage.Text = "Please fill in all fields.";
+                lblMessage.Text = "Please fill in all required fields.";
                 return;
             }
 
-            double basePrice = tbPrice.Text == "" ? 0 : Convert.ToDouble(tbPrice.Text);
-            int stocksAvailable = tbStocks.Text == "" ? 0 : Convert.ToInt32(tbStocks.Text);
-            classObj.AddNewProducts(tbProductID.Text, tbProductName.Text, basePrice, stocksAvailable);
+            // Validate numeric formats (PRice and Stocks)
+            if (!double.TryParse(tbPrice.Text, out double basePrice))
+            {
+                lblMessage.Text = "Invalid price format. Please enter a valid decimal number.";
+                return;
+            }
+
+            if (!int.TryParse(tbStocks.Text, out int stocksAvailable))
+            {
+                lblMessage.Text = "Invalid stock format. Please enter a whole number.";
+                return;
+            }
+
+            //double basePrice = tbPrice.Text == "" ? 0 : Convert.ToDouble(tbPrice.Text);
+            //int stocksAvailable = tbStocks.Text == "" ? 0 : Convert.ToInt32(tbStocks.Text);
+            //classObj.AddNewProducts(tbProductID.Text, tbProductName.Text, basePrice, stocksAvailable);
 
             try
-            {
+            {   // Attempt to add product
                 classObj.AddNewProducts(
                     tbProductID.Text.Trim(),
                     tbProductName.Text.Trim(),
@@ -62,8 +82,15 @@ namespace FinalActivity3_CaseStudy.Admin
                     stocksAvailable
                 );
 
+                 // Success handling
                 lblMessage.ForeColor = Color.Green;
                 lblMessage.Text = "Product added successfully!";
+
+                // Clear form fields
+                tbProductID.Text = "";
+                tbProductName.Text = "";
+                tbPrice.Text = "";
+                tbStocks.Text = "";
             }
             catch (InvalidOperationException ex)
             {

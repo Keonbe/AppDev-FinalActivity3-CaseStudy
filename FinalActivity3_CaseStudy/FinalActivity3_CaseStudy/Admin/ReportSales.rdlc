@@ -482,15 +482,15 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!TotalQuantitySold.Value</GroupExpression>
+                      <GroupExpression>=Fields!TotalSales.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!TotalQuantitySold.Value</Value>
+                      <Value>=Fields!TotalSales.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!TotalQuantitySold.Value</Label>
+                  <Label>=Fields!TotalSales.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -802,7 +802,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SALES CHART</Caption>
+                <Caption>SALES CHART [Total Sales, Total Transactions Made / Product]</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -832,10 +832,10 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>5.77003cm</Top>
-            <Left>6.0287cm</Left>
-            <Height>7.07433cm</Height>
-            <Width>11.90267cm</Width>
+            <Top>1.7907cm</Top>
+            <Left>15.27853cm</Left>
+            <Height>11.2865cm</Height>
+            <Width>15.67034cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>

@@ -23,7 +23,7 @@ namespace FinalActivity3_CaseStudy.User
                 if (Session["EmailAddress"] == null)
                 {
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=Login.aspx"); //Delays for lblMessage, Redirects
+                    Response.AppendHeader("Refresh", "1;url=/HomePage/newLogin.aspx"); //Delays for lblMessage, Redirects
                 }
             }
         }

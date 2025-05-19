@@ -32,7 +32,7 @@ namespace FinalActivity3_CaseStudy.User
                     btnUpdatePassword.Enabled = false;
                     btnUpdatePassword.Visible = false;
                     lblMessage.Text = "⚠️ Not logged in";
-                    Response.AppendHeader("Refresh", "1;url=Login.aspx");
+                    Response.AppendHeader("Refresh", "1;url=/HomePage/newLogin.aspx");
                 }
             }
         }

@@ -1,5 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/MainMasterpage.Master" AutoEventWireup="true" CodeBehind="OrderHistory.aspx.cs" Inherits="FinalActivity3_CaseStudy.User.OrderHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-lg);
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
@@ -14,12 +24,12 @@
     <asp:GridView 
         ID="gvOrderHistory" 
         runat="server" 
-        CssClass="grid-view"
+        CssClass="auto-style1"
         AutoGenerateColumns="False"             
         DataKeyNames="TransactionID"
         OnSelectedIndexChanged="gvOrderHistory_SelectedIndexChanged"
         OnRowCommand="gvOrderHistory_RowCommand"
-        EmptyDataText="No transaction history found for your account.">
+        EmptyDataText="No transaction history found for your account." Height="282px">
       <Columns>
         <asp:BoundField DataField="TransactionID"   HeaderText="Order ID" />
         <asp:BoundField DataField="DateTime"        HeaderText="Date/Time" 

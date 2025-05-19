@@ -2,12 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
+            width: 100%;
+            height: auto !important;
             border-collapse: separate;
             border-spacing: 0;
             border-radius: var(--border-radius);
             overflow: hidden;
             font-size: 0.9rem;
             margin-bottom: var(--spacing-lg);
+            max-height: 80vh;
+            overflow-y: auto;
         }
     </style>
 </asp:Content>
@@ -20,11 +24,11 @@
     </p>
     <br>
   <h2><asp:Label ID="lblOrderhistory" runat="server" Text="Transaction History" /></h2>
-  <div class="grid-container">
+  <div class="auto-style1">
     <asp:GridView 
         ID="gvOrderHistory" 
         runat="server" 
-        CssClass="auto-style1"
+        CssClass="grid-view"
         AutoGenerateColumns="False"             
         DataKeyNames="TransactionID"
         OnSelectedIndexChanged="gvOrderHistory_SelectedIndexChanged"

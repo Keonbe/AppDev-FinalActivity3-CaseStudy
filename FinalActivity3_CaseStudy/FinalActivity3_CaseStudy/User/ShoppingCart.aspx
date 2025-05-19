@@ -13,6 +13,7 @@
                 <asp:BoundField DataField="ProductID" HeaderText="Product ID" />
                 <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                 <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="SRP" HeaderText="SRP (15% markup)" DataFormatString="{0:C}" />
                 <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                 <asp:BoundField DataField="SubTotal" HeaderText="Sub Total" DataFormatString="{0:C}" />
                 

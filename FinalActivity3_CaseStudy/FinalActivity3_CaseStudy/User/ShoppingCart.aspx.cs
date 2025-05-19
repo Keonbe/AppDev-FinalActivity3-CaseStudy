@@ -16,8 +16,10 @@ namespace FinalActivity3_CaseStudy.User
         private readonly string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;
                     AttachDbFilename=C:\Users\admin\Documents\c#\appdev\FINALS\CaseStudy\FinalActivity3\FinalActivity3_CaseStudy\FinalActivity3_CaseStudy\App_Data\Sales&InvSystemDB.mdf;
                     Integrated Security=True";
+
         ClassMethods methods = new ClassMethods();
         ClassComputations ClassComputations = new ClassComputations();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -46,18 +48,28 @@ namespace FinalActivity3_CaseStudy.User
 
                 int userId = Convert.ToInt32(Session["UserID"]);
                 DataTable dt = methods.GetCartItems(userId);
+
+                //SRP column if missing
+                if (!dt.Columns.Contains("SRP"))
+                    dt.Columns.Add("SRP", typeof(double));
+
+                //Fill SRP and compute SubTotal
+                double sub = 0;
+                foreach (DataRow r in dt.Rows)
+                {
+                    double srp = ClassComputations.CalculateSRP(Convert.ToDouble(r["Price"]));
+                    int qty = Convert.ToInt32(r["Quantity"]);
+                    double srpSubtotal = srp * qty;
+                    r["SRP"] = srp;
+                    sub += srpSubtotal;
+                }
+
+                //Bind to GRID
                 gvCartItems.DataSource = dt;
                 gvCartItems.DataBind();
 
-                // Compute subtotal
-                double sub = 0;
-                foreach (DataRow r in dt.Rows)
-                    sub += Convert.ToDouble(r["SubTotal"]);
-
                 // Get membership from session
                 string memType = Session["MembershipType"]?.ToString() ?? "";
-
-                // Compute VAT, Discount, Final Amount
                 double vat = ClassComputations.CalculateVAT(sub);
                 double finalAmount = ClassComputations.CalculateFinalAmount(sub, memType);
                 double discount = (sub + vat) - finalAmount;
@@ -93,7 +105,16 @@ namespace FinalActivity3_CaseStudy.User
             DataTable dt = methods.GetCartItems(userId);
 
             // 1) Compute subtotal via DataTable helper
-            double sub = Convert.ToDouble(dt.Compute("SUM(SubTotal)", ""));
+            //double sub = Convert.ToDouble(dt.Compute("SUM(SubTotal)", ""));
+            double sub = 0;
+            foreach (DataRow r in dt.Rows)
+            {
+                double srp = ClassComputations.CalculateSRP(Convert.ToDouble(r["Price"]));
+                int qty = Convert.ToInt32(r["Quantity"]);
+                sub += srp * qty;
+            }
+
+
 
             // 2) Get membership
             string memType = Session["MembershipType"]?.ToString() ?? "";

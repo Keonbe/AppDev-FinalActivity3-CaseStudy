@@ -46,6 +46,7 @@ This system is designed to:
 /FinalActivity3
 ├── /Admin                ← Admin dashboard pages
 ├── /User                 ← Customer pages
+├── /HomePage             ← Landing Pages
 ├── /App_Data             ← Local .mdf database file
 ├── /assets/css           ← Stylesheets
 ├── /ClassLibrary         ← All business logic (use this for backend logic)

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace FinalActivity3_CaseStudy.HomePage
 {
@@ -47,7 +48,8 @@ namespace FinalActivity3_CaseStudy.HomePage
                 // Success feedback & clear form
                 lblMessage.ForeColor = Color.Green;
                 lblMessage.Text = "Registration successful!";
-                Response.Redirect("~/User/ProductCatalog.aspx");
+                //Response.Redirect("~/User/ProductCatalog.aspx");
+
                 ClearForm();
             }
             catch (InvalidOperationException dupEx)

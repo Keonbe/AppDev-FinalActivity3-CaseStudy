@@ -83,6 +83,45 @@ namespace ClassLibrary
         /// <remarks>
         /// This method calls the AddNewProducts stored procedure to insert the product data.
         /// </remarks>
+        public void AddNewProducts(string productID, string productName, double basePrice, int stocksAvailable)
+        {
+            using (var conn = new SqlConnection(ConnStr))
+            {
+                conn.Open();
+
+                // 1) Check for existing product
+                using (var check = new SqlCommand(
+                    "SELECT COUNT(*) FROM ProductInventoryTable WHERE ProductID = @PID", conn))
+                {
+                    check.Parameters.Add("@PID", SqlDbType.NVarChar, 10).Value = productID;
+                    bool exists = (int)check.ExecuteScalar() > 0;
+                    if (exists)
+                        throw new InvalidOperationException(
+                            $"Product with ID '{productID}' already exists.");
+                }
+
+                // 2) Insert via stored procedure
+                using (var saveRecord = new SqlCommand("AddNewProducts", conn))
+                {
+                    saveRecord.CommandType = CommandType.StoredProcedure;
+
+                    saveRecord.Parameters.Add("@productID", SqlDbType.NVarChar, 10)
+                              .Value = productID;
+                    saveRecord.Parameters.Add("@ProductName", SqlDbType.NVarChar, 150)
+                              .Value = productName;
+                    saveRecord.Parameters.Add("@Price", SqlDbType.Decimal)
+                              .Value = Math.Round((decimal)basePrice, 2);
+                    saveRecord.Parameters["@Price"].Precision = 18;
+                    saveRecord.Parameters["@Price"].Scale = 2;
+                    saveRecord.Parameters.Add("@Stocks", SqlDbType.Int)
+                              .Value = stocksAvailable;
+
+                    saveRecord.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /*
         public void AddNewProducts(string productID, string productName, double basePrice, int stockAvailable)
         {
             var conn = new SqlConnection(ConnStr);
@@ -119,7 +158,7 @@ namespace ClassLibrary
                 throw new Exception("Product addition failed: " + ex.Message, ex);
             }
         }
-
+        */
 
         /// <summary>
         /// Creates a new administrator account in the system.

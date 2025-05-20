@@ -60,7 +60,7 @@
         </td>
     </tr>
     <tr>
-        <td class="auto-style2">&nbsp;</td>
+        <td class="auto-style2"><a href="newLogin.aspx">Already Have an Account?</a></td>
         <td>
             <asp:Button ID="btnRegister" runat="server" Text="Register Account" OnClick="btnRegister_Click" />
         </td>
@@ -70,11 +70,12 @@
     <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 </p>
     <p>
+     <!--   <a href="newLogin.aspx">Already Have an Account?</a></p> -->
+    <p>
 </p>
     <p>
 </p>
 <p>
-    <a href="/HomePage/newLogin.aspx">Already Have an Account?</a>
 
 </p>
 </asp:Content>

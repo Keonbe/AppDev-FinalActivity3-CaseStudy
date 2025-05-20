@@ -69,24 +69,6 @@ namespace ClassLibrary
                 } // Connection automatically closed here
             }
         } //'SqlDbType.Bit' Instead of 'SqlDbType.NVarChar' - Error "false" if SqlDbType.NVarChar
-        /* OLD CODE
-        public void SaveRecordRegisration(string name, string emailAddress, string passWord, string membershipType) //Saves the user registration details from Regisration.aspx(USER)
-        {
-            using (SqlConnection conn = new SqlConnection(ConnStr))
-            using (SqlCommand saveRecord = new SqlCommand("SaveUserRegisration", conn))
-            {
-                saveRecord.CommandType = CommandType.StoredProcedure;
-                saveRecord.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
-                saveRecord.Parameters.Add("@EmailAddress", SqlDbType.NVarChar).Value = emailAddress;
-                saveRecord.Parameters.Add("@Password", SqlDbType.NVarChar).Value = passWord;
-                saveRecord.Parameters.Add("@MembershipType", SqlDbType.NVarChar).Value = membershipType;
-                saveRecord.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = 0;
-
-                conn.Open();
-                saveRecord.ExecuteNonQuery();
-            } // Connection automatically closed here
-        }
-        */
 
         /// <summary>
         /// Verifies user credentials and retrieves user information.

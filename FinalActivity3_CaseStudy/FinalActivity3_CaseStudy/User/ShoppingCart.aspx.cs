@@ -104,6 +104,14 @@ namespace FinalActivity3_CaseStudy.User
             int userId = (int)Session["UserID"];
             DataTable dt = methods.GetCartItems(userId);
 
+            // ← NEW: if no rows, bail out
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "⚠️ Your cart is empty. Add some products before checking out.";
+                return;
+            }
+
             // 1) Compute subtotal via DataTable helper
             //double sub = Convert.ToDouble(dt.Compute("SUM(SubTotal)", ""));
             double sub = 0;

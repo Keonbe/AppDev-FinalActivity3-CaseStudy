@@ -183,3 +183,55 @@ using (SqlConnection conn = new SqlConnection(connStr))
     }
 }
 ```
+---
+---
+
+## 🔄 Collaboration Compatibility Guide
+
+### Comprehensive **list of collaboration compatibility issues** — grouped by **codebase, environment, tools, and workflow**:
+
+#### 1️⃣ **Codebase Issues**
+- **RDLC Reports Not Rendering**  
+  Missing files, dataset name mismatches, or missing `Microsoft.ReportViewer.WebForms`
+- **.csproj Conflicts**  
+  Version mismatches or path issues causing merge conflicts
+- **NuGet Inconsistencies**  
+  Package version mismatches or missing restores
+
+#### 2️⃣ **Environment Issues**
+- **SQL Server Differences**  
+  Missing databases or stored procedures
+- **Report Viewer Not Installed**  
+  Requires NuGet package:  
+  ```bash
+  Install-Package Microsoft.Reporting.WebForms
+  ```
+- **IIS/.NET Version Conflicts**  
+  Ensure all use same target framework (check `.csproj`)
+
+#### 3️⃣ **Tooling Issues**
+- **Visual Studio Version Conflicts**  
+  Solution file compatibility between VS2017/2019/2022
+- **Git Line Ending Conflicts**  
+  Set `.gitattributes` for consistent line endings
+
+#### 4️⃣ **Workflow Issues**
+- **Merge Conflicts**  
+  Always pull before pushing changes
+- **Untracked Files**  
+  Regularly check `git status` for missing files
+- **Missing Documentation**  
+  Keep `README.md` updated with setup instructions
+
+#### ✅ **Compatibility Checklist**
+| Requirement               | Status  | Notes                          |
+|---------------------------|---------|--------------------------------|
+| Proper `.gitignore`       | ✔️      | Excludes binaries/user files   |
+| Updated `README.md`       | ✔️      | Contains setup instructions    |
+| NuGet packages restored   | ✔️      | Via `packages.config`          |
+| Consistent .NET version   | ✔️ 4.8  | Verified in `.csproj`          |
+| SQL scripts available     | ✔️      | In `DatabaseScripts/` folder   |
+| ReportViewer installed    | ✔️      | Via NuGet package             |
+
+
+

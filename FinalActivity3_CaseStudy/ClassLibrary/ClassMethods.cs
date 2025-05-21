@@ -300,6 +300,19 @@ namespace ClassLibrary
                 }
             }
         }
+
+        /// <summary>
+        /// Retrieves aggregated sales data grouped by product for reporting purposes.
+        /// </summary>
+        /// <returns>A DataSet containing sales statistics per product including transaction counts, quantities sold, and revenue totals.</returns>
+        /// <remarks>
+        /// This method executes the rdlc_GetSalesSummaryByProduct stored procedure which:
+        /// - Joins product inventory with transaction records
+        /// - Aggregates total transactions, units sold, and sales amounts per product
+        /// - Groups results by ProductID and ProductName
+        /// - Orders results alphabetically by product name
+        /// The returned DataSet is structured for use in RDLC reports or other data visualization components.
+        /// </remarks>
         public DataSet DisplaySalesSummary()
         { 
             SqlDataAdapter da = new SqlDataAdapter("rdlc_GetSalesSummaryByProduct", ConnStr);

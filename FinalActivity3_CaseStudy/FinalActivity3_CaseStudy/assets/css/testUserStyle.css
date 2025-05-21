@@ -325,7 +325,7 @@ div[id*="grid"],
 div[id*="Table"],
 div[id*="table"] {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: visible; /* Change from 'auto' to 'visible' for vertical content */
     margin-bottom: var(--spacing-xl);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
@@ -342,8 +342,9 @@ table,
     border-collapse: separate;
     border-spacing: 0;
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: visible; /* Change from 'hidden' to 'visible' */
     margin-bottom: var(--spacing-lg);
+    height: auto !important; /* Override any fixed height */
 }
 
     /* Header styles for all tables */

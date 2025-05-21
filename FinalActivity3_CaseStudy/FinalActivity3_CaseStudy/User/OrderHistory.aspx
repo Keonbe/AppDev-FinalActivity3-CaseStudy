@@ -7,11 +7,10 @@
             border-collapse: separate;
             border-spacing: 0;
             border-radius: var(--border-radius);
-            overflow: hidden;
+            overflow: visible; /* Changed from auto to visible */
             font-size: 0.9rem;
             margin-bottom: var(--spacing-lg);
-            max-height: 80vh;
-            overflow-y: auto;
+            /* Removed max-height and overflow-y */
         }
     </style>
 </asp:Content>
@@ -29,11 +28,11 @@
         ID="gvOrderHistory" 
         runat="server" 
         CssClass="grid-view"
-        AutoGenerateColumns="False"             
+        AutoGenerateColumns="False"
         DataKeyNames="TransactionID"
         OnSelectedIndexChanged="gvOrderHistory_SelectedIndexChanged"
         OnRowCommand="gvOrderHistory_RowCommand"
-        EmptyDataText="No transaction history found for your account." Height="282px">
+        EmptyDataText="No transaction history found for your account.">
       <Columns>
         <asp:BoundField DataField="TransactionID"   HeaderText="Order ID" />
         <asp:BoundField DataField="DateTime"        HeaderText="Date/Time" 
@@ -45,11 +44,10 @@
       </Columns>
     </asp:GridView>
   </div>
-
     <br>
     <br>
 <h2>Order Details</h2>
-<div class="grid-container">
+<div class="auto-style1">
   <asp:GridView ID="gvOrderDetails" runat="server"
       CssClass="grid-view"
       AutoGenerateColumns="False"

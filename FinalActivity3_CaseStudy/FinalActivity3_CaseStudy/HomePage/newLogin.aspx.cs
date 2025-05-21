@@ -35,6 +35,7 @@ namespace FinalActivity3_CaseStudy.HomePage
                 // Login successful – store both Email and UserID from UserTable
                 Session["EmailAddress"] = email;
                 Session["UserID"] = userId;
+                Session["Password"] = pwd;
                 Session["MembershipType"] = memType;
                 Response.Redirect("~/User/ProductCatalog.aspx");
                 return;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -39,6 +40,12 @@ namespace FinalActivity3_CaseStudy.User
 
         protected void btnUpdatePassword_Click(object sender, EventArgs e)
         {
+            if (Session["EmailAddress"] == null || Session["Password"] == null)
+            {
+                Response.Redirect("/HomePage/newLogin.aspx");
+                return;
+            }
+
             string password = tbNewPassword.Text;
             if (password.Length < 8)     // Password length validation error
             {
@@ -49,7 +56,27 @@ namespace FinalActivity3_CaseStudy.User
 
             string emailAddress = Session["EmailAddress"].ToString();
             string passWord = Session["Password"].ToString();
-            classMethods.UpdateProfileManager(emailAddress, passWord, tbNewPassword.Text.Trim());
+
+            try
+            {
+                classMethods.UpdateProfileManager(emailAddress, passWord, tbNewPassword.Text.Trim()); //Perform password update
+
+                lblPlaceHolder.Text = "Password updated successfully!"; //Show success message
+                lblPlaceHolder.ForeColor = Color.Green;
+
+                Session["Password"] = tbNewPassword.Text.Trim(); //Update session with new password
+            }
+            catch (Exception ex)
+            {
+                lblPlaceHolder.Text = $"Error updating password: {ex.Message}";
+                lblPlaceHolder.ForeColor = Color.Red;
+            }
+            finally
+            {
+                tbCurrentPassword.Text = string.Empty; //Clear textboxes after update
+                tbNewPassword.Text = string.Empty;
+                tbConfirmNewPassword.Text = string.Empty;
+            }
         }
     }
 }

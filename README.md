@@ -1,233 +1,353 @@
-# FinalActivity3[LC] / Final Exam [LA]
----
+<div align="center">
+  <h1>📊 Sales and Inventory System</h1>
+  <p><strong>A comprehensive web application for managing product inventory and sales transactions</strong></p>
+  
+  ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+  ![ASP.NET](https://img.shields.io/badge/ASP.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+  ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+</div>
 
-# Sales and Inventory System - Case Study
+## 📑 Table of Contents
+- [Project Overview](#-project-overview)
+- [System Features](#-system-features)
+- [Product Inventory](#-product-inventory)
+- [Sales System](#-sales-system)
+- [System Flowchart](#-system-flowchart)
+- [Installation Guide](#-installation-guide)
+- [Troubleshooting](#-troubleshooting)
+- [Development Guidelines](#-development-guidelines)
+- [Documentation](#-documentation)
 
-## Overview
-A company needs an **automated sales and inventory system**. As developers, your task is to create the following functionalities:
+## 🔍 Project Overview
 
-### 🔒 Admin Page
-- Add New Products
-- View Transactions
-- View Records (Members and Products)
-- Report Module (Summary of Sales)
-   - Using "Microsoft.ReportingServices.ReportViewerControl.WebForm"
+This Sales and Inventory System is developed in compliance to our subject ***"Application Development and Emerging Technologies"*** as a case study for companies requiring management of sales transactions and inventory tracking by implementing basic CRUD functions using T-SQL and C# as the backend language. Built using **ASP.NET WebForms** with **ADO.NET** for database operations, the system provides a comprehensive platform for both administrators and users.
 
-### 👤 User Page
-- Profile Manager (Change Password only)
-- View Order History
-- Buy/Add Products to Cart
-- Logout
+The project includes:
+- Dual interfaces (Admin and User)
+- Basic authentication system
+- Product inventory management
+- Sales processing with discount calculations
+- Comprehensive reporting features
+## ✨ System Features
 
----
+### 🔒 Admin Dashboard
+- **Product Management**: Add, edit, and remove products from inventory
+- **Transaction Monitoring**: View all completed sales transactions
+- **Member Management**: Access and manage user account information
+- **Reports Generation**: Generate sales summaries using Microsoft Reporting Services / RDLC
+  
+### 👤 User Portal
+- **Profile Management**: Update & Change password
+- **Shopping Cart**: Add products to cart and complete checkout process
+- **Order History**: View past purchase transactions
+- **Secure Logout**: End session securely
 
-## A. 🛒 Product Inventory
+## 🛒 Product Inventory
 
-| ID | Product ID | Product Name        | Price     | Stocks | SRP (15% of Price) |
-|----|------------|---------------------|-----------|--------|--------------------|
-| 1  | MSE        | Mouse               | 350.00    | 100    |                    |
-| 2  | PRN        | Printer Ink         | 7500.00   | 100    |                    |
-| 3  | PRNDT      | Printer Dot Matrix  | 5000.00   | 100    |                    |
-| 4  | MNTRLc     | LCD Monitor         | 6500.00   | 100    |                    |
-| 5  | MNTRLe     | LED Monitor         | 7500.00   | 100    |                    |
+The system comes pre-loaded with the following inventory:
 
----
+| ID | Product ID | Product Name        | Base Price | Stocks | SRP (15% markup) |
+|----|------------|---------------------|------------|--------|------------------|
+| 1  | MSE        | Mouse               | ₱350.00    | 100    | ₱402.50          |
+| 2  | PRN        | Printer Ink         | ₱7,500.00  | 100    | ₱8,625.00        |
+| 3  | PRNDT      | Printer Dot Matrix  | ₱5,000.00  | 100    | ₱5,750.00        |
+| 4  | MNTRLc     | LCD Monitor         | ₱6,500.00  | 100    | ₱7,475.00        |
+| 5  | MNTRLe     | LED Monitor         | ₱7,500.00  | 100    | ₱8,625.00        |
 
-## B. 💵 Sales System
+## 💵 Sales System
 
-| Product Name | Price   | Quantity | Amount   |
-|--------------|---------|----------|----------|
-| xxx          | xxx     | xxx      | xxx.xx   |
-| **Total Amount** |         |          | **xxx.xx** |
+### Transaction Processing
 
+Each transaction is processed through a shopping cart interface:
 
-### 💡 Formula:
-Total Amount Purchase = (Total Amount + VAT) – Discount (if any)
-<br>
-VAT = 10% of Total Amount
+| Product Name | Price    | Quantity | Amount    |
+|--------------|----------|----------|-----------|
+| Example Item | ₱999.99  | 2        | ₱1,999.98 |
+| **Total**    |          |          | **₱XXX.XX** |
 
+### Pricing Calculations
 
-### 🏷️ Membership Discounts
-Discounts are only applicable to purchases with a total amount of **₱10,000.00 and above**.
+The system automatically calculates:
+- **SRP (Selling Price)** = Base Price + 15% markup
+- **VAT** = 10% of Total Amount
+- **Total Amount** = (Subtotal + VAT) - Applicable Discount
 
-| Membership Type | Discount Rate |
-|------------------|----------------|
-| Silver           | 5% of total amount          |
-| Gold             | 10%  of total amount        |
-| Platinum         | 15%  of total amount        |
+### Membership Benefits
 
+Customers with membership status receive discounts on purchases totaling **₱10,000.00 or more**:
 
----
-
-
-## ✅ Requirements
-- Design a GUI using **Master Page or CSS Template**
-- Display **date and time** of each sales transaction
-- Create your own **Database Design** (multiple tables allowed)
-- Place all **computations inside a Class Library**
-- Submit the following:
-  - Screenshots of all webpages
-  - Screen video showing system functionality (Use [Bandicam](https://www.bandicam.com/))
-
----
+| Membership Level | Discount Rate | Example (₱10,000 purchase) |
+|------------------|---------------|----------------------------|
+| Silver           | 5%            | ₱500 discount              |
+| Gold             | 10%           | ₱1,000 discount            |
+| Platinum         | 15%           | ₱1,500 discount            |
 
 ## 🔄 System Flowchart
 
-### Basic Flow
-
+```mermaid
+graph TD
+    A[START] --> B[Home Page]
+    B --> C[Login Page]
+    C --> D{Account Exists?}
+    D -->|No| E[Registration Page]
+    E --> B
+    D -->|Yes| F{User Type?}
+    
+    F -->|User| G[User Dashboard]
+    G --> G1[Profile Manager]
+    G --> G2[View Order History]
+    G --> G3[Buy/Add Products to Cart]
+    G --> G4[Logout]
+    G4 --> Z[END]
+    
+    F -->|Admin| H[Admin Dashboard]
+    H --> H1[Add New Products]
+    H --> H2[View Records]
+    H2 --> H21[All Products]
+    H2 --> H22[Members Records]
+    H2 --> H23[Transactions]
+    H --> H3[Report Module]
+    H --> H4[Logout]
+    H4 --> Z
 ```
-START
-  ↓
-HOME PAGE <- [C]
-  ↓
-LOGIN
-  ↓
-ACCOUNT EXIST?
-  ├── NO → REGISTRATION PAGE/[B] → [C]
-  └── YES [A]
-        ↓ {End Flow 1; Initial Page]
-    USER/ADMIN? / [A]
-      ├── USER
-      │     ↓
-      │  USER PAGE
-      │     ├── Profile Manager (Change Password Only)
-      │     ├── View Order History
-      │     ├── Buy/Add Products to Cart
-      │     └── Logout
-      │         ↓
-      │        END
-      └── ADMIN
-            ↓
-        ADMIN PAGE
-            ├── Add New Products
-            ├── View Records
-            │     ├── All Products
-            │     ├── Members Records
-            │     └── Transactions
-            └── Report Module
-                  ↓
-                 END
+
+## 🚀 Installation Guide
+
+### Prerequisites
+- Visual Studio 2022
+- .NET Framework 4.7.2 or higher
+- SQL Server / SQL Server Express LocalDB (Optional)(Uses Server Explorer from Visual Studio)
+
+### 1. Clone the Repository
+
+```bash
+# Clone via command line
+git clone https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy.git
+
+# Or in Visual Studio
+# Git → Clone Repository → https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy
 ```
----
----
----
-<br>
 
-# 🛠️ Project Setup Guide for Collaborators  
+### 2. Database Setup
 
-A C# ASP .NET WebForms + ADO.NET project for managing products, cart & checkout, and reporting.
----
+#### Option 1: Using the OneDrive .mdf File (Recommended)
 
-## 1. Clone the Repository
+1. **Clone the Project**
+   ```bash
+   git clone https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy.git
+   git pull origin main
+   ```
 
-1. In Visual Studio, **Git → Clone Repository**  
-2. Paste URL: `https://github.com/Keonbe/AppDev-FinalActivity3-CaseStudy`  
-3. Choose your local folder → **Clone**
+2. **Remove Existing `App_Data`**
+   * In Solution Explorer, navigate to `App_Data` folder
+   * Delete any existing `.mdf` and `.ldf` files
 
----
+3. **Download the Working `.mdf` File**
+   * Download from [OneDrive link](https://dlsudphl-my.sharepoint.com/my?id=%2Fpersonal%2Fbkm0866%5Fdlsud%5Fedu%5Fph%2FDocuments%2FPROG%5FPROGRAM%2DFILES%2FBIT23%2F2ndSem%2FAppDev%2FSample%20Code%2Fshared%2FCaseStudy%5BNEW%20UI%5D%2FFinalActivity3%2FFinalActivity3%5FCaseStudy%2FFinalActivity3%5FCaseStudy%2FApp%5FData&login_hint=BKM0866%40dlsud%2Eedu%2Eph)
 
-## 2. App_Data & Database Scripts
+4. **Add `.mdf` File to Project**
+   * In Visual Studio, right-click on `App_Data` → **Add** → **Existing Item...**
+   * Select the downloaded `.mdf` file
 
-### Why _not_ commit the `.mdf` file
+5. **Rebuild Solution**
+   * **Build** → **Clean Solution**
+   * **Build** → **Rebuild Solution**
 
-- **Binary & locked** — Git can’t diff or merge it, and VS/SQL Server locks it.
-- **Team use** — everyone runs the same SQL scripts instead.
+6. **Run the Project**
+   * Hit `F5` or click **Start Debugging**
 
-### Prepare your local DB
+#### Option 2: Using Database Scripts
 
-1. Delete any existing **App_Data** folder.  
-2. Add a new **App_Data** folder to the project.  
-3. Open **SQL Server Management Studio (SSMS)** and create a new database, e.g. `SalesInventoryDB`.  
-4. In SSMS, in this order execute the scripts in `/DatabaseScripts`:
+If you prefer not to use the shared `.mdf` file, you can set up the database from scratch:
 
-   - `01_CreateTables.sql`  
-   - `02_InsertSeedData.sql`  
-   - `03_StoredProcedures.sql`  
+1. Open **SQL Server Management Studio**
+2. Create a new local database (e.g., `SalesInvSystemDB`)
+3. Execute the SQL scripts in `/DatabaseScripts` folder in this order:
+   * `01_CreateTables.sql`
+   * `02_InsertSeedData.sql`
+   * `03_StoredProcedures.sql` (if applicable)
 
-   Each `GO` block will create tables, seed data, and install SPs.
+### 3. Configure Connection String
 
----
+Add this to your `Web.config` file:
 
-## 3. Configure Connection String
+```xml
+<connectionStrings>
+  <add name="DBMS" 
+       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
+                         AttachDbFilename=|DataDirectory|\SalesInvSystemDB.mdf;
+                         Integrated Security=True;
+                         Connect Timeout=30;" 
+       providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
 
-In **ClassLibrary/DatabaseHelper.cs** (or wherever `ConnStr` is defined):
+Then access it in your code:
 
 ```csharp
-static string ConnStr = @"
-  Data Source=(LocalDB)\MSSQLLocalDB;
-  AttachDbFilename=C:\FULL\PATH\TO\PROJECT\App_Data\SalesInventoryDB.mdf;
-  Integrated Security=True";
-````
+using System.Configuration;
 
-* **Replace** `C:\FULL\PATH\TO\PROJECT\…` with your local path.
-* Confirm your LocalDB instance name (often `(LocalDB)\MSSQLLocalDB`).
-* No need to edit Web.config; the code reads it directly.
+private readonly string connStr = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
+```
 
----
+### 4. Build and Run
 
-## 4. Build & Run
-
-1. **Clean** → Build → Clean Solution
-2. **Rebuild** → Build → Rebuild Solution
-3. **Start** → Debug → Start Debugging (F5)
-
-> **Tip:** Avoid rebuilding mid-session unless you’ve changed references—clean/rebuild can sometimes break the runtime ASPX↔code-behind mapping.
-
----
+1. Clean Solution: **Build → Clean Solution**
+2. Rebuild: **Build → Rebuild Solution**
+3. Run: Press **F5** or **Debug → Start Debugging**
 
 ## 🔧 Troubleshooting
 
-| Issue                                      | Cause & Fix                                                                                                                                                       |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **“Database cannot be opened”**            | Close VS & SSMS, delete the stale `.mdf`/`.ldf` in **App\_Data**, then re-run the scripts in SSMS.                                                                |
-| **Login failed**                           | Ensure your connection string uses `Integrated Security=True`; run SSMS as your Windows user; verify the `UserInfoTable` contains the credentials you’re testing. |
-| **Default page (403.14)**                  | No root default document: <br>• In VS, right-click **Homepage.aspx** → **Set as Start Page** <br>• OR add `<defaultDocument>` in Web.config.                      |
-| **MasterPage or hyperlink 404/403 errors** | Check `<asp:HyperLink NavigateUrl="~/User/Page.aspx">` paths; ensure the target `.aspx` exists under the correct folder. Use `~/` for site root.                  |
-| **GridView won’t render Columns**          | If you declare `<Columns>…</Columns>`, set `AutoGenerateColumns="False"`. Correct syntax: add a space between attributes (`DataField="X" HeaderText="Y"`).        |
-| **“Conversion failed…” SQL errors**        | Mismatch between table column types: confirm your SPs and table schema align (e.g. `ProductID` text vs. int PK). Adjust column type or SP JOIN accordingly.       |
-| **Stored procedure not found**             | Make sure you ran `03_StoredProcedures.sql`, and that the procedure name in code matches exactly (including schema, e.g. `dbo.SC_ProcessCheckout`).               |
-| **Pages not updating after code change**   | Clear browser cache or stop/start IIS Express. In VS, **Project → Clean**, then **Rebuild**.                                                                      |
+### Database Issues
+
+| Issue | Solution |
+|-------|----------|
+| **"Conversion failed when converting nvarchar to int"** | Check data types in stored procedures and tables |
+| **Stored Procedure returns nothing** | Verify parameters match actual data and check joins |
+| **"Cannot open database .mdf"** | Ensure file is properly attached via **Add → Existing Item** |
+| **Login failed for user** | Verify `Integrated Security=True` in connection string |
+| **Special characters in DB path** | Rename files to avoid `&` and other special characters |
+
+### ASP.NET Issues
+
+| Issue | Solution |
+|-------|----------|
+| **GridView is blank** | Check `DataSource`, `DataBind()` and timing of data binding |
+| **Object reference not set** | Add null checks before accessing controls or data |
+| **ASP.NET links giving 404/403** | Use root-relative paths (`~/`) for navigation |
+| **Page opens blank with no error** | Check for silently caught exceptions and `IsPostBack` logic |
+| **CSS/JS not loading** | Use proper relative paths with `~/Content/` format |
+
+### First-Run "Free Fixes"
+
+#### 1. Roslyn Compiler Missing
+```
+Could not find a part of the path '…\bin\roslyn\csc.exe'
+```
+Install/update **Microsoft.CodeDom.Providers.DotNetCompilerPlatform** via NuGet
+
+#### 2. Native SQL Server Types Missing
+```
+Could not copy '…\SqlServerTypes\x64\SqlServerSpatial140.dll'
+```
+Install/update **Microsoft.SqlServer.Types** via NuGet
+
+#### 3. 403.14 Forbidden — No Default Document
+Right-click `Homepage.aspx` → **Set as Start Page** → F5
+
+## 📝 Development Guidelines
+
+### Pull Request Checklist
+1. ✅ **Define** the purpose of your change
+2. ✅ **Plan** your implementation approach
+3. ✅ **Build in small increments** and test frequently
+4. ✅ **Understand** all code (especially AI-generated)
+5. ✅ **Use clear naming** for methods and SQL objects
+6. ✅ **Document** complex logic with comments
+7. ✅ **Test** thoroughly, including edge cases
+
+### Code Style
+- Use PascalCase for class names and methods
+- Use camelCase for local variables
+- Document public methods with XML comments
+- Follow the repository's established patterns
+
+### Master Page Reference System
+
+The project uses a structured folder system with master pages in different locations.
+
+```
+Root/
+├── Admin/
+│   ├── AdminMaster.master   ← Admin master page
+│   └── Dashboard.aspx
+├── User/
+│   ├── AdminMaster.master
+│   ├── MainMasterpage.Master   ← Primary master page
+│   ├── ProductCatalog.aspx
+│   └── ShoppingCart.aspx
+└── HomePage/
+     ├── LandingPage.Master   ← Landing master page
+     ├── newRegistration.aspx
+     └── newLogin.aspx
+```
+
+### Path Reference Rules
+
+1. **Always use `~` for root-relative paths** when crossing folder boundaries
+   ```aspnet
+   ❌ "MainMasterpage.Master" 
+   ✅ "~/User/MainMasterpage.Master"
+   ```
+
+2. **Case sensitivity matters**
+   ```aspnet
+   ❌ "mainmasterpage.master"
+   ✅ "MainMasterpage.Master"
+   ```
+
+3. **Set correct file properties**:
+   - Build Action = Content
+   - Copy to Output Directory = Copy if newer
+
+## 📚 Documentation
+
+Additional documentation is available in:
+- [DEVELOPER_NOTES.md](DEVELOPER_NOTES.md) - Extended technical documentation
+- [/DatabaseScripts/README.md](/DatabaseScripts/README.md) - Database schema details
+
+## 🔄 Collaboration Compatibility Guide
+
+### Comprehensive list of collaboration compatibility issues:
+
+#### 1️⃣ **Codebase Issues**
+- **RDLC Reports Not Rendering**  
+  Missing files, dataset name mismatches, or missing `Microsoft.ReportViewer.WebForms`
+- **.csproj Conflicts**  
+  Version mismatches or path issues causing merge conflicts
+- **NuGet Inconsistencies**  
+  Package version mismatches or missing restores
+
+#### 2️⃣ **Environment Issues**
+- **SQL Server Differences**  
+  Missing databases or stored procedures
+- **Report Viewer Not Installed**  
+  Requires NuGet package:  
+  ```bash
+  Install-Package Microsoft.Reporting.WebForms
+  ```
+- **IIS/.NET Version Conflicts**  
+  Ensure all use same target framework (check `.csproj`)
+
+#### 3️⃣ **Tooling Issues**
+- **Visual Studio Version Conflicts**  
+  Solution file compatibility between VS2017/2019/2022
+- **Git Line Ending Conflicts**  
+  Set `.gitattributes` for consistent line endings
+
+#### 4️⃣ **Workflow Issues**
+- **Merge Conflicts**  
+  Always pull before pushing changes
+- **Untracked Files**  
+  Regularly check `git status` for missing files
+- **Missing Documentation**  
+  Keep `README.md` updated with setup instructions
+
+#### ✅ **Compatibility Checklist**
+| Requirement               | Status  | Notes                          |
+|---------------------------|---------|--------------------------------|
+| Proper `.gitignore`       | ✔️      | Excludes binaries/user files   |
+| Updated `README.md`       | ✔️      | Contains setup instructions    |
+| NuGet packages restored   | ✔️      | Via `packages.config`          |
+| Consistent .NET version   | ✔️ 4.8  | Verified in `.csproj`          |
+| SQL scripts available     | ✔️      | In `DatabaseScripts/` folder   |
+| ReportViewer installed    | ✔️      | Via NuGet package             |
 
 ---
 
-## 5. Tips for Collaborators
-
-* **When you change the schema**: add a new numbered SQL script (`04_…`) under `/DatabaseScripts` and update README.
-* **Never** commit `*.mdf`/`*.ldf` — they’re in `.gitignore`.
-* **Quick Checklist** below before each PR.
-
----
-
-### 📝 Quick Checklist
-
-1. **Define** the feature’s “why.”
-2. **Plan** pages, methods & data flow.
-3. **Build small** & test often.
-4. **Understand** AI-generated code; ask “why.”
-5. **Name** methods & SQL clearly.
-6. **Document** complex logic in comments.
-7. **Test** edge cases & error paths.
-
-
-**Need help?**  
-Contact [Your Name] at [your.email@example.com] or propose fixes via a pull request.  
-
----
----
-
-### 📝 **DEVELOPER_NOTES.md** (New File)  
-# Extended Project Documentation  
-
-## Database Architecture  
-- Tables, relations, stored procedures  
-- Seed data reference  
-
-## Master Page System  
-- Path resolution rules  
-- Fixes for "does not exist" errors  
-
-## Contribution Guide  
-- How to sync database changes  
-- Naming conventions  
-- Testing protocols
-- Proper Commenting
+<div align="center">
+  <p>Developed by Keanu Bembo and Group | De La Salle University – Dasmariñas</p>
+  <p>Final Exam Project for Application Development 2025</p>
+</div>

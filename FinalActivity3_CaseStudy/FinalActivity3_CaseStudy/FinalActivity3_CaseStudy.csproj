@@ -218,7 +218,7 @@
     <Content Include="assets\css\testUserStyle.css" />
     <Content Include="assets\css\UserStyle.css" />
     <Content Include="DatabaseScripts\03_StoredProcedures.sql" />
-    <Content Include="DatabaseScripts\02_Query.sql" />
+    <Content Include="DatabaseScripts\02_InsertSeedData.sql" />
     <Content Include="DatabaseScripts\01_CreateTables.sql" />
     <Content Include="HomePage\LandingPage.aspx" />
     <Content Include="HomePage\newLogin.aspx" />

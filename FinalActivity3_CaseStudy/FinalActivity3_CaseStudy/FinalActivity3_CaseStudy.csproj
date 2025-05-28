@@ -214,8 +214,8 @@
     </Content>
     <Content Include="assets\css\AdminStyle.css" />
     <Content Include="assets\css\landingpageStyle.css" />
-    <Content Include="assets\css\testAdminStyle.css" />
-    <Content Include="assets\css\testUserStyle.css" />
+    <Content Include="assets\css\newAdminStyle.css" />
+    <Content Include="assets\css\newUserStyle.css" />
     <Content Include="assets\css\UserStyle.css" />
     <Content Include="DatabaseScripts\03_StoredProcedures.sql" />
     <Content Include="DatabaseScripts\02_InsertSeedData.sql" />

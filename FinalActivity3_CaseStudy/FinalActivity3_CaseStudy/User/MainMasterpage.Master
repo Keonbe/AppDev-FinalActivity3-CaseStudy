@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sales & Inventory System</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="~/assets/css/testUserStyle.css" />
+  <link rel="stylesheet" href="~/assets/css/newUserStyle.css" />
   <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>

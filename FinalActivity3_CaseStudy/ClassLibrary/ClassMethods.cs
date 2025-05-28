@@ -107,39 +107,6 @@ namespace ClassLibrary
             return false;
         }
 
-
-        #region Stores EmailAddress and Password in the class
-        /// <summary>
-        /// Private field to store user email address.
-        /// </summary>
-        string EmailAddress, Password; //CTRL R + E
-
-        /// <summary>
-        /// Gets or sets the email address of the current user.
-        /// </summary>
-        public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
-
-        /// <summary>
-        /// Gets or sets the password of the current user.
-        /// </summary>
-        public string PasswordClass { get => Password; set => Password = value; }
-
-        /// <summary>
-        /// Private field to store admin email address.
-        /// </summary>
-        string AdminEmailAddress, AdminPassword;
-
-        /// <summary>
-        /// Gets or sets the email address of the current admin.
-        /// </summary>
-        public string AdminEmailAddressClass { get => AdminEmailAddress; set => AdminEmailAddress = value; }
-
-        /// <summary>
-        /// Gets or sets the password of the current admin.
-        /// </summary>
-        public string AdminPasswordClass { get => AdminPassword; set => AdminPassword = value; }
-        #endregion
-
         /// <summary>
         /// Updates a user's password after verifying current credentials.
         /// </summary>
@@ -322,5 +289,37 @@ namespace ClassLibrary
             return ds;
         }
 
+
+        #region Stores EmailAddress and Password in the class
+        /// <summary>
+        /// Private field to store user email address.
+        /// </summary>
+        string EmailAddress, Password; //CTRL R + E
+
+        /// <summary>
+        /// Gets or sets the email address of the current user.
+        /// </summary>
+        public string EmailAddressClass { get => EmailAddress; set => EmailAddress = value; }
+
+        /// <summary>
+        /// Gets or sets the password of the current user.
+        /// </summary>
+        public string PasswordClass { get => Password; set => Password = value; }
+
+        /// <summary>
+        /// Private field to store admin email address.
+        /// </summary>
+        string AdminEmailAddress, AdminPassword;
+
+        /// <summary>
+        /// Gets or sets the email address of the current admin.
+        /// </summary>
+        public string AdminEmailAddressClass { get => AdminEmailAddress; set => AdminEmailAddress = value; }
+
+        /// <summary>
+        /// Gets or sets the password of the current admin.
+        /// </summary>
+        public string AdminPasswordClass { get => AdminPassword; set => AdminPassword = value; }
+        #endregion
     }
 }

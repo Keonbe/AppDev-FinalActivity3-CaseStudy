@@ -1,0 +1,885 @@
+﻿/* Bootstrap Compatible Admin Dashboard CSS */
+/* Import Bootstrap 5.3 CDN */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+/* Custom CSS Variables */
+:root {
+    --admin-primary: #2563eb;
+    --admin-primary-dark: #1d4ed8;
+    --admin-secondary: #64748b;
+    --admin-success: #10b981;
+    --admin-warning: #f59e0b;
+    --admin-danger: #ef4444;
+    --admin-info: #06b6d4;
+    --admin-dark: #1e293b;
+    --admin-light: #f8fafc;
+    --admin-sidebar-bg: #1e293b;
+    --admin-header-height: 70px;
+    --admin-nav-height: 60px;
+    --admin-footer-height: 50px;
+    --admin-transition: all 0.3s ease;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--admin-light);
+    color: #374151;
+    line-height: 1.6;
+}
+
+/* Admin Container - Full Height Layout */
+.admin-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+    margin: 0;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-dark) 100%);
+    color: white;
+    padding: 0;
+    height: var(--admin-header-height);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1030;
+}
+
+    header .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+    }
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    height: var(--admin-nav-height);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1020;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+}
+
+    .nav-links li {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links a {
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        height: var(--admin-nav-height);
+        text-decoration: none;
+        color: #6b7280;
+        font-weight: 500;
+        transition: var(--admin-transition);
+        border-bottom: 3px solid transparent;
+        position: relative;
+    }
+
+        .nav-links a:hover {
+            color: var(--admin-primary);
+            background-color: #f8fafc;
+            border-bottom-color: var(--admin-primary);
+            text-decoration: none;
+        }
+
+        .nav-links a.active {
+            color: var(--admin-primary);
+            border-bottom-color: var(--admin-primary);
+            background-color: #eff6ff;
+        }
+
+/* Main Content Area */
+main {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--admin-light);
+    min-height: calc(100vh - var(--admin-header-height) - var(--admin-nav-height) - var(--admin-footer-height));
+}
+
+/* Section Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--admin-dark);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+}
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: var(--admin-primary);
+        border-radius: 2px;
+    }
+
+/* Form Controls Enhancement */
+.form-control {
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    transition: var(--admin-transition);
+}
+
+    .form-control:focus {
+        border-color: var(--admin-primary);
+        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+    }
+
+.form-select:focus {
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+/* ASP.NET RadioButtonList Styles */
+input[type="radio"] {
+    margin-right: 0.5rem !important;
+    width: auto !important;
+    transform: scale(1.1);
+    accent-color: var(--admin-primary);
+}
+
+table[id*="rbl"] {
+    margin-bottom: 1.5rem;
+}
+
+    table[id*="rbl"] td {
+        padding: 0.5rem 1rem 0.5rem 0 !important;
+        border: none !important;
+        background: none !important;
+        vertical-align: middle;
+    }
+
+    table[id*="rbl"] label {
+        font-weight: 500;
+        color: var(--admin-dark);
+        cursor: pointer;
+        margin-bottom: 0;
+        font-size: 0.95rem;
+    }
+
+    table[id*="rbl"] input[type="radio"]:checked + label {
+        color: var(--admin-primary);
+        font-weight: 600;
+    }
+
+/* ASP.NET DropDownList Styles */
+select[id*="ddl"] {
+    border-radius: 0.375rem !important;
+    border: 1px solid #d1d5db !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    background-color: white !important;
+    min-width: 150px !important;
+    margin-bottom: 1.5rem !important;
+    transition: var(--admin-transition) !important;
+    width: auto !important;
+}
+
+    select[id*="ddl"]:focus {
+        outline: none !important;
+        border-color: var(--admin-primary) !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+    }
+
+/* Enhanced GridView Styles */
+.GridView,
+table[id*="gv"],
+table[id*="GridView"],
+.gridview {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    background-color: white !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border-radius: 0.75rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e5e7eb !important;
+    font-size: 0.9rem !important;
+}
+
+    /* GridView Headers */
+    .GridView th,
+    .GridView .gridview-header,
+    table[id*="gv"] th,
+    table[id*="GridView"] th,
+    .gridview th,
+    .gridview-header {
+        background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-dark) 100%) !important;
+        color: white !important;
+        padding: 1rem 1rem !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        border: none !important;
+        font-size: 0.875rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        white-space: nowrap !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10 !important;
+    }
+
+    /* GridView Rows */
+    .GridView td,
+    .GridView .gridview-row td,
+    .GridView .gridview-altrow td,
+    table[id*="gv"] td,
+    table[id*="GridView"] td,
+    .gridview td,
+    .gridview-row td,
+    .gridview-altrow td {
+        padding: 1rem 1rem !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        vertical-align: middle !important;
+        background-color: white !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* GridView Alternating Rows */
+    .GridView tr:nth-child(even) td,
+    .GridView .gridview-altrow td,
+    table[id*="gv"] tr:nth-child(even) td,
+    table[id*="GridView"] tr:nth-child(even) td,
+    .gridview tr:nth-child(even) td,
+    .gridview-altrow td {
+        background-color: #f8fafc !important;
+    }
+
+    /* GridView Hover Effect */
+    .GridView tr:hover td,
+    .GridView .gridview-row:hover td,
+    .GridView .gridview-altrow:hover td,
+    table[id*="gv"] tr:hover td,
+    table[id*="GridView"] tr:hover td,
+    .gridview tr:hover td,
+    .gridview-row:hover td,
+    .gridview-altrow:hover td {
+        background-color: #eff6ff !important;
+        transition: var(--admin-transition) !important;
+        cursor: pointer !important;
+    }
+
+    /* GridView Pager Styles */
+    .GridView .gridview-pager,
+    .GridView tr:last-child td,
+    table[id*="gv"] .gridview-pager,
+    table[id*="gv"] tr:last-child td,
+    table[id*="GridView"] .gridview-pager,
+    table[id*="GridView"] tr:last-child td,
+    .gridview .gridview-pager,
+    .gridview tr:last-child td {
+        background-color: #f8fafc !important;
+        padding: 1.5rem !important;
+        text-align: center !important;
+        border-top: 2px solid #e5e7eb !important;
+        border-bottom: none !important;
+    }
+
+        .GridView .gridview-pager a,
+        table[id*="gv"] .gridview-pager a,
+        table[id*="GridView"] .gridview-pager a,
+        .gridview .gridview-pager a,
+        .GridView tr:last-child td a,
+        table[id*="gv"] tr:last-child td a,
+        table[id*="GridView"] tr:last-child td a,
+        .gridview tr:last-child td a {
+            display: inline-block !important;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem !important;
+            background-color: white !important;
+            border: 1px solid #d1d5db !important;
+            border-radius: 0.375rem !important;
+            color: var(--admin-primary) !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: var(--admin-transition) !important;
+            font-size: 0.875rem !important;
+        }
+
+            .GridView .gridview-pager a:hover,
+            table[id*="gv"] .gridview-pager a:hover,
+            table[id*="GridView"] .gridview-pager a:hover,
+            .gridview .gridview-pager a:hover,
+            .GridView tr:last-child td a:hover,
+            table[id*="gv"] tr:last-child td a:hover,
+            table[id*="GridView"] tr:last-child td a:hover,
+            .gridview tr:last-child td a:hover {
+                background-color: var(--admin-primary) !important;
+                color: white !important;
+                border-color: var(--admin-primary) !important;
+                transform: translateY(-1px) !important;
+            }
+
+        .GridView .gridview-pager span,
+        table[id*="gv"] .gridview-pager span,
+        table[id*="GridView"] .gridview-pager span,
+        .gridview .gridview-pager span,
+        .GridView tr:last-child td span,
+        table[id*="gv"] tr:last-child td span,
+        table[id*="GridView"] tr:last-child td span,
+        .gridview tr:last-child td span {
+            display: inline-block !important;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem !important;
+            background-color: var(--admin-primary) !important;
+            color: white !important;
+            border-radius: 0.375rem !important;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important;
+        }
+
+/* ASP.NET Form Controls */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    border-radius: 0.375rem !important;
+    border: 1px solid #d1d5db !important;
+    padding: 0.75rem !important;
+    font-size: 0.875rem !important;
+    transition: var(--admin-transition) !important;
+    width: 100% !important;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+        outline: none !important;
+        border-color: var(--admin-primary) !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+    }
+
+/* ASP.NET Button Styles */
+input[type="submit"],
+input[type="button"],
+.aspNetButton {
+    background-color: var(--admin-primary) !important;
+    border: 1px solid var(--admin-primary) !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 0.375rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: var(--admin-transition) !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 0.875rem !important;
+}
+
+    input[type="submit"]:hover,
+    input[type="button"]:hover,
+    .aspNetButton:hover {
+        background-color: var(--admin-primary-dark) !important;
+        border-color: var(--admin-primary-dark) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3) !important;
+    }
+
+/* Custom Button Styles */
+.btn-admin-primary {
+    background-color: var(--admin-primary);
+    border-color: var(--admin-primary);
+    color: white;
+    font-weight: 500;
+    transition: var(--admin-transition);
+}
+
+    .btn-admin-primary:hover {
+        background-color: var(--admin-primary-dark);
+        border-color: var(--admin-primary-dark);
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    }
+
+.btn-admin-secondary {
+    background-color: var(--admin-secondary);
+    border-color: var(--admin-secondary);
+    color: white;
+}
+
+    .btn-admin-secondary:hover {
+        background-color: #475569;
+        border-color: #475569;
+        color: white;
+    }
+
+/* Dashboard Cards */
+.dashboard-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--admin-transition);
+    border: none;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-card .card-header {
+        background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-dark) 100%);
+        color: white;
+        border-radius: 0.75rem 0.75rem 0 0 !important;
+        border: none;
+        font-weight: 600;
+    }
+
+/* Stats Cards */
+.stats-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--admin-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+    .stats-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--admin-primary);
+    }
+
+    .stats-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .stats-card.success::before {
+        background: var(--admin-success);
+    }
+
+    .stats-card.warning::before {
+        background: var(--admin-warning);
+    }
+
+    .stats-card.danger::before {
+        background: var(--admin-danger);
+    }
+
+    .stats-card.info::before {
+        background: var(--admin-info);
+    }
+
+.stats-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--admin-dark);
+    margin: 0;
+}
+
+.stats-label {
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+/* Alert Styles */
+.alert-admin {
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid;
+}
+
+    .alert-admin.alert-success {
+        border-left-color: var(--admin-success);
+    }
+
+    .alert-admin.alert-warning {
+        border-left-color: var(--admin-warning);
+    }
+
+    .alert-admin.alert-danger {
+        border-left-color: var(--admin-danger);
+    }
+
+    .alert-admin.alert-info {
+        border-left-color: var(--admin-info);
+    }
+
+/* Footer */
+footer {
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+    height: var(--admin-footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Action Buttons */
+.btn-action {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    transition: var(--admin-transition);
+    margin: 0 0.25rem;
+}
+
+.btn-edit {
+    background-color: var(--admin-info);
+    color: white;
+}
+
+    .btn-edit:hover {
+        background-color: #0891b2;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+.btn-delete {
+    background-color: var(--admin-danger);
+    color: white;
+}
+
+    .btn-delete:hover {
+        background-color: #dc2626;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+.btn-view {
+    background-color: var(--admin-success);
+    color: white;
+}
+
+    .btn-view:hover {
+        background-color: #059669;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+/* Label Styles */
+.label, label {
+    color: var(--admin-dark);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Message Label Styles */
+span[id*="lbl"] {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    background-color: #f0f9ff;
+    color: var(--admin-primary);
+    border: 1px solid #bfdbfe;
+}
+
+/* Mobile Navigation Toggle */
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-toggler {
+        display: block;
+    }
+
+    header .container-fluid {
+        justify-content: space-between;
+    }
+
+    nav {
+        position: relative;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+        z-index: 1010;
+    }
+
+        .nav-links.show {
+            height: auto;
+            min-height: 300px;
+        }
+
+        .nav-links li {
+            width: 100%;
+        }
+
+        .nav-links a {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            height: auto;
+            border-bottom: 1px solid #e5e7eb;
+            border-left: 3px solid transparent;
+        }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                border-left-color: var(--admin-primary);
+                border-bottom-color: transparent;
+            }
+
+    main {
+        padding: 1rem;
+    }
+
+    .stats-number {
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    /* Mobile GridView Adjustments */
+    .GridView th,
+    .GridView td,
+    table[id*="gv"] th,
+    table[id*="gv"] td,
+    table[id*="GridView"] th,
+    table[id*="GridView"] td,
+    .gridview th,
+    .gridview td {
+        padding: 0.75rem 0.5rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .btn-action {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+        margin: 0.125rem;
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        padding: 0.75rem;
+    }
+
+    /* Extra Small GridView Adjustments */
+    .GridView,
+    table[id*="gv"],
+    table[id*="GridView"],
+    .gridview {
+        font-size: 0.75rem !important;
+    }
+
+        .GridView th,
+        .GridView td,
+        table[id*="gv"] th,
+        table[id*="gv"] td,
+        table[id*="GridView"] th,
+        table[id*="GridView"] td,
+        .gridview th,
+        .gridview td {
+            padding: 0.5rem 0.375rem !important;
+            font-size: 0.75rem !important;
+        }
+
+    .btn-action {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .stats-number {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Radio button list adjustments */
+    table[id*="rbl"] td {
+        padding: 0.375rem 0.75rem 0.375rem 0 !important;
+    }
+
+    table[id*="rbl"] label {
+        font-size: 0.875rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header, nav, footer {
+        display: none !important;
+    }
+
+    main {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .admin-container {
+        box-shadow: none !important;
+    }
+
+    .dashboard-card,
+    .stats-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+
+    .GridView,
+    table[id*="gv"],
+    table[id*="GridView"],
+    .gridview {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+
+        .GridView th,
+        table[id*="gv"] th,
+        table[id*="GridView"] th,
+        .gridview th {
+            background: #f0f0f0 !important;
+            color: #000 !important;
+        }
+}
+
+/* Custom Utilities */
+.full-height {
+    min-height: calc(100vh - var(--admin-header-height) - var(--admin-nav-height) - var(--admin-footer-height));
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-dark) 100%);
+}
+
+.text-admin-primary {
+    color: var(--admin-primary) !important;
+}
+
+.border-admin-primary {
+    border-color: var(--admin-primary) !important;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+    .loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid var(--admin-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Content Spacing */
+main > * {
+    margin-bottom: 1.5rem;
+}
+
+    main > *:last-child {
+        margin-bottom: 0;
+    }

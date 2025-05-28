@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <!-- Reference to external stylesheet -->
-    <link rel="stylesheet" href="~/assets/css/testAdminStyle.css" />
+    <link rel="stylesheet" href="~/assets/css/newAdminStyle.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

@@ -113,6 +113,69 @@ graph TD
     H4 --> Z
 ```
 
+## 🔄 ER Diagram
+```mermaid
+erDiagram
+    USERS ||--o{ TRANSACTIONS : "places"
+    USERS ||--o{ CART : "has"
+    TRANSACTIONS ||--o{ TRANSACTION_DETAILS : "contains"
+    PRODUCTS ||--o{ TRANSACTION_DETAILS : "ordered_in"
+    PRODUCTS ||--o{ CART : "added_to"
+
+    USERS {
+        int UserID PK
+        nvarchar Name
+        nvarchar EmailAddress
+        nvarchar Password
+        nchar MembershipType
+        bit IsAdmin
+    }
+
+    PRODUCTS {
+        nchar ProductID PK
+        nvarchar Name
+        decimal Price
+        int Stocks
+    }
+
+    TRANSACTIONS {
+        int TransactionID PK
+        int UserID FK
+        datetime DateTime
+        decimal TotalAmount
+        nvarchar MembershipType
+    }
+
+    TRANSACTION_DETAILS {
+        int DetailID PK
+        int TransactionID FK
+        nvarchar ProductID FK
+        int Quantity
+        decimal UnitPrice
+        decimal Discount
+        decimal TotalAmount
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+
+    CART {
+        int CartID PK
+        int UserID FK
+        nvarchar ProductID FK
+        int Quantity
+    }
+```
+
+## 🔄 ERD Visual Flow
+```mermaid
+flowchart TD
+    USERS -->|places| TRANSACTIONS
+    USERS -->|has| CART
+    TRANSACTIONS -->|contains| TRANSACTION_DETAILS
+    PRODUCTS -->|ordered_in| TRANSACTION_DETAILS
+    PRODUCTS -->|added_to| CART
+```
+
 ## 🚀 Installation Guide
 
 ### Prerequisites

@@ -9,7 +9,7 @@
   ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 </div>
 
-## 📑 Table of Contents
+## Table of Contents
 - [Project Overview](#-project-overview)
 - [System Features](#-system-features)
 - [Product Inventory](#-product-inventory)
@@ -20,7 +20,7 @@
 - [Development Guidelines](#-development-guidelines)
 - [Documentation](#-documentation)
 
-## 🔍 Project Overview
+## Project Overview
 
 This Sales and Inventory System is developed in compliance to our subject ***"Application Development and Emerging Technologies"*** as a case study for companies requiring management of sales transactions and inventory tracking by implementing basic CRUD functions using T-SQL and C# as the backend language. Built using **ASP.NET WebForms** with **ADO.NET** for database operations, the system provides a comprehensive platform for both administrators and users.
 
@@ -30,21 +30,21 @@ The project includes:
 - Product inventory management
 - Sales processing with discount calculations
 - Comprehensive reporting features
-## ✨ System Features
 
-### 🔒 Admin Dashboard
+## System Features
+### Admin Dashboard
 - **Product Management**: Add, edit, and remove products from inventory
 - **Transaction Monitoring**: View all completed sales transactions
 - **Member Management**: Access and manage user account information
 - **Reports Generation**: Generate sales summaries using Microsoft Reporting Services / RDLC
   
-### 👤 User Portal
+### User Portal
 - **Profile Management**: Update & Change password
 - **Shopping Cart**: Add products to cart and complete checkout process
 - **Order History**: View past purchase transactions
 - **Secure Logout**: End session securely
 
-## 🛒 Product Inventory
+## Product Inventory
 
 The system comes pre-loaded with the following inventory:
 
@@ -56,7 +56,7 @@ The system comes pre-loaded with the following inventory:
 | 4  | MNTRLc     | LCD Monitor         | ₱6,500.00  | 100    | ₱7,475.00        |
 | 5  | MNTRLe     | LED Monitor         | ₱7,500.00  | 100    | ₱8,625.00        |
 
-## 💵 Sales System
+## Sales System
 
 ### Transaction Processing
 
@@ -176,7 +176,7 @@ flowchart TD
     PRODUCTS -->|added_to| CART
 ```
 
-## 🚀 Installation Guide
+## Installation Guide
 
 ### Prerequisites
 - Visual Studio 2022
@@ -355,7 +355,7 @@ Root/
    - Build Action = Content
    - Copy to Output Directory = Copy if newer
 
-## 📚 Documentation
+## Documentation
 
 Additional documentation is available in:
 - [DEVELOPER_NOTES.md](DEVELOPER_NOTES.md) - Extended technical documentation
